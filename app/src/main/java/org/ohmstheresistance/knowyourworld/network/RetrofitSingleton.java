@@ -17,7 +17,7 @@ public class RetrofitSingleton {
 
         retrofitInstance = new Retrofit
                 .Builder()
-                .baseUrl("https://wordsapiv1.p.mashape.com")
+                .baseUrl("https://restcountries.eu")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofitInstance;
