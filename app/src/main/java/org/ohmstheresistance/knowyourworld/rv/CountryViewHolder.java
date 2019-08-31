@@ -7,17 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.model.Country;
 
 
-
-public class CountryViewHolder  extends RecyclerView.ViewHolder {
+public class CountryViewHolder extends RecyclerView.ViewHolder {
 
     private WebView countryFlagImageView;
     private TextView countryNameTextView;
@@ -32,7 +28,7 @@ public class CountryViewHolder  extends RecyclerView.ViewHolder {
 
     }
 
-    public void onBind(Country country)  {
+    public void onBind(Country country) {
 
         String countryFlag = country.getFlag();
         String countryName = country.getName();
@@ -46,7 +42,11 @@ public class CountryViewHolder  extends RecyclerView.ViewHolder {
 
         countryFlagImageView.getSettings().setLoadWithOverviewMode(true);
         countryFlagImageView.getSettings().setUseWideViewPort(true);
-        countryFlagImageView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        countryFlagImageView.setVerticalScrollBarEnabled(false);
+        countryFlagImageView.setHorizontalScrollBarEnabled(false);
+        countryFlagImageView.setScrollContainer(false);
+        countryFlagImageView.setInitialScale(1);
+        countryFlagImageView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
         countryFlagImageView.loadUrl(countryFlag);
 
     }
