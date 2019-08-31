@@ -1,9 +1,10 @@
 package org.ohmstheresistance.knowyourworld;
 
+import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.body() != null) {
 
                     countryList = response.body();
-                    Log.d("Country ", "Retrofit call works " + response.body().get(2).getFlag());
+                    Log.d("Country ", "Retrofit call works " + response.body().get(6).getFlag());
 
 
                     CountryAdapter countryAdapter = new CountryAdapter(countryList);
@@ -76,5 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 }
