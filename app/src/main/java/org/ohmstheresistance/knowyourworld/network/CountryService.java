@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface CountryService {
 
-    @GET("/words/{word}")
+    @GET("/rest/v2/all")
     Call<List<Country>> getCountries();
 }
