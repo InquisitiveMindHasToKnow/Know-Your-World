@@ -20,8 +20,8 @@
         >
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
            >
 
@@ -29,25 +29,27 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
+                android:background="#CEDDE3"
                 android:layout_height="match_parent">
 
             <WebView
                 android:id="@+id/country_flag_imageview"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="96dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp"
+                android:scrollbars="none"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
 
+
             <TextView
                 android:id="@+id/country_name_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#909090"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:hint="Jamaica"
