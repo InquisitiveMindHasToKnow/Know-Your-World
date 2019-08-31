@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.body() != null) {
 
                     countryList = response.body();
-                    Log.d("Country ", "Retrofit call works " + response.body().get(2).getFlag());
+                    Log.d("Country ", "Retrofit call works " + response.body().get(6).getFlag());
 
 
                     CountryAdapter countryAdapter = new CountryAdapter(countryList);

@@ -9,7 +9,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/individual_game_card"
         android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,9 +27,9 @@
 
             <ImageView
                 android:id="@+id/country_flag_imageview"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:src="@drawable/ic_launcher_background"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
