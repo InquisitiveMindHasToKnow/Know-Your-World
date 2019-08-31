@@ -1,12 +1,12 @@
 package org.ohmstheresistance.knowyourworld.rv;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,9 +16,10 @@ import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.model.Country;
 
 
+
 public class CountryViewHolder  extends RecyclerView.ViewHolder {
 
-    private ImageView countryFlagImageView;
+    private WebView countryFlagImageView;
     private TextView countryNameTextView;
     private TextView countryCapitalTextView;
 
@@ -31,7 +32,7 @@ public class CountryViewHolder  extends RecyclerView.ViewHolder {
 
     }
 
-    public void onBind(Country country) {
+    public void onBind(Country country)  {
 
         String countryFlag = country.getFlag();
         String countryName = country.getName();
@@ -43,11 +44,10 @@ public class CountryViewHolder  extends RecyclerView.ViewHolder {
         countryCapitalTextView.setText(countryCapital);
 
 
-        Picasso.get()
-                .load(countryFlag)
-                .into(countryFlagImageView);
-
+        countryFlagImageView.getSettings().setLoadWithOverviewMode(true);
+        countryFlagImageView.getSettings().setUseWideViewPort(true);
+        countryFlagImageView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        countryFlagImageView.loadUrl(countryFlag);
 
     }
-
 }
