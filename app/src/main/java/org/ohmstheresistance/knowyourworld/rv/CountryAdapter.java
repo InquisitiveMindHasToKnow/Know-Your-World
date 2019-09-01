@@ -40,12 +40,14 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
         final Country country = countryList.get(i);
         countryViewHolder.onBind(country);
 
-
         countryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                final String countryName = country.getName();
                final String countryCapital = country.getCapital();
+               final Integer countryPopulation = country.getPopulation();
+              // final String bragJustCause = " Just F Y Y... you've been taught!";
+
 
                 textToSpeech = new TextToSpeech(countryViewHolder.itemView.getContext(), new TextToSpeech.OnInitListener() {
 
@@ -55,7 +57,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
                         if (status == TextToSpeech.SUCCESS) {
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk("You selected " + countryName + "...The capital of " +  countryName + " is " + countryCapital);
+                            playNextChunk("You selected " + countryName  + "...The capital of " + countryName + " is " + countryCapital
+                                    + "...There are approximately " + countryPopulation + " people living in " + countryName);
+
                         }
 
                     }
