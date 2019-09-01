@@ -1,16 +1,17 @@
 package org.ohmstheresistance.knowyourworld.rv;
 
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.model.Country;
+
 
 
 public class CountryViewHolder extends RecyclerView.ViewHolder {
@@ -46,8 +47,9 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
         countryFlagImageView.setHorizontalScrollBarEnabled(false);
         countryFlagImageView.setScrollContainer(false);
         countryFlagImageView.setInitialScale(1);
-        countryFlagImageView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+        countryFlagImageView.setBackgroundColor(Color.TRANSPARENT);
         countryFlagImageView.loadUrl(countryFlag);
 
     }
+
 }
