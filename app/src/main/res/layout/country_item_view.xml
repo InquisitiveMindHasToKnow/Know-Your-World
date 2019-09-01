@@ -26,6 +26,7 @@
            >
 
             <LinearLayout
+                android:id="@+id/country_linear_layout"
                 android:orientation="vertical"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
@@ -34,7 +35,7 @@
 
             <WebView
                 android:id="@+id/country_flag_imageview"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="96dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp"

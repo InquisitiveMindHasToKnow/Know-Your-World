@@ -1,9 +1,7 @@
 package org.ohmstheresistance.knowyourworld;
 
-import android.app.Application;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         countryRecyclerView = findViewById(R.id.country_recycler_view);
-
         countryList = new ArrayList<>();
 
         Retrofit countryRetrofit = RetrofitSingleton.getRetrofitInstance();
