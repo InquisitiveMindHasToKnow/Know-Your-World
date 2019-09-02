@@ -4,15 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background_blue"
-    tools:context=".activities.Study">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/country_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        />
+    tools:context=".activities.GetRandomCountry">
 
 </android.support.constraint.ConstraintLayout>

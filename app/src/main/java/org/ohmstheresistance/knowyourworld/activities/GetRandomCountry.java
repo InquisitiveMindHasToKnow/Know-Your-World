@@ -3,8 +3,6 @@ package org.ohmstheresistance.knowyourworld.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -12,7 +10,6 @@ import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.network.CountryService;
 import org.ohmstheresistance.knowyourworld.network.RetrofitSingleton;
-import org.ohmstheresistance.knowyourworld.rv.CountryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,19 +20,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class Study extends AppCompatActivity {
+public class GetRandomCountry extends AppCompatActivity {
 
+    private static final String RANDOM_COUNTRY_NAME_KEY = "randomCountryKey";
     private List<Country> countryList;
-    private RecyclerView countryRecyclerView;
-    private static final String RANDOM_COUNTRY_KEY = "randomCountryKey";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_study);
+        setContentView(R.layout.activity_randomize_country);
 
-        countryRecyclerView = findViewById(R.id.country_recycler_view);
+
         countryList = new ArrayList<>();
 
         Retrofit countryRetrofit = RetrofitSingleton.getRetrofitInstance();
@@ -44,21 +40,15 @@ public class Study extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
 
+                countryList = response.body();
 
-                Log.d("Country ", "Retrofit call works " + response.body().get(0).getName());
-
-
-                if (response.body() != null) {
-
-                    countryList = response.body();
-                    Log.d("Country ", "Retrofit call works " + response.body().get(6).getFlag());
-
-
-                    CountryAdapter countryAdapter = new CountryAdapter(countryList);
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-                    countryRecyclerView.setLayoutManager(gridLayoutManager);
-                    countryRecyclerView.setAdapter(countryAdapter);
-                }
+                Random randomCountry = new Random();
+                Country randomCountryPicked = countryList.get(randomCountry.nextInt(countryList.size() - 1) + 1);
+                Intent randomCountryIntent = new Intent(getApplicationContext(), RandomCountryPicked.class);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_NAME_KEY, randomCountryPicked.getName());
+                GetRandomCountry.this.finish();
+                startActivity(randomCountryIntent);
+                overridePendingTransition(0, 0);
 
                 if (!response.isSuccessful()) {
                     Log.d("Country", "Unable To Display Empty List: " + response.body());
@@ -72,15 +62,13 @@ public class Study extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Country>> call, Throwable t) {
 
-                Log.d("Country", "Retrofit call failed, Omar" + t.getMessage());
-
 
             }
 
         });
 
 
-
     }
+
 }
 
