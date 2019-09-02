@@ -3,6 +3,7 @@ package org.ohmstheresistance.knowyourworld.rv;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import java.util.Locale;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
 
+    private long lastClickTime = 0;
     private List<Country> countryList;
     private TextToSpeech textToSpeech;
 
@@ -40,13 +42,21 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
         final Country country = countryList.get(i);
         countryViewHolder.onBind(country);
 
+
         countryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               final String countryName = country.getName();
-               final String countryCapital = country.getCapital();
-               final Integer countryPopulation = country.getPopulation();
-              // final String bragJustCause = " Just F Y Y... you've been taught!";
+                final String countryName = country.getName();
+                final String countryCapital = country.getCapital();
+                final Integer countryPopulation = country.getPopulation();
+                final String countryRegion = country.getSubregion();
+                final String countryCitizens = country.getDemonym();
+
+
+                if (SystemClock.elapsedRealtime() - lastClickTime < 5000) {
+                    return;
+                }
+                lastClickTime = SystemClock.elapsedRealtime();
 
 
                 textToSpeech = new TextToSpeech(countryViewHolder.itemView.getContext(), new TextToSpeech.OnInitListener() {
@@ -57,11 +67,19 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
                         if (status == TextToSpeech.SUCCESS) {
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk("You selected " + countryName  + "...The capital of " + countryName + " is " + countryCapital
-                                    + "...There are approximately " + countryPopulation + " people living in " + countryName);
+                            playNextChunk(countryName + "...The capital of " + countryName + " is " + countryCapital
+                                    + "... " + countryName + " is located in " + countryRegion + "...There are approximately " + countryPopulation + countryCitizens + "living in " + countryName);
 
                         }
 
+                        if(countryName.equals("Antarctica")) {
+
+
+                            textToSpeech.setLanguage(Locale.US);
+                            playNextChunk(countryName + "...There is no capital city in  " + countryName + "... " + countryName + " is located in " + countryName + "...There are approximately " + countryPopulation + " people living in " + countryName);
+
+
+                        }
                     }
                 });
             }
@@ -75,13 +93,16 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
             ttsGreater21(text);
         } else {
             ttsUnder20(text);
-        }}
+        }
+    }
+
     @SuppressWarnings("deprecation")
     private void ttsUnder20(String text) {
         HashMap<String, String> map = new HashMap<>();
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "MessageId");
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, map);
     }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void ttsGreater21(String text) {
         String utteranceId = this.hashCode() + "";
@@ -94,6 +115,9 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
     public int getItemCount() {
         return countryList.size();
     }
+
+
+
 
 }
 
