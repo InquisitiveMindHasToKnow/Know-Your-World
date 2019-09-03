@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.ohmstheresistance.knowyourworld.R;
+import org.ohmstheresistance.knowyourworld.fragments.FragmentNavigation;
+import org.ohmstheresistance.knowyourworld.fragments.GoogleMapsFragment;
 import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.network.CountryService;
 import org.ohmstheresistance.knowyourworld.network.RetrofitSingleton;
@@ -82,5 +84,6 @@ public class Study extends AppCompatActivity {
 
 
     }
+
 }
 
