@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import org.ohmstheresistance.knowyourworld.activities.GetRandomCountry;
-import org.ohmstheresistance.knowyourworld.activities.RandomCountryPicked;
 import org.ohmstheresistance.knowyourworld.activities.Study;
 
 
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Intent toQuizIntent;
     private Intent toStudyIntent;
     private Intent randomizeIntent;
+
 
 
     @Override
@@ -69,9 +69,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.randomize_button:
                 Toast.makeText(getBaseContext(), "randomize", Toast.LENGTH_LONG).show();
 
-
-
-
                 randomizeIntent = new Intent(MainActivity.this, GetRandomCountry.class);
                 startActivity(randomizeIntent);
 
@@ -84,4 +81,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
 }
