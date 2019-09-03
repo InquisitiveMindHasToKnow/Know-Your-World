@@ -21,9 +21,12 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountry;
     private String latitude;
     private String longitude;
+    private String randomCountryFlag;
     private static final String RANDOM_COUNTRY_KEY = "randomCountryKey";
     private static final String RANDOM_COUNTRY_LATITUDE_KEY = "randomCountryLatitudeKey";
     private static final String RANDOM_COUNTRY_LONGITUDE_KEY = "randomCountryLongitudeKey";
+    private static final String RANDOM_COUNTRY_FLAG_KEY = "randomCountryFlagKey";
+
 
 
 
@@ -43,23 +46,32 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountry = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_KEY);
         latitude = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_LATITUDE_KEY);
         longitude = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_LONGITUDE_KEY);
+        randomCountryFlag = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_FLAG_KEY);
 
+        Log.e("FLAG TO GO ON MAP", randomCountryFlag);
         randomCountryChosenNameTextview.setText(randomCountry);
         randomCountryLonng.setText(longitude);
         randomCountryLat.setText(latitude);
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;
-        fragmentNavigation.goToLocationOnMap(longitude, latitude, randomCountry);
+        fragmentNavigation.goToLocationOnMap(longitude, latitude, randomCountry, randomCountryFlag);
 
     }
 
     @Override
-    public void goToLocationOnMap(String lon, String lat, String name) {
-        GoogleMapsFragment googleMapsFragment = GoogleMapsFragment.getInstance(lon, lat, name);
+    public void goToLocationOnMap(String lon, String lat, String name, String countryFlag) {
+        GoogleMapsFragment googleMapsFragment = GoogleMapsFragment.getInstance(lon, lat, name, countryFlag);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.main_container, googleMapsFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        finish();
     }
 }

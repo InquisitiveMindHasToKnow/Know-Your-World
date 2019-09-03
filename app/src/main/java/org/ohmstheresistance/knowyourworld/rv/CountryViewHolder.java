@@ -26,13 +26,11 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
 
     private FragmentNavigation fragmentNavigation;
 
-    private String randomCountry;
-    private String latitude;
-    private String longitude;
-
     private static final String RANDOM_COUNTRY_KEY = "randomCountryKey";
     private static final String RANDOM_COUNTRY_LATITUDE_KEY = "randomCountryLatitudeKey";
     private static final String RANDOM_COUNTRY_LONGITUDE_KEY = "randomCountryLongitudeKey";
+    private static final String RANDOM_COUNTRY_FLAG_KEY = "randomCountryFlagKey";
+
 
     public CountryViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -45,7 +43,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(final Country country) {
 
-        String countryFlag = country.getFlag();
+        final String countryFlag = country.getFlag();
         final String countryName = country.getName();
         String countryCapital = country.getCapital();
 
@@ -83,10 +81,11 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
                 mapBundle.putString(RANDOM_COUNTRY_KEY, countryName );
                 mapBundle.putString(RANDOM_COUNTRY_LATITUDE_KEY, latitude);
                 mapBundle.putString(RANDOM_COUNTRY_LONGITUDE_KEY, longitude);
+                mapBundle.putString(RANDOM_COUNTRY_FLAG_KEY, countryFlag);
                 mapIntent.putExtras(mapBundle);
 
                 fragmentNavigation = (FragmentNavigation) v.getContext();
-                fragmentNavigation.goToLocationOnMap(longitude, latitude, countryName);
+                fragmentNavigation.goToLocationOnMap(longitude, latitude, countryName, countryFlag);
 
             }
         });

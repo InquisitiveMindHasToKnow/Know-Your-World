@@ -22,52 +22,7 @@
         </com.google.android.gms.maps.MapView>
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="420dp"
-        android:orientation="vertical"
-        android:background="#dcf222"
-        app:layout_constraintTop_toBottomOf="@id/googlemapslinear">
 
-        <TextView
-            android:id="@+id/random_country_chosen_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:gravity="center_horizontal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-
-            android:id="@+id/random_country_lat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="24sp"/>
-
-
-        <TextView
-
-
-            android:id="@+id/random_country_long"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textSize="24sp"/>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ill show till map works"
-            android:gravity="center_horizontal"
-            android:textSize="24sp"/>
-
-
-    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
