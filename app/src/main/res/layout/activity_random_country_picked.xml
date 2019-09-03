@@ -25,7 +25,7 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="420dp"
+        android:layout_height="320dp"
         android:orientation="vertical"
         android:background="#e98332"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,15 +60,6 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textSize="24sp"/>
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ill show till map works"
-            android:gravity="center_horizontal"
-            android:textSize="24sp"/>
-
 
     </LinearLayout>
 

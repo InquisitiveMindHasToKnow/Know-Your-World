@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
     private static final String RANDOM_COUNTRY_LATITUDE_KEY = "randomCountryLatitudeKey";
     private static final String RANDOM_COUNTRY_LONGITUDE_KEY = "randomCountryLongitudeKey";
     private static final String RANDOM_COUNTRY_KEY = "randomCountryKey";
+    private static final String RANDOM_COUNTRY_FLAG_KEY = "randomCountryFlagKey";
     private String TAG_FOR_MAP_ICON = "";
 
 
@@ -38,6 +40,7 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
     private String latitude;
     private String longitude;
     private String randomCountry;
+    private String randomCountryFlag;
 
     private double lat;
     private double lon;
@@ -48,15 +51,18 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
     }
 
 
-    public static GoogleMapsFragment getInstance(String locationLongitude, String locationLatitude , String countryName) {
+    public static GoogleMapsFragment getInstance(String locationLongitude, String locationLatitude , String countryName, String countryFlag) {
         GoogleMapsFragment googleMapFragment = new GoogleMapsFragment();
 
 
         Bundle args = new Bundle();
 
+
+
         args.putString(RANDOM_COUNTRY_LATITUDE_KEY, locationLatitude);
         args.putString(RANDOM_COUNTRY_LONGITUDE_KEY, locationLongitude);
         args.putString(RANDOM_COUNTRY_KEY, countryName);
+        args.putString(RANDOM_COUNTRY_FLAG_KEY, countryFlag);
         googleMapFragment.setArguments(args);
         return googleMapFragment;
     }
@@ -86,8 +92,12 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
                 longitude = getArguments().getString(RANDOM_COUNTRY_LONGITUDE_KEY);
                 latitude = getArguments().getString(RANDOM_COUNTRY_LATITUDE_KEY);
                 randomCountry = getArguments().getString(RANDOM_COUNTRY_KEY);
+                randomCountryFlag = getArguments().getString(RANDOM_COUNTRY_FLAG_KEY);
 
                 TAG_FOR_MAP_ICON = randomCountry;
+
+                Log.d("RAN FLAG ON MAP", randomCountry + " " + randomCountryFlag);
+
 
                 lat = Double.parseDouble(latitude);
                 lon = Double.parseDouble(longitude);
@@ -105,9 +115,9 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
 
 
         LatLng latLng = new LatLng(lat, lon);
-        countriesOfTheWorldMap.addMarker(new MarkerOptions().position(latLng).title(TAG_FOR_MAP_ICON).icon(BitmapDescriptorFactory.fromResource(R.mipmap.atmformap)));
+        countriesOfTheWorldMap.addMarker(new MarkerOptions().position(latLng).title(TAG_FOR_MAP_ICON).icon(BitmapDescriptorFactory.fromResource(R.mipmap.countrymapmarker)));
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 20);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 4);
         countriesOfTheWorldMap.animateCamera(cameraUpdate);
         UiSettings uiSettings = countriesOfTheWorldMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);

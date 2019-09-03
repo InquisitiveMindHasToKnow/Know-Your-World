@@ -25,6 +25,8 @@ public class GetRandomCountry extends AppCompatActivity {
     private static final String RANDOM_COUNTRY_NAME_KEY = "randomCountryKey";
     private static final String RANDOM_COUNTRY_LATITUDE_KEY = "randomCountryLatitudeKey";
     private static final String RANDOM_COUNTRY_LONGITUDE_KEY = "randomCountryLongitudeKey";
+    private static final String RANDOM_COUNTRY_FLAG_KEY = "randomCountryFlagKey";
+
     private List<Country> countryList;
 
 
@@ -50,6 +52,8 @@ public class GetRandomCountry extends AppCompatActivity {
                 Intent randomCountryIntent = new Intent(getApplicationContext(), RandomCountryPicked.class);
 
                 String countryLocationCoords = randomCountryPicked.getLatlng().toString();
+                String countryName = randomCountryPicked.getName();
+                String countryFlag = randomCountryPicked.getFlag();
 
                 String[] countryLocation = countryLocationCoords.split(",", 2);
                 String latitude = countryLocation[0].substring(1);
@@ -58,9 +62,10 @@ public class GetRandomCountry extends AppCompatActivity {
                 Log.e("GRC LAT ", latitude);
                 Log.e("GRC LON", longitude);
 
-                randomCountryIntent.putExtra(RANDOM_COUNTRY_NAME_KEY, randomCountryPicked.getName());
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_NAME_KEY, countryName);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_LATITUDE_KEY, latitude);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_LONGITUDE_KEY, longitude);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_FLAG_KEY, countryFlag );
 
                 GetRandomCountry.this.finish();
                 startActivity(randomCountryIntent);

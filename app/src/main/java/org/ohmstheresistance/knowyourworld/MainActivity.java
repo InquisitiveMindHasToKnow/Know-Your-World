@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.randomize_button:
-                Toast.makeText(getBaseContext(), "randomize", Toast.LENGTH_LONG).show();
 
                 randomizeIntent = new Intent(MainActivity.this, GetRandomCountry.class);
                 startActivity(randomizeIntent);
