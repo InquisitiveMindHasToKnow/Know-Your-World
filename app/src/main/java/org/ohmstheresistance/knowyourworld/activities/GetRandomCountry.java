@@ -1,6 +1,7 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,18 @@ public class GetRandomCountry extends AppCompatActivity {
     private static final String RANDOM_COUNTRY_LATITUDE_KEY = "randomCountryLatitudeKey";
     private static final String RANDOM_COUNTRY_LONGITUDE_KEY = "randomCountryLongitudeKey";
     private static final String RANDOM_COUNTRY_FLAG_KEY = "randomCountryFlagKey";
+    private static final String RANDOM_COUNTRY_POPULATION_KEY = "randomCountryPopulationKey";
+    private static final String RANDOM_COUNTRY_CAPITAL_KEY = "randomCountryCapitalKey";
+    private static final String RANDOM_COUNTRY_REGION_KEY = "randomCountryRegionKey";
+    private static final String RANDOM_COUNTRY_SUBREGION_KEY = "randomCountrySubRegionKey";
+//    private static final String RANDOM_COUNTRY_BORDERS_KEY = "randomCountryBordersKey";
+//    private static final String RANDOM_COUNTRY_CURRENCIES_KEY = "randomCountryCurrenciesKey";
+//    private static final String RANDOM_COUNTRY_LANGUAGES_KEY = "randomCountryLanguagesKey";
+private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
+
+
+
+
 
     private List<Country> countryList;
 
@@ -51,21 +64,35 @@ public class GetRandomCountry extends AppCompatActivity {
                 Country randomCountryPicked = countryList.get(randomCountry.nextInt(countryList.size() - 1) + 1);
                 Intent randomCountryIntent = new Intent(getApplicationContext(), RandomCountryPicked.class);
 
-                String countryLocationCoords = randomCountryPicked.getLatlng().toString();
-                String countryName = randomCountryPicked.getName();
-                String countryFlag = randomCountryPicked.getFlag();
+                String randomCountryLocationCoords = randomCountryPicked.getLatlng().toString();
+                String randomCountryPickedName = randomCountryPicked.getName();
+                String randomCountryPickedFlag = randomCountryPicked.getFlag();
+                String randomCountryPickedPopulation = String.valueOf(randomCountryPicked.getPopulation());
+                String randomCountryPickedCapital = randomCountryPicked.getCapital();
+                String randomCountryPickedRegion = randomCountryPicked.getRegion();
+                String randomCountryPickedSubRegion = randomCountryPicked.getSubregion();
+                String randomCountryPickedCioc = randomCountryPicked.getCioc();
+//                List<String> randomCountryPickedBorders = randomCountryPicked.getBorders();
+//                List<Country.Currency>randomCountryPickedCurrencies = randomCountryPicked.getCurrencies();
+//                List<Country.Language> randomCountryPickedLanguages = randomCountryPicked.getLanguages();
 
-                String[] countryLocation = countryLocationCoords.split(",", 2);
-                String latitude = countryLocation[0].substring(1);
-                String longitude = countryLocation[1].substring(0, countryLocation[1].length() - 1);
 
-                Log.e("GRC LAT ", latitude);
-                Log.e("GRC LON", longitude);
+                String[] countryLocation = randomCountryLocationCoords.split(",", 2);
+                String randomCountryPickedLatitude = countryLocation[0].substring(1);
+                String randomCountryPickedLongitude = countryLocation[1].substring(0, countryLocation[1].length() - 1);
 
-                randomCountryIntent.putExtra(RANDOM_COUNTRY_NAME_KEY, countryName);
-                randomCountryIntent.putExtra(RANDOM_COUNTRY_LATITUDE_KEY, latitude);
-                randomCountryIntent.putExtra(RANDOM_COUNTRY_LONGITUDE_KEY, longitude);
-                randomCountryIntent.putExtra(RANDOM_COUNTRY_FLAG_KEY, countryFlag );
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_NAME_KEY, randomCountryPickedName);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_LATITUDE_KEY, randomCountryPickedLatitude);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_LONGITUDE_KEY, randomCountryPickedLongitude);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_FLAG_KEY, randomCountryPickedFlag );
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_POPULATION_KEY, randomCountryPickedPopulation);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_CAPITAL_KEY, randomCountryPickedCapital);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_REGION_KEY, randomCountryPickedRegion);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_SUBREGION_KEY, randomCountryPickedSubRegion);
+//                randomCountryIntent.putExtra(RANDOM_COUNTRY_BORDERS_KEY, (Parcelable) randomCountryPickedBorders);
+//                randomCountryIntent.putExtra(RANDOM_COUNTRY_CURRENCIES_KEY, (Parcelable) randomCountryPickedCurrencies);
+//                randomCountryIntent.putExtra(RANDOM_COUNTRY_LANGUAGES_KEY, (Parcelable) randomCountryPickedLanguages);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_CIOC_KEY, randomCountryPickedCioc);
 
                 GetRandomCountry.this.finish();
                 startActivity(randomCountryIntent);
