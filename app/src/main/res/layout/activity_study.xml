@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_container"
-    android:background="@drawable/main_background_blue"
+    android:background="#112631"
     tools:context=".activities.Study">
 
 
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/main_background_blue">
+        >
 
         <TextView
             android:id="@+id/random_country_chosen_textview"

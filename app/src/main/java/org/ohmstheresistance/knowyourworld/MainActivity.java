@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.study_button:
                 toStudyIntent = new Intent(MainActivity.this, Study.class);
                 startActivity(toStudyIntent);
+                overridePendingTransition(0, 0);
+
                 break;
 
             case R.id.quiz_button:
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 randomizeIntent = new Intent(MainActivity.this, GetRandomCountry.class);
                 startActivity(randomizeIntent);
+                overridePendingTransition(0, 0);
 
                 break;
 

@@ -26,6 +26,10 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private static final String RANDOM_COUNTRY_REGION_KEY = "randomCountryRegionKey";
     private static final String RANDOM_COUNTRY_SUBREGION_KEY = "randomCountrySubRegionKey";
     private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
+    private static final String RANDOM_COUNTRY_AREA_KEY = "randomCountryAreaKey";
+    private static final String RANDOM_COUNTRY_ALPHA_CODE_2_KEY = "randomCountryAlphaCode2Key";
+    private static final String RANDOM_COUNTRY_ALPHA_CODE_3_KEY = "randomCountryAlphaCode3Key";
+
 
 
 
@@ -43,6 +47,10 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private TextView randomCountryLocationTextView;
     private TextView randomCountryCiocTagTextView;
     private TextView randomCountryCiocTextView;
+    private TextView randomCountryAreaTagTextView;
+    private TextView randomCountryAreaTextView;
+    private TextView randomCountryAlphaCodesTagTextView;
+    private TextView randomCountryAlphaCodesTextView;
     private WebView randomCountryChoseFlagWebView;
 
 
@@ -56,6 +64,9 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountrySubRegion;
     private String randomCountryLocation;
     private String randomCountryCioc;
+    private String randomCountryArea;
+    private String randomCountryAlphaCode2;
+    private String randomCountryAlphaCode3;
 
 
     @Override
@@ -77,6 +88,10 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountryLocationTextView = findViewById(R.id.random_country_location_textview);
         randomCountryCiocTagTextView = findViewById(R.id.random_country_cioc_tag_textview);
         randomCountryCiocTextView = findViewById(R.id.random_country_cioc_textview);
+        randomCountryAreaTagTextView = findViewById(R.id.random_country_area_tag_textview);
+        randomCountryAreaTextView = findViewById(R.id.random_country_area_textview);
+        randomCountryAlphaCodesTagTextView = findViewById(R.id.random_country_alpha_codes_tag_textview);
+        randomCountryAlphaCodesTextView = findViewById(R.id.random_country_alpha_codes_textview);
 
 
         getRandomCountryIntent = getIntent();
@@ -91,10 +106,11 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountrySubRegion = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_SUBREGION_KEY);
         randomCountryLocation = "Lat: " + latitude+ ", " + "Long:" + longitude;
         randomCountryCioc = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_CIOC_KEY);
+        randomCountryArea = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_AREA_KEY);
+        randomCountryAlphaCode2 = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_ALPHA_CODE_2_KEY);
+        randomCountryAlphaCode3 = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_ALPHA_CODE_3_KEY);
 
-        if(randomCountryCioc == null){
-            randomCountryCioc = "None";
-        }
+
 
         randomCountryChoseFlagWebView.getSettings().setLoadWithOverviewMode(true);
         randomCountryChoseFlagWebView.getSettings().setUseWideViewPort(true);
@@ -106,12 +122,14 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountryChoseFlagWebView.loadUrl(randomCountryFlag);
 
         randomCountryChosenNameTextView.setText(randomCountry);
+        randomCountryAreaTextView.setText(randomCountryArea + " km²");
         randomCountryCapitalTextView.setText(randomCountryCapital);
         randomCountryPopulationTextView.setText(randomCountryPopulation);
         randomCountryRegionTextView.setText(randomCountryRegion);
         randomCountrySubregionTextView.setText(randomCountrySubRegion);
         randomCountryLocationTextView.setText(randomCountryLocation);
         randomCountryCiocTextView.setText(randomCountryCioc);
+        randomCountryAlphaCodesTextView.setText(randomCountryAlphaCode2 + ", " + randomCountryAlphaCode3);
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;
         fragmentNavigation.goToLocationOnMap(longitude, latitude, randomCountry, randomCountryFlag);

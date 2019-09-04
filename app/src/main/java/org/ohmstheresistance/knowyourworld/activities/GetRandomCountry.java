@@ -31,13 +31,13 @@ public class GetRandomCountry extends AppCompatActivity {
     private static final String RANDOM_COUNTRY_CAPITAL_KEY = "randomCountryCapitalKey";
     private static final String RANDOM_COUNTRY_REGION_KEY = "randomCountryRegionKey";
     private static final String RANDOM_COUNTRY_SUBREGION_KEY = "randomCountrySubRegionKey";
-//    private static final String RANDOM_COUNTRY_BORDERS_KEY = "randomCountryBordersKey";
-//    private static final String RANDOM_COUNTRY_CURRENCIES_KEY = "randomCountryCurrenciesKey";
-//    private static final String RANDOM_COUNTRY_LANGUAGES_KEY = "randomCountryLanguagesKey";
-private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
-
-
-
+    private static final String RANDOM_COUNTRY_BORDERS_KEY = "randomCountryBordersKey";
+    private static final String RANDOM_COUNTRY_CURRENCIES_KEY = "randomCountryCurrenciesKey";
+    private static final String RANDOM_COUNTRY_LANGUAGES_KEY = "randomCountryLanguagesKey";
+    private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
+    private static final String RANDOM_COUNTRY_AREA_KEY = "randomCountryAreaKey";
+    private static final String RANDOM_COUNTRY_ALPHA_CODE_2_KEY = "randomCountryAlphaCode2Key";
+    private static final String RANDOM_COUNTRY_ALPHA_CODE_3_KEY = "randomCountryAlphaCode3Key";
 
 
     private List<Country> countryList;
@@ -72,6 +72,10 @@ private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
                 String randomCountryPickedRegion = randomCountryPicked.getRegion();
                 String randomCountryPickedSubRegion = randomCountryPicked.getSubregion();
                 String randomCountryPickedCioc = randomCountryPicked.getCioc();
+                String randomCountryPickedArea = String.valueOf(randomCountryPicked.getArea());
+                String randomCountryPickedAlpha2Code = randomCountryPicked.getAlpha2Code();
+                String randomCountryPickedAlpha3Code = randomCountryPicked.getAlpha3Code();
+
 //                List<String> randomCountryPickedBorders = randomCountryPicked.getBorders();
 //                List<Country.Currency>randomCountryPickedCurrencies = randomCountryPicked.getCurrencies();
 //                List<Country.Language> randomCountryPickedLanguages = randomCountryPicked.getLanguages();
@@ -84,7 +88,7 @@ private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_NAME_KEY, randomCountryPickedName);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_LATITUDE_KEY, randomCountryPickedLatitude);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_LONGITUDE_KEY, randomCountryPickedLongitude);
-                randomCountryIntent.putExtra(RANDOM_COUNTRY_FLAG_KEY, randomCountryPickedFlag );
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_FLAG_KEY, randomCountryPickedFlag);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_POPULATION_KEY, randomCountryPickedPopulation);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_CAPITAL_KEY, randomCountryPickedCapital);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_REGION_KEY, randomCountryPickedRegion);
@@ -93,11 +97,14 @@ private static final String RANDOM_COUNTRY_CIOC_KEY = "randomCountryCiocKey";
 //                randomCountryIntent.putExtra(RANDOM_COUNTRY_CURRENCIES_KEY, (Parcelable) randomCountryPickedCurrencies);
 //                randomCountryIntent.putExtra(RANDOM_COUNTRY_LANGUAGES_KEY, (Parcelable) randomCountryPickedLanguages);
                 randomCountryIntent.putExtra(RANDOM_COUNTRY_CIOC_KEY, randomCountryPickedCioc);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_AREA_KEY, randomCountryPickedArea);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_ALPHA_CODE_2_KEY, randomCountryPickedAlpha2Code);
+                randomCountryIntent.putExtra(RANDOM_COUNTRY_ALPHA_CODE_3_KEY, randomCountryPickedAlpha3Code);
+
 
                 GetRandomCountry.this.finish();
                 startActivity(randomCountryIntent);
                 overridePendingTransition(0, 0);
-
 
 
                 if (!response.isSuccessful()) {

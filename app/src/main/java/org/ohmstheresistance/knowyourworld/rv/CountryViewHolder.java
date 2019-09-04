@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
@@ -23,6 +24,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
     private WebView countryFlagImageView;
     private TextView countryNameTextView;
     private TextView countryCapitalTextView;
+    private Button learnMoreButton;
 
     private FragmentNavigation fragmentNavigation;
 
@@ -38,6 +40,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
         countryFlagImageView = itemView.findViewById(R.id.country_flag_imageview);
         countryNameTextView = itemView.findViewById(R.id.country_name_textview);
         countryCapitalTextView = itemView.findViewById(R.id.country_capital_textview);
+        learnMoreButton = itemView.findViewById(R.id.learn_more_button);
 
     }
 
@@ -52,6 +55,15 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
 
         countryNameTextView.setText(countryName);
         countryCapitalTextView.setText(countryCapital);
+
+        learnMoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                Intent toCountryDetailsIntent = new Intent(itemView.getContext(), RandomCountryPicked.class);
+//                itemView.getContext().startActivity(toCountryDetailsIntent);
+            }
+        });
 
 
         countryFlagImageView.getSettings().setLoadWithOverviewMode(true);
