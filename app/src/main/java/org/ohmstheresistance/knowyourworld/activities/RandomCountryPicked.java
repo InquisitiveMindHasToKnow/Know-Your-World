@@ -83,6 +83,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountryBorders;
     private String randomCountryCurrency;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,6 +139,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             Arrays.toString(new String[]{randomCountryBorders});
 
 
+
             randomCountryChoseFlagWebView.getSettings().setLoadWithOverviewMode(true);
             randomCountryChoseFlagWebView.getSettings().setUseWideViewPort(true);
             randomCountryChoseFlagWebView.setVerticalScrollBarEnabled(false);
@@ -146,6 +148,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             randomCountryChoseFlagWebView.setInitialScale(1);
             randomCountryChoseFlagWebView.setBackgroundColor(Color.TRANSPARENT);
             randomCountryChoseFlagWebView.loadUrl(randomCountryFlag);
+
 
             randomCountryChosenNameTextView.setText(randomCountry);
             randomCountryAreaTextView.setText(randomCountryArea + " km²");
@@ -162,7 +165,11 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             } else if (randomCountryBorders.length() > 2)
             randomCountryBordersTextView.setText(randomCountryBorders.substring(1, randomCountryBorders.length() - 1));
 
-        Log.e("random languages: ", randomCountryCurrency);
+
+            randomCountryLanguageTextView.setText(randomCountryLanguages);
+            randomCountryCurrencyTextView.setText(randomCountryCurrency);
+
+        Log.e("myparce ", randomCountryLanguages);
 
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;

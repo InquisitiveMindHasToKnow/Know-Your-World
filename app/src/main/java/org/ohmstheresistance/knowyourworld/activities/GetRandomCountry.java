@@ -1,7 +1,6 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,9 @@ import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.network.CountryService;
 import org.ohmstheresistance.knowyourworld.network.RetrofitSingleton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class GetRandomCountry extends AppCompatActivity {
+public class GetRandomCountry extends AppCompatActivity implements Serializable {
 
     private static final String RANDOM_COUNTRY_NAME_KEY = "randomCountryKey";
     private static final String RANDOM_COUNTRY_LATITUDE_KEY = "randomCountryLatitudeKey";
@@ -78,9 +79,8 @@ public class GetRandomCountry extends AppCompatActivity {
                 String randomCountryPickedAlpha3Code = randomCountryPicked.getAlpha3Code();
 
                 List<String>randomCountryPickedBorders = randomCountryPicked.getBorders();
-                List<Country.Currency>randomCountryPickedCurrencies = randomCountryPicked.getCurrencies();
-                List<Country.Language> randomCountryPickedLanguages = randomCountryPicked.getLanguages();
-
+                Country.Currency randomCountryPickedCurrencies = randomCountryPicked.getCurrencies().get(0);
+                Country.Language randomCountryLanguagesSpoken = randomCountryPicked.getLanguages().get(0);
 
 
                 String[] countryLocation = randomCountryLocationCoords.split(",", 2);
@@ -96,14 +96,14 @@ public class GetRandomCountry extends AppCompatActivity {
                 randomCountryBundle.putString(RANDOM_COUNTRY_REGION_KEY, randomCountryPickedRegion);
                 randomCountryBundle.putString(RANDOM_COUNTRY_SUBREGION_KEY, randomCountryPickedSubRegion);
                 randomCountryBundle.putString(RANDOM_COUNTRY_BORDERS_KEY, String.valueOf(randomCountryPickedBorders));
-                randomCountryBundle.putString(RANDOM_COUNTRY_CURRENCIES_KEY, String.valueOf(randomCountryPickedCurrencies));
-                randomCountryBundle.putSerializable(RANDOM_COUNTRY_LANGUAGES_KEY, randomCountryPickedLanguages.toString());
+                randomCountryBundle.putString(RANDOM_COUNTRY_CURRENCIES_KEY, String.valueOf(randomCountryPickedCurrencies.getName()));
+                randomCountryBundle.putString(RANDOM_COUNTRY_LANGUAGES_KEY, String.valueOf(randomCountryLanguagesSpoken.getName()));
                 randomCountryBundle.putString(RANDOM_COUNTRY_CIOC_KEY, randomCountryPickedCioc);
                 randomCountryBundle.putString(RANDOM_COUNTRY_AREA_KEY, randomCountryPickedArea);
                 randomCountryBundle.putString(RANDOM_COUNTRY_ALPHA_CODE_2_KEY, randomCountryPickedAlpha2Code);
                 randomCountryBundle.putString(RANDOM_COUNTRY_ALPHA_CODE_3_KEY, randomCountryPickedAlpha3Code);
 
-                Log.e("Random country lang: ", randomCountryPickedBorders.toString());
+                Log.e("Random country lang: ", String.valueOf(randomCountryLanguagesSpoken.getName()));
 
                 randomCountryIntent.putExtras(randomCountryBundle);
 
