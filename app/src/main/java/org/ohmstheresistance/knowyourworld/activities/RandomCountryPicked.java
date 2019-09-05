@@ -38,6 +38,8 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private static final String RANDOM_COUNTRY_BORDERS_KEY = "randomCountryBordersKey";
     private static final String RANDOM_COUNTRY_CURRENCIES_KEY = "randomCountryCurrenciesKey";
     private static final String RANDOM_COUNTRY_LANGUAGES_KEY = "randomCountryLanguagesKey";
+    private static final String RANDOM_COUNTRY_NATIVE_NAME_KEY = "randomCountryNativeNameKey";
+
 
 
     private TextView randomCountryChosenNameTextView;
@@ -82,6 +84,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountryLanguages;
     private String randomCountryBorders;
     private String randomCountryCurrency;
+    private String randomCountryLanguageNativeName;
 
 
     @Override
@@ -135,6 +138,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             randomCountryLanguages = (String) countryDetailsBundle.getSerializable(RANDOM_COUNTRY_LANGUAGES_KEY);
             randomCountryBorders = countryDetailsBundle.getString(RANDOM_COUNTRY_BORDERS_KEY);
             randomCountryCurrency = countryDetailsBundle.getString(RANDOM_COUNTRY_CURRENCIES_KEY);
+            randomCountryLanguageNativeName = countryDetailsBundle.getString(RANDOM_COUNTRY_NATIVE_NAME_KEY);
 
             Arrays.toString(new String[]{randomCountryBorders});
 
@@ -159,6 +163,8 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             randomCountryLocationTextView.setText(randomCountryLocation);
             randomCountryCiocTextView.setText(randomCountryCioc);
             randomCountryAlphaCodesTextView.setText(randomCountryAlphaCode2 + ", " + randomCountryAlphaCode3);
+            randomCountryCurrencyTextView.setText(randomCountryCurrency);
+
 
             if (randomCountryBorders.length() <= 2) {
                 randomCountryBordersTextView.setText("No Bordering Countries");
@@ -166,8 +172,11 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             randomCountryBordersTextView.setText(randomCountryBorders.substring(1, randomCountryBorders.length() - 1));
 
 
-            randomCountryLanguageTextView.setText(randomCountryLanguages);
-            randomCountryCurrencyTextView.setText(randomCountryCurrency);
+            if(randomCountryLanguages.equals("English")){
+
+                randomCountryLanguageTextView.setText(randomCountryLanguages);
+            }else
+            randomCountryLanguageTextView.setText(randomCountryLanguages + " ( " + randomCountryLanguageNativeName + " )");
 
         Log.e("myparce ", randomCountryLanguages);
 
