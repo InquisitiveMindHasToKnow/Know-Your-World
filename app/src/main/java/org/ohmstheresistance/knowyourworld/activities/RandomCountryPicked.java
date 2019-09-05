@@ -14,6 +14,12 @@ import com.squareup.picasso.Picasso;
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.fragments.FragmentNavigation;
 import org.ohmstheresistance.knowyourworld.fragments.GoogleMapsFragment;
+import org.ohmstheresistance.knowyourworld.model.Country;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class RandomCountryPicked extends AppCompatActivity implements FragmentNavigation {
 
@@ -29,11 +35,11 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private static final String RANDOM_COUNTRY_AREA_KEY = "randomCountryAreaKey";
     private static final String RANDOM_COUNTRY_ALPHA_CODE_2_KEY = "randomCountryAlphaCode2Key";
     private static final String RANDOM_COUNTRY_ALPHA_CODE_3_KEY = "randomCountryAlphaCode3Key";
+    private static final String RANDOM_COUNTRY_BORDERS_KEY = "randomCountryBordersKey";
+    private static final String RANDOM_COUNTRY_CURRENCIES_KEY = "randomCountryCurrenciesKey";
+    private static final String RANDOM_COUNTRY_LANGUAGES_KEY = "randomCountryLanguagesKey";
 
 
-
-
-    private Intent getRandomCountryIntent;
     private TextView randomCountryChosenNameTextView;
     private TextView randomCountryCapitalTagTextView;
     private TextView randomCountryCapitalTextView;
@@ -51,6 +57,12 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private TextView randomCountryAreaTextView;
     private TextView randomCountryAlphaCodesTagTextView;
     private TextView randomCountryAlphaCodesTextView;
+    private TextView randomCountryBordersTagTextView;
+    private TextView randomCountryBordersTextView;
+    private TextView randomCountryLanguageTagTextView;
+    private TextView randomCountryLanguageTextView;
+    private TextView randomCountryCurrencyTagTextView;
+    private TextView randomCountryCurrencyTextView;
     private WebView randomCountryChoseFlagWebView;
 
 
@@ -67,7 +79,9 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountryArea;
     private String randomCountryAlphaCode2;
     private String randomCountryAlphaCode3;
-
+    private String randomCountryLanguages;
+    private String randomCountryBorders;
+    private String randomCountryCurrency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,49 +106,70 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountryAreaTextView = findViewById(R.id.random_country_area_textview);
         randomCountryAlphaCodesTagTextView = findViewById(R.id.random_country_alpha_codes_tag_textview);
         randomCountryAlphaCodesTextView = findViewById(R.id.random_country_alpha_codes_textview);
-
-
-        getRandomCountryIntent = getIntent();
-
-        latitude = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_LATITUDE_KEY);
-        longitude = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_LONGITUDE_KEY);
-        randomCountry = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_KEY);
-        randomCountryFlag = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_FLAG_KEY);
-        randomCountryCapital = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_CAPITAL_KEY);
-        randomCountryPopulation = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_POPULATION_KEY);
-        randomCountryRegion = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_REGION_KEY);
-        randomCountrySubRegion = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_SUBREGION_KEY);
-        randomCountryLocation = "Lat: " + latitude+ ", " + "Long:" + longitude;
-        randomCountryCioc = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_CIOC_KEY);
-        randomCountryArea = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_AREA_KEY);
-        randomCountryAlphaCode2 = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_ALPHA_CODE_2_KEY);
-        randomCountryAlphaCode3 = getRandomCountryIntent.getStringExtra(RANDOM_COUNTRY_ALPHA_CODE_3_KEY);
+        randomCountryBordersTagTextView = findViewById(R.id.random_country_borders_tag_textview);
+        randomCountryBordersTextView = findViewById(R.id.random_country_borders_textview);
+        randomCountryLanguageTagTextView = findViewById(R.id.random_country_language_tag_textview);
+        randomCountryLanguageTextView = findViewById(R.id.random_country_language_textview);
+        randomCountryCurrencyTagTextView = findViewById(R.id.random_country_currency_tag_textview);
+        randomCountryCurrencyTextView = findViewById(R.id.random_country_currency_textview);
 
 
 
-        randomCountryChoseFlagWebView.getSettings().setLoadWithOverviewMode(true);
-        randomCountryChoseFlagWebView.getSettings().setUseWideViewPort(true);
-        randomCountryChoseFlagWebView.setVerticalScrollBarEnabled(false);
-        randomCountryChoseFlagWebView.setHorizontalScrollBarEnabled(false);
-        randomCountryChoseFlagWebView.setScrollContainer(false);
-        randomCountryChoseFlagWebView.setInitialScale(1);
-        randomCountryChoseFlagWebView.setBackgroundColor(Color.TRANSPARENT);
-        randomCountryChoseFlagWebView.loadUrl(randomCountryFlag);
+        Bundle countryDetailsBundle = getIntent().getExtras();
+        if (countryDetailsBundle != null) {
 
-        randomCountryChosenNameTextView.setText(randomCountry);
-        randomCountryAreaTextView.setText(randomCountryArea + " km²");
-        randomCountryCapitalTextView.setText(randomCountryCapital);
-        randomCountryPopulationTextView.setText(randomCountryPopulation);
-        randomCountryRegionTextView.setText(randomCountryRegion);
-        randomCountrySubregionTextView.setText(randomCountrySubRegion);
-        randomCountryLocationTextView.setText(randomCountryLocation);
-        randomCountryCiocTextView.setText(randomCountryCioc);
-        randomCountryAlphaCodesTextView.setText(randomCountryAlphaCode2 + ", " + randomCountryAlphaCode3);
+            latitude = countryDetailsBundle.getString(RANDOM_COUNTRY_LATITUDE_KEY);
+            longitude = countryDetailsBundle.getString(RANDOM_COUNTRY_LONGITUDE_KEY);
+            randomCountry = countryDetailsBundle.getString(RANDOM_COUNTRY_KEY);
+            randomCountryFlag = countryDetailsBundle.getString(RANDOM_COUNTRY_FLAG_KEY);
+            randomCountryCapital = countryDetailsBundle.getString(RANDOM_COUNTRY_CAPITAL_KEY);
+            randomCountryPopulation = countryDetailsBundle.getString(RANDOM_COUNTRY_POPULATION_KEY);
+            randomCountryRegion = countryDetailsBundle.getString(RANDOM_COUNTRY_REGION_KEY);
+            randomCountrySubRegion = countryDetailsBundle.getString(RANDOM_COUNTRY_SUBREGION_KEY);
+            randomCountryLocation = "Lat: " + latitude + ", " + "Long:" + longitude;
+            randomCountryCioc = countryDetailsBundle.getString(RANDOM_COUNTRY_CIOC_KEY);
+            randomCountryArea = countryDetailsBundle.getString(RANDOM_COUNTRY_AREA_KEY);
+            randomCountryAlphaCode2 = countryDetailsBundle.getString(RANDOM_COUNTRY_ALPHA_CODE_2_KEY);
+            randomCountryAlphaCode3 = countryDetailsBundle.getString(RANDOM_COUNTRY_ALPHA_CODE_3_KEY);
+            randomCountryLanguages = (String) countryDetailsBundle.getSerializable(RANDOM_COUNTRY_LANGUAGES_KEY);
+            randomCountryBorders = countryDetailsBundle.getString(RANDOM_COUNTRY_BORDERS_KEY);
+            randomCountryCurrency = countryDetailsBundle.getString(RANDOM_COUNTRY_CURRENCIES_KEY);
+
+            Arrays.toString(new String[]{randomCountryBorders});
+
+
+            randomCountryChoseFlagWebView.getSettings().setLoadWithOverviewMode(true);
+            randomCountryChoseFlagWebView.getSettings().setUseWideViewPort(true);
+            randomCountryChoseFlagWebView.setVerticalScrollBarEnabled(false);
+            randomCountryChoseFlagWebView.setHorizontalScrollBarEnabled(false);
+            randomCountryChoseFlagWebView.setScrollContainer(false);
+            randomCountryChoseFlagWebView.setInitialScale(1);
+            randomCountryChoseFlagWebView.setBackgroundColor(Color.TRANSPARENT);
+            randomCountryChoseFlagWebView.loadUrl(randomCountryFlag);
+
+            randomCountryChosenNameTextView.setText(randomCountry);
+            randomCountryAreaTextView.setText(randomCountryArea + " km²");
+            randomCountryCapitalTextView.setText(randomCountryCapital);
+            randomCountryPopulationTextView.setText(randomCountryPopulation);
+            randomCountryRegionTextView.setText(randomCountryRegion);
+            randomCountrySubregionTextView.setText(randomCountrySubRegion);
+            randomCountryLocationTextView.setText(randomCountryLocation);
+            randomCountryCiocTextView.setText(randomCountryCioc);
+            randomCountryAlphaCodesTextView.setText(randomCountryAlphaCode2 + ", " + randomCountryAlphaCode3);
+
+            if (randomCountryBorders.length() <= 2) {
+                randomCountryBordersTextView.setText("No Bordering Countries");
+            } else if (randomCountryBorders.length() > 2)
+            randomCountryBordersTextView.setText(randomCountryBorders.substring(1, randomCountryBorders.length() - 1));
+
+        Log.e("random languages: ", randomCountryCurrency);
+
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;
         fragmentNavigation.goToLocationOnMap(longitude, latitude, randomCountry, randomCountryFlag);
-
     }
+
+}
 
     @Override
     public void goToLocationOnMap(String lon, String lat, String name, String countryFlag) {
