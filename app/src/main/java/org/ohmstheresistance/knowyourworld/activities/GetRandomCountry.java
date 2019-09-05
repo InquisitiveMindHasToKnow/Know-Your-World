@@ -39,6 +39,8 @@ public class GetRandomCountry extends AppCompatActivity implements Serializable 
     private static final String RANDOM_COUNTRY_AREA_KEY = "randomCountryAreaKey";
     private static final String RANDOM_COUNTRY_ALPHA_CODE_2_KEY = "randomCountryAlphaCode2Key";
     private static final String RANDOM_COUNTRY_ALPHA_CODE_3_KEY = "randomCountryAlphaCode3Key";
+    private static final String RANDOM_COUNTRY_NATIVE_NAME_KEY = "randomCountryNativeNameKey";
+
 
 
     private List<Country> countryList;
@@ -83,6 +85,8 @@ public class GetRandomCountry extends AppCompatActivity implements Serializable 
                 Country.Language randomCountryLanguagesSpoken = randomCountryPicked.getLanguages().get(0);
 
 
+                String randomCountryLanguageNativeName = randomCountryLanguagesSpoken.getNativeName();
+
                 String[] countryLocation = randomCountryLocationCoords.split(",", 2);
                 String randomCountryPickedLatitude = countryLocation[0].substring(1);
                 String randomCountryPickedLongitude = countryLocation[1].substring(0, countryLocation[1].length() - 1);
@@ -102,8 +106,11 @@ public class GetRandomCountry extends AppCompatActivity implements Serializable 
                 randomCountryBundle.putString(RANDOM_COUNTRY_AREA_KEY, randomCountryPickedArea);
                 randomCountryBundle.putString(RANDOM_COUNTRY_ALPHA_CODE_2_KEY, randomCountryPickedAlpha2Code);
                 randomCountryBundle.putString(RANDOM_COUNTRY_ALPHA_CODE_3_KEY, randomCountryPickedAlpha3Code);
+                randomCountryBundle.putString(RANDOM_COUNTRY_NATIVE_NAME_KEY, randomCountryLanguageNativeName);
+
 
                 Log.e("Random country lang: ", String.valueOf(randomCountryLanguagesSpoken.getName()));
+
 
                 randomCountryIntent.putExtras(randomCountryBundle);
 
