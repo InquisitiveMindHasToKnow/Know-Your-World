@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/selected_country_container"
+    tools:context=".activities.SelectedCountryDetails">
+
+
+    <LinearLayout
+        android:id="@+id/googlemapslinear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/country_details_nested_scrollview"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/googlemaps1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.google.android.gms.maps.MapView>
+    </LinearLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/country_details_nested_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="300dp"
+        android:background="#F7EFCE"
+        app:layout_constraintTop_toBottomOf="@id/googlemapslinear">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/country_details_flag_and_name_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="WebViewLayout">
+
+
+                <WebView
+                    android:id="@+id/country_details_flag_imageview"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/country_details_name_textview"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <TextView
+                    android:id="@+id/country_details_name_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_horizontal"
+                    android:textAllCaps="true"
+                    android:textColor="#112631"
+                    android:textSize="24sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintLeft_toRightOf="@id/country_details_flag_imageview"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/country_details_capital_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_flag_and_name_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_capital_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Capital: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_capital_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_area_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_capital_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_area_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Area: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_area_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_population_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_area_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_population_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Population: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_population_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/country_details_region_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_population_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_region_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Region: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_region_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/country_details_subregion_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_region_linear">
+
+
+                <TextView
+
+                    android:id="@+id/country_details_subregion_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sub-Region: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_subregion_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_location_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_subregion_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_location_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_location_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_cioc_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_location_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_cioc_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cioc: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_cioc_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_alpha_codes_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_cioc_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_alpha_codes_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alpha Codes: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_alpha_codes_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_borders_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_alpha_codes_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_borders_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Borders: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_borders_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_language_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_borders_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_language_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_language_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/country_details_currency_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_details_language_linear">
+
+                <TextView
+
+                    android:id="@+id/country_details_currency_tag_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Currency: "
+                    android:textColor="#112631"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+
+
+                    android:id="@+id/country_details_currency_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.constraint.ConstraintLayout>
