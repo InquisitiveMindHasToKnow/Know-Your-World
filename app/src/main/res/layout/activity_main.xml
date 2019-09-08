@@ -74,12 +74,12 @@ tools:context=".MainActivity">
             android:text="Randomize" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/favorites_button"
             android:layout_width="168dp"
             android:layout_height="96dp"
             android:textColor="#112631"
             android:layout_marginEnd="24dp"
-            android:text="Button" />
+            android:text="Favorites" />
 
     </LinearLayout>
 

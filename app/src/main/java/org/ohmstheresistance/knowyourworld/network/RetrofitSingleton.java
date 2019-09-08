@@ -1,8 +1,10 @@
 package org.ohmstheresistance.knowyourworld.network;
 
+import dagger.Module;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+@Module
 public class RetrofitSingleton {
 
     private static Retrofit retrofitInstance;
