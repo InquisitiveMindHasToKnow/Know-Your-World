@@ -31,11 +31,9 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
     private static final String RANDOM_COUNTRY_FLAG_KEY = "randomCountryFlagKey";
     private String TAG_FOR_MAP_ICON = "";
 
-
     private GoogleMap countriesOfTheWorldMap;
     private MapView countriesOfTheWorldMapView;
     private View googleMapView;
-
 
     private String latitude;
     private String longitude;
@@ -56,8 +54,6 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
 
 
         Bundle args = new Bundle();
-
-
 
         args.putString(RANDOM_COUNTRY_LATITUDE_KEY, locationLatitude);
         args.putString(RANDOM_COUNTRY_LONGITUDE_KEY, locationLongitude);
@@ -115,6 +111,7 @@ public class GoogleMapsFragment extends Fragment implements OnMapReadyCallback {
 
 
         LatLng latLng = new LatLng(lat, lon);
+
         countriesOfTheWorldMap.addMarker(new MarkerOptions().position(latLng).title(TAG_FOR_MAP_ICON).icon(BitmapDescriptorFactory.fromResource(R.mipmap.countrymapmarker)));
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 4);

@@ -29,7 +29,6 @@ public class Study extends AppCompatActivity {
 
     private List<Country> countryList;
     private RecyclerView countryRecyclerView;
-    private static final String RANDOM_COUNTRY_KEY = "randomCountryKey";
 
 
     @Override
