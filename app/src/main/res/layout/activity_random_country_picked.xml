@@ -11,7 +11,7 @@
         android:id="@+id/googlemapslinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/textviews_linear"
+        app:layout_constraintBottom_toTopOf="@id/random_country_nested_scrollview"
         app:layout_constraintTop_toTopOf="parent">
 
 
@@ -24,23 +24,20 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/textviews_linear"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#F7EFCE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/googlemapslinear">
-
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/random_country_nested_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:background="#F7EFCE"
+            android:layout_marginTop="300dp"
+            app:layout_constraintTop_toBottomOf="@id/googlemapslinear"
+           >
+
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            >
 
 
             <LinearLayout
@@ -426,9 +423,59 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/next_button_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/one"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/nextButton"
+                    android:layout_width="match_parent"
+                    android:text="Next"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"/>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/random_country_currency_linear"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:orientation="horizontal">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="#112631"
+                    android:text="Currency: "
+                    android:textSize="16sp"/>
+
+
+                <TextView
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="#112631"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+
 
         </android.support.constraint.ConstraintLayout>
         </android.support.v4.widget.NestedScrollView>
-    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

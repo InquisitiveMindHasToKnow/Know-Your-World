@@ -1,11 +1,16 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,6 +71,8 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private TextView randomCountryCurrencyTagTextView;
     private TextView randomCountryCurrencyTextView;
     private WebView randomCountryChoseFlagWebView;
+    private NestedScrollView nestedScrollView;
+    private Button nextButton;
 
 
     private String randomCountry;
@@ -87,6 +94,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountryLanguageNativeName;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +124,16 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountryLanguageTextView = findViewById(R.id.random_country_language_textview);
         randomCountryCurrencyTagTextView = findViewById(R.id.random_country_currency_tag_textview);
         randomCountryCurrencyTextView = findViewById(R.id.random_country_currency_textview);
+        nestedScrollView = findViewById(R.id.random_country_nested_scrollview);
+        nextButton = findViewById(R.id.nextButton);
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent nextRandomCountryIntent = new Intent(RandomCountryPicked.this, GetRandomCountry.class);
+                startActivity(nextRandomCountryIntent);
+            }
+        });
 
 
 
@@ -203,4 +221,5 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
 
         finish();
     }
+
 }

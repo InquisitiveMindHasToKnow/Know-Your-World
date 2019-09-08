@@ -62,6 +62,10 @@ public class Country {
         this.cioc = cioc;
     }
 
+    public Country() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -798,5 +802,20 @@ public class Currency {
         }
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "countryName=" + name +
+                ", countryFlag='" +flag + '\'' +
+                '}';
+    }
+
+    public static Country from(String name, String flag) {
+        Country country = new Country();
+        country.name = name;
+        country.flag = flag;
+        return country;
     }
 }

@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         quizButton = findViewById(R.id.quiz_button);
         studyButton = findViewById(R.id.study_button);;
         randomizeButton = findViewById(R.id.randomize_button);
-        dontKnowYet = findViewById(R.id.button4);
+        dontKnowYet = findViewById(R.id.favorites_button);
 
 
         quizButton.setOnClickListener(this);
@@ -76,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
 
-            case R.id.button4:
-                Toast.makeText(getBaseContext(), "idky", Toast.LENGTH_LONG).show();
+            case R.id.favorites_button:
+                Toast.makeText(getBaseContext(), "Favorites", Toast.LENGTH_LONG).show();
 
                 break;
         }
