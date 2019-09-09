@@ -1,10 +1,13 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,6 +45,7 @@ public class FavoriteCountries extends AppCompatActivity {
 
         Glide.with(this).load(R.drawable.sadtears).into(emptyFavoriteListImageView);
 
+        View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
 
 
         List<Country> favorites = countryDatabaseHelper.getFavorites();
@@ -56,6 +60,7 @@ public class FavoriteCountries extends AppCompatActivity {
             emptyFavoriteListImageView.setVisibility(VISIBLE);
         } else {
             favoriteCountryAdapter.setData(favorites);
+            root.setBackgroundColor(Color.parseColor("#112631"));
         }
 
 

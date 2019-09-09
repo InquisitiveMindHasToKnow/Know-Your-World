@@ -4,6 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    android:background="#F7EFCE"
+    android:layout_marginBottom="30dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:ignore="WebViewLayout">
 
@@ -26,8 +29,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-
-
+        android:layout_marginBottom="30dp"
         />
 
 </LinearLayout>

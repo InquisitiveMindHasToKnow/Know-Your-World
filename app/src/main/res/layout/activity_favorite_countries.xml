@@ -7,10 +7,25 @@
     android:background="#FFFFFF"
     tools:context=".activities.FavoriteCountries">
 
+    <TextView
+        android:id="@+id/favorite_country_rv_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Favorite Countries"
+        android:textSize="48dp"
+        android:textColor="#FFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/favorites_recyclerviiew"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/favorite_country_rv_header"
+        app:layout_constraintLeft_toLeftOf="parent"
         />
 
     <TextView
