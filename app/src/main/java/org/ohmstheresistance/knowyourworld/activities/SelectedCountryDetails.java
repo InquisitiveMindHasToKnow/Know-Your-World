@@ -2,17 +2,22 @@ package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Movie;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
+import org.ohmstheresistance.knowyourworld.database.CountryDatabaseHelper;
 import org.ohmstheresistance.knowyourworld.fragments.FragmentNavigation;
 import org.ohmstheresistance.knowyourworld.fragments.GoogleMapsFragment;
+import org.ohmstheresistance.knowyourworld.model.Country;
 
 import java.util.Arrays;
 
@@ -72,6 +77,9 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
     private String selectedCountryCurrency;
     private String selectedCountryLanguageNativeName;
 
+    private FloatingActionButton fab;
+    private CountryDatabaseHelper countryDatabaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +87,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         setContentView(R.layout.activity_selected_country_details);
 
         getCountryDetailsIntent = getIntent();
+        countryDatabaseHelper = CountryDatabaseHelper.getInstance(this);
 
         selectedCountryFlagWebView = findViewById(R.id.country_details_flag_imageview);
         selectedCountryDetailsNameTextView = findViewById(R.id.country_details_name_textview);
@@ -94,6 +103,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         selectedCountryDetailsLanguageTextView = findViewById(R.id.country_details_language_textview);
         selectedCountryDetailsCurrencyTextView = findViewById(R.id.country_details_currency_textview);
         nestedScrollView = findViewById(R.id.country_details_nested_scrollview);
+        fab = findViewById(R.id.favourites_fab_button);
 
 
         Bundle selectedCountryDetailsBundle = getIntent().getExtras();
@@ -158,6 +168,28 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         FragmentNavigation fragmentNavigation = (FragmentNavigation) SelectedCountryDetails.this;
         fragmentNavigation.goToLocationOnMap(selectedCountryLongitude, selectedCountryLatitude, selectedCountryName, selectedCountryFlag);
 
+
+//        final String selectedCountry = intent.getIntExtra("countryName", 0);
+//        final String posterPath = intent.getStringExtra("countryFlag");
+
+
+        boolean isFavorite = countryDatabaseHelper.isFavorite(selectedCountryName);
+        fab.setImageResource(isFavorite ? R.drawable.ic_done : R.drawable.ic_save);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                boolean isFavorite = countryDatabaseHelper.isFavorite(selectedCountryName);
+
+                if (isFavorite) {
+                    countryDatabaseHelper.deleteFavorite(selectedCountryName);
+                    fab.setImageResource(R.drawable.ic_save);
+                } else {
+
+                    countryDatabaseHelper.addFavorite(Country.from(selectedCountryName, selectedCountryFlag));
+                    fab.setImageResource(R.drawable.ic_done);
+                }
+            }
+        });
     }
 
     @Override

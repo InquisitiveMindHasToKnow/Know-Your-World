@@ -19,7 +19,14 @@ import java.util.List;
         private static final int DATABASE_VERSION = 1;
         private static final String TABLE_FAVORITES = "favorites";
 
-        private static CountryDatabaseHelper sInstance;
+        private static CountryDatabaseHelper countryDatabaseInstance;
+
+        public static synchronized CountryDatabaseHelper getInstance(Context context) {
+            if (countryDatabaseInstance == null) {
+                countryDatabaseInstance = new CountryDatabaseHelper(context.getApplicationContext());
+            }
+            return countryDatabaseInstance;
+        }
 
         public CountryDatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,8 +36,8 @@ import java.util.List;
         @Override public void onCreate(SQLiteDatabase db) {
             String CREATE_FAVORITES_TABLE =
                     "CREATE TABLE " + TABLE_FAVORITES + "("
-                            + "countryName TEXT PRIMARY KEY,"
-                            + "countryFlag TEXT NOT NULL"
+                            + "country_name TEXT PRIMARY KEY,"
+                            + "country_flag TEXT NOT NULL"
                             + ")";
 
             db.execSQL(CREATE_FAVORITES_TABLE);
@@ -48,8 +55,8 @@ import java.util.List;
 
             try {
                 ContentValues values = new ContentValues();
-                values.put("countryName", favorite.getName());
-                values.put("countryFlag", favorite.getFlag());
+                values.put("country_name", favorite.getName());
+                values.put("country_flag", favorite.getFlag());
                 db.insertOrThrow(TABLE_FAVORITES, null, values);
             } catch (Exception e) {
                 Log.e("Favorites", "Error while trying to add post to database", e);
@@ -59,7 +66,7 @@ import java.util.List;
         public boolean isFavorite(String countryName) {
             SQLiteDatabase db = getReadableDatabase();
             Cursor cursor =
-                    db.rawQuery("SELECT COUNT(1) as count FROM " + TABLE_FAVORITES + " WHERE countryName = ?",
+                    db.rawQuery("SELECT COUNT(1) as count FROM " + TABLE_FAVORITES + " WHERE country_name = ?",
                             new String[] { String.valueOf(countryName) });
 
             int count = 0;
@@ -88,8 +95,8 @@ import java.util.List;
             try {
                 if (cursor.moveToFirst()) {
                     do {
-                        String countryName = String.valueOf(cursor.getInt(cursor.getColumnIndex("countryName")));
-                        String countryFlag = cursor.getString(cursor.getColumnIndex("countryFlag"));
+                        String countryName = String.valueOf(cursor.getInt(cursor.getColumnIndex("country_name")));
+                        String countryFlag = cursor.getString(cursor.getColumnIndex("country_flag"));
                         favorites.add(Country.from(countryName, countryFlag));
                     } while (cursor.moveToNext());
                 }
@@ -104,11 +111,11 @@ import java.util.List;
         }
 
 
-        public void deleteFavorite(int countryName) {
+        public void deleteFavorite(String countryName) {
             SQLiteDatabase db = getWritableDatabase();
 
             try {
-                db.delete(TABLE_FAVORITES, "countryName = ?", new String[] { String.valueOf(countryName) });
+                db.delete(TABLE_FAVORITES, "country_name = ?", new String[] { String.valueOf(countryName) });
             } catch (Exception e) {
                 Log.e("Favorites", "Error while trying to delete all posts and users", e);
             }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import org.ohmstheresistance.knowyourworld.activities.FavoriteCountries;
 import org.ohmstheresistance.knowyourworld.activities.GetRandomCountry;
 import org.ohmstheresistance.knowyourworld.activities.Study;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Intent toQuizIntent;
     private Intent toStudyIntent;
     private Intent randomizeIntent;
+    private Intent toFavoritesIntent;
 
 
 
@@ -77,8 +79,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.favorites_button:
-                Toast.makeText(getBaseContext(), "Favorites", Toast.LENGTH_LONG).show();
-
+                toFavoritesIntent = new Intent(MainActivity.this, FavoriteCountries.class);
+                startActivity(toFavoritesIntent);
+                overridePendingTransition(0, 0);
                 break;
         }
 
