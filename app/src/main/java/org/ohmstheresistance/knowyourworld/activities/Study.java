@@ -1,6 +1,5 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,8 +8,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.ohmstheresistance.knowyourworld.R;
-import org.ohmstheresistance.knowyourworld.fragments.FragmentNavigation;
-import org.ohmstheresistance.knowyourworld.fragments.GoogleMapsFragment;
 import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.network.CountryService;
 import org.ohmstheresistance.knowyourworld.network.RetrofitSingleton;
@@ -18,7 +15,6 @@ import org.ohmstheresistance.knowyourworld.rv.CountryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;

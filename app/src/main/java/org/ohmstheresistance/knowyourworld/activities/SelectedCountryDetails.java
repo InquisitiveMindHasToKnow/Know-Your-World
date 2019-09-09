@@ -2,15 +2,12 @@ package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Movie;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
@@ -167,10 +164,6 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) SelectedCountryDetails.this;
         fragmentNavigation.goToLocationOnMap(selectedCountryLongitude, selectedCountryLatitude, selectedCountryName, selectedCountryFlag);
-
-
-//        final String selectedCountry = intent.getIntExtra("countryName", 0);
-//        final String posterPath = intent.getStringExtra("countryFlag");
 
 
         boolean isFavorite = countryDatabaseHelper.isFavorite(selectedCountryName);

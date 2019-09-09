@@ -3,28 +3,23 @@ package org.ohmstheresistance.knowyourworld.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 
 import org.ohmstheresistance.knowyourworld.R;
+import org.ohmstheresistance.knowyourworld.database.CountryDatabaseHelper;
 import org.ohmstheresistance.knowyourworld.fragments.FragmentNavigation;
 import org.ohmstheresistance.knowyourworld.fragments.GoogleMapsFragment;
 import org.ohmstheresistance.knowyourworld.model.Country;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class RandomCountryPicked extends AppCompatActivity implements FragmentNavigation {
 
@@ -93,12 +88,18 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private String randomCountryCurrency;
     private String randomCountryLanguageNativeName;
 
+    private FloatingActionButton randomCountryFab;
+    private CountryDatabaseHelper countryDatabaseHelper;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_random_country_picked);
+
+        countryDatabaseHelper = CountryDatabaseHelper.getInstance(this);
+
 
         randomCountryChoseFlagWebView = findViewById(R.id.random_country_flag_imageview);
         randomCountryChosenNameTextView = findViewById(R.id.random_country_chosen_textview);
@@ -126,6 +127,8 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         randomCountryCurrencyTextView = findViewById(R.id.random_country_currency_textview);
         nestedScrollView = findViewById(R.id.random_country_nested_scrollview);
         nextButton = findViewById(R.id.nextButton);
+        randomCountryFab = findViewById(R.id.random_country_favourites_fab_button);
+
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,12 +199,29 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             }else
             randomCountryLanguageTextView.setText(randomCountryLanguages + " ( " + randomCountryLanguageNativeName + " )");
 
-        Log.e("myparce ", randomCountryLanguages);
-
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;
         fragmentNavigation.goToLocationOnMap(longitude, latitude, randomCountry, randomCountryFlag);
     }
+
+
+        boolean isFavorite = countryDatabaseHelper.isFavorite(randomCountry);
+        randomCountryFab.setImageResource(isFavorite ? R.drawable.ic_done : R.drawable.ic_save);
+
+        randomCountryFab.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                boolean isFavorite = countryDatabaseHelper.isFavorite(randomCountry);
+
+                if (isFavorite) {
+                    countryDatabaseHelper.deleteFavorite(randomCountry);
+                    randomCountryFab.setImageResource(R.drawable.ic_save);
+                } else {
+
+                    countryDatabaseHelper.addFavorite(Country.from(randomCountry, randomCountryFlag));
+                    randomCountryFab.setImageResource(R.drawable.ic_done);
+                }
+            }
+        });
 
 }
 
