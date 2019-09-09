@@ -95,7 +95,7 @@ import java.util.List;
             try {
                 if (cursor.moveToFirst()) {
                     do {
-                        String countryName = String.valueOf(cursor.getInt(cursor.getColumnIndex("country_name")));
+                        String countryName = (cursor.getString(cursor.getColumnIndex("country_name")));
                         String countryFlag = cursor.getString(cursor.getColumnIndex("country_flag"));
                         favorites.add(Country.from(countryName, countryFlag));
                     } while (cursor.moveToNext());
