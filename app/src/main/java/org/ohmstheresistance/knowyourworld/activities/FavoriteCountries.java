@@ -1,13 +1,14 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.database.CountryDatabaseHelper;
@@ -25,6 +26,7 @@ public class FavoriteCountries extends AppCompatActivity {
     FavoriteCountriesAdapter favoriteCountryAdapter;
     RecyclerView favoritesRecyclerView;
     private TextView emptyFavoriteCountryNameTextView;
+    private ImageView emptyFavoriteListImageView;
     CountryDatabaseHelper countryDatabaseHelper = new CountryDatabaseHelper(this);
 
 
@@ -35,6 +37,11 @@ public class FavoriteCountries extends AppCompatActivity {
 
         emptyFavoriteCountryNameTextView = findViewById(R.id.favorites_empty_textview);
         favoritesRecyclerView = findViewById(R.id.favorites_recyclerviiew);
+        emptyFavoriteListImageView = findViewById(R.id.empty_favorite_list_imageview);
+
+
+        Glide.with(this).load(R.drawable.sadtears).into(emptyFavoriteListImageView);
+
 
 
         List<Country> favorites = countryDatabaseHelper.getFavorites();
@@ -46,6 +53,7 @@ public class FavoriteCountries extends AppCompatActivity {
         if (favorites.isEmpty()) {
             favoritesRecyclerView.setVisibility(GONE);
             emptyFavoriteCountryNameTextView.setVisibility(VISIBLE);
+            emptyFavoriteListImageView.setVisibility(VISIBLE);
         } else {
             favoriteCountryAdapter.setData(favorites);
         }
