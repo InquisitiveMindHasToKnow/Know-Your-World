@@ -118,6 +118,5 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
 
 
 
-
 }
 

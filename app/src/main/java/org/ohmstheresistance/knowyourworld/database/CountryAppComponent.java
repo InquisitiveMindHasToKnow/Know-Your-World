@@ -11,8 +11,4 @@ import dagger.Component;
 public interface CountryAppComponent {
 
 
-//    void inject(HomeView view);
-//    void inject(DetailsActivity activity);
-//    void inject (FavoritesView view);
-
 }

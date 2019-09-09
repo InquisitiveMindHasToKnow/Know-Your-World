@@ -807,8 +807,8 @@ public class Currency {
     @Override
     public String toString() {
         return "Country{" +
-                "countryName=" + name +
-                ", countryFlag='" +flag + '\'' +
+                "country_name=" + name +
+                ", country_flag='" +flag + '\'' +
                 '}';
     }
 
