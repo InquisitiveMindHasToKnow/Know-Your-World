@@ -3,6 +3,7 @@ package org.ohmstheresistance.knowyourworld.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +69,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private WebView randomCountryChoseFlagWebView;
     private NestedScrollView nestedScrollView;
     private Button nextButton;
+    private Button moreInfoButton;
 
 
     private String randomCountry;
@@ -128,6 +130,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         nestedScrollView = findViewById(R.id.random_country_nested_scrollview);
         nextButton = findViewById(R.id.nextButton);
         randomCountryFab = findViewById(R.id.random_country_favourites_fab_button);
+        moreInfoButton = findViewById(R.id.more_info_button);
 
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +141,15 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             }
         });
 
+        moreInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String internetURLForSelectedCountry = "https://en.wikipedia.org/wiki/" + randomCountry;
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(internetURLForSelectedCountry));
+                startActivity(intent);
+            }
+        });
 
 
         Bundle countryDetailsBundle = getIntent().getExtras();
