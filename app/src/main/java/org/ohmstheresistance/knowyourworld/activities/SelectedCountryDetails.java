@@ -2,6 +2,7 @@ package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
     private TextView selectedCountryDetailsCurrencyTextView;
     private WebView selectedCountryFlagWebView;
     private NestedScrollView nestedScrollView;
+    private TextView selectedCountryLearnEvenMoreTextView;
 
 
     private String selectedCountryName;
@@ -101,6 +103,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         selectedCountryDetailsCurrencyTextView = findViewById(R.id.country_details_currency_textview);
         nestedScrollView = findViewById(R.id.country_details_nested_scrollview);
         fab = findViewById(R.id.favourites_fab_button);
+        selectedCountryLearnEvenMoreTextView = findViewById(R.id.country_details_research_more_textview);
 
 
         Bundle selectedCountryDetailsBundle = getIntent().getExtras();
@@ -183,6 +186,19 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                 }
             }
         });
+
+
+        selectedCountryLearnEvenMoreTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String internetURLForSelectedCountry = "https://en.wikipedia.org/wiki/" + selectedCountryName;
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(internetURLForSelectedCountry));
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
