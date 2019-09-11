@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
+import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.model.TriviaQuestions;
 import org.ohmstheresistance.knowyourworld.activities.TriviaContract.*;
 
@@ -50,6 +51,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
+
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
         addQuestion(questionOne);
 
@@ -76,8 +78,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         countryTriviaDatabase.insert(QuestionsTable.TABLE_NAME, null, contentValues);
     }
 
-    public List<TriviaQuestions> getAllQuestions() {
-        List<TriviaQuestions> questionList = new ArrayList<>();
+    public ArrayList<TriviaQuestions> getAllQuestions() {
+        ArrayList<TriviaQuestions> questionList = new ArrayList<>();
         countryTriviaDatabase = getReadableDatabase();
         Cursor cursor = countryTriviaDatabase.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
 
