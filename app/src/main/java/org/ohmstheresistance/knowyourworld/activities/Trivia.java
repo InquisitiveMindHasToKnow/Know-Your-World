@@ -8,7 +8,6 @@ import android.os.CountDownTimer;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -214,7 +213,7 @@ public class Trivia extends AppCompatActivity {
         int answerNumber = radioButtonGroup.indexOfChild(radioButtonSelected) + 1;
 
         if (answerNumber == currentQuestion.getAnswerNumber()) {
-            score++;
+            score+=5;
             scoreTextView.setText("Score: " + score);
         }
 

@@ -12,12 +12,11 @@ import org.ohmstheresistance.knowyourworld.model.TriviaQuestions;
 import org.ohmstheresistance.knowyourworld.activities.TriviaContract.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CountryTrivia.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private SQLiteDatabase countryTriviaDatabase;
 
     public CountryTriviaDBHelper(@Nullable Context context) {
@@ -51,21 +50,28 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
+//        final Country country = new Country();
+//
+//        String countryName = country.getName();
+//        String countryCapital = country.getCapital();
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
         addQuestion(questionOne);
 
-        TriviaQuestions questionTwo = new TriviaQuestions("B is correct", "A", "B", "C", 2);
+        TriviaQuestions questionTwo = new TriviaQuestions("What is the capital of Comoros", "Brazzaville", "Moroni", "Congo", 2);
         addQuestion(questionTwo);
 
-        TriviaQuestions questionThree = new TriviaQuestions("C is correct", "A", "B", "C", 3);
+        TriviaQuestions questionThree = new TriviaQuestions("What is the currency of Finland? ", "US Dollar", "Euro", "Yen", 2);
         addQuestion(questionThree);
 
-        TriviaQuestions questionFour = new TriviaQuestions("A is correct again", "A", "B", "C", 1);
+        TriviaQuestions questionFour = new TriviaQuestions("New Delhi is to India as Astana is to", "Ecuador", "Bolivia", "Kazakhstan", 3);
         addQuestion(questionFour);
 
-        TriviaQuestions questionFive = new TriviaQuestions("B is correct again", "A", "B", "C", 2);
+        TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", "Europe", "Antarctica", 1);
         addQuestion(questionFive);
+
+//        TriviaQuestions questionSix = new TriviaQuestions(countryCapital + " is the capital of: ", "Virginia", "New York ", countryName, 3);
+//        addQuestion(questionSix);
     }
 
     private void addQuestion(TriviaQuestions question) {
