@@ -418,7 +418,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="#112631"
+                    android:textColor="@color/mainBackgroundColor"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -436,6 +436,8 @@
                     android:id="@+id/nextButton"
                     android:layout_width="wrap_content"
                     android:text="Next"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/buttonColor"
                     android:textAllCaps="false"
                     android:layout_gravity="center"
                     android:layout_height="wrap_content"/>
@@ -446,6 +448,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
+                    android:background="@color/buttonColor"
                     android:text="More Info"
                     android:layout_gravity="center_horizontal"
                     />
@@ -491,7 +494,7 @@
         android:id="@+id/random_country_favourites_fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="@color/buttonColor"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="10dp"
         android:clickable="true"
