@@ -1,5 +1,6 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
@@ -23,6 +24,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Trivia extends AppCompatActivity {
+
+    public static final String EXTRA_SCORE = "extraScore";
 
     private TextView questionTextView;
     private TextView scoreTextView;
@@ -166,6 +169,9 @@ public class Trivia extends AppCompatActivity {
     }
 
     private void finishQuiz(){
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EXTRA_SCORE, score);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 }
