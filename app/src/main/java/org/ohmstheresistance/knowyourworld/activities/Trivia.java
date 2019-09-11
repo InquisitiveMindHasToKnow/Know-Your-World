@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class Trivia extends AppCompatActivity {
 
     public static final String EXTRA_SCORE = "extraScore";
 
+    private RelativeLayout triviaRelativeLayout;
     private TextView questionTextView;
     private TextView scoreTextView;
     private TextView questionCountTextView;
@@ -45,6 +47,8 @@ public class Trivia extends AppCompatActivity {
     private int score;
     private boolean answered;
 
+    private long backPressedTime;
+
     private List<TriviaQuestions> questionList;
 
     @Override
@@ -62,6 +66,7 @@ public class Trivia extends AppCompatActivity {
         secondRadioButton = findViewById(R.id.radio_button2);
         thirdRadioButton = findViewById(R.id.radio_button3);
         confirmButton = findViewById(R.id.trivia_confirm_button);
+        triviaRelativeLayout = findViewById(R.id.trivia_relative_layout);
 
         textColorDefaultRb = firstRadioButton.getTextColors();
 
@@ -79,26 +84,26 @@ public class Trivia extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    if (!answered) {
-                        if (firstRadioButton.isChecked() || secondRadioButton.isChecked() || thirdRadioButton.isChecked()) {
-                            checkAnswer();
-                        } else {
-
-                            Snackbar selectAnswerSnackbar = Snackbar.make(v, "Please select an answer.", Snackbar.LENGTH_LONG);
-                            View snackbarView = selectAnswerSnackbar.getView();
-                            TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-                                snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                            else
-                                snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
-
-                            selectAnswerSnackbar.show();
-
-                                                 }
+                if (!answered) {
+                    if (firstRadioButton.isChecked() || secondRadioButton.isChecked() || thirdRadioButton.isChecked()) {
+                        checkAnswer();
                     } else {
-                        showNextQuestion();
+
+                        Snackbar selectAnswerSnackbar = Snackbar.make(v, "Please select an answer.", Snackbar.LENGTH_LONG);
+                        View snackbarView = selectAnswerSnackbar.getView();
+                        TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                            snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        else
+                            snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                        selectAnswerSnackbar.show();
+
                     }
+                } else {
+                    showNextQuestion();
+                }
             }
         });
     }
@@ -168,11 +173,33 @@ public class Trivia extends AppCompatActivity {
         }
     }
 
-    private void finishQuiz(){
+    private void finishQuiz() {
         Intent resultIntent = new Intent();
         resultIntent.putExtra(EXTRA_SCORE, score);
         setResult(RESULT_OK, resultIntent);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+
+            finishQuiz();
+        } else {
+
+            Snackbar onBackPressedSnackBar = Snackbar.make(triviaRelativeLayout, "Press BACK again to exit.", Snackbar.LENGTH_LONG);
+            View onBackPressedSnackBarView = onBackPressedSnackBar.getView();
+            TextView snackBarTextView = onBackPressedSnackBarView.findViewById(android.support.design.R.id.snackbar_text);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            else
+                snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+            onBackPressedSnackBar.show();
+
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }
 
