@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
+import org.ohmstheresistance.knowyourworld.model.TriviaQuestions;
 
 public class CountryTrivia extends AppCompatActivity {
 
