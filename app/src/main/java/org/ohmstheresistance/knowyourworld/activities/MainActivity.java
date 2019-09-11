@@ -1,4 +1,4 @@
-package org.ohmstheresistance.knowyourworld;
+package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,9 +11,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import org.ohmstheresistance.knowyourworld.activities.FavoriteCountries;
-import org.ohmstheresistance.knowyourworld.activities.GetRandomCountry;
-import org.ohmstheresistance.knowyourworld.activities.Study;
+import org.ohmstheresistance.knowyourworld.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -66,7 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.quiz_button:
-                Toast.makeText(getBaseContext(), "quiz", Toast.LENGTH_LONG).show();
+                toQuizIntent = new Intent(MainActivity.this, CountryTrivia.class);
+                startActivity(toQuizIntent);
+                overridePendingTransition(0, 0);
+
 
                 break;
 
