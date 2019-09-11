@@ -138,6 +138,8 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             public void onClick(View v) {
                 Intent nextRandomCountryIntent = new Intent(RandomCountryPicked.this, GetRandomCountry.class);
                 startActivity(nextRandomCountryIntent);
+                overridePendingTransition(0, 0);
+
             }
         });
 
@@ -148,6 +150,8 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
 
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(internetURLForSelectedCountry));
                 startActivity(intent);
+                overridePendingTransition(0, 0);
+
             }
         });
 
