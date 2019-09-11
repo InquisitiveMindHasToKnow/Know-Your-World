@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.Trivia"></activity>
+        <activity android:name=".activities.Trivia"/>
+        <activity android:name=".model.TriviaQuestions" />
         <activity android:name=".activities.CountryTrivia" />
         <activity android:name=".activities.FavoriteCountries" />
         <activity android:name=".activities.SelectedCountryDetails" />
@@ -33,9 +34,9 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>
