@@ -50,6 +50,14 @@ public class Trivia extends AppCompatActivity {
     private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
     private static final String SECOND_COUNTRY_NAME = "secondCountryName";
     private static final String SECOND_COUNTRY_CAPITAL = "secondCountryCapital";
+    private static final String THIRD_COUNTRY_NAME = "thirdCountryName";
+    private static final String THIRD_COUNTRY_REGION = "thirdCountryRegion";
+    private static final String FOURTH_COUNTRY_NAME = "fourthCountryName";
+    private static final String FOURTH_COUNTRY_CAPITAL = "fourthCountryCapital";
+    private static final String FIFTH_COUNTRY_NAME = "fifthCountryName";
+    private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
+
+
 
     private CountryTriviaDBHelper countryTriviaDBHelper;
 
@@ -85,10 +93,6 @@ public class Trivia extends AppCompatActivity {
     SharedPreferences.Editor triviaSharedPrefsEditor;
     SharedPreferences triviaSharedPrefs;
 
-     String countryName;
-     String countryCapital;
-     String countryNameOne;
-     String countryCapitalOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -339,10 +343,16 @@ public class Trivia extends AppCompatActivity {
                     Collections.shuffle(countryListForTrivia);
 
 
-                    countryName = countryListForTrivia.get(0).getName();
-                    countryCapital = countryListForTrivia.get(0).getCapital();
-                    countryNameOne = countryListForTrivia.get(1).getName();
-                    countryCapitalOne = countryListForTrivia.get(1).getCapital();
+                   String countryName = countryListForTrivia.get(0).getName();
+                   String countryCapital = countryListForTrivia.get(0).getCapital();
+                   String countryNameOne = countryListForTrivia.get(1).getName();
+                   String countryCapitalOne = countryListForTrivia.get(1).getCapital();
+                   String countryThreeName = countryListForTrivia.get(2).getName();
+                   String countryThreeRegion = countryListForTrivia.get(2).getRegion();
+                   String countryFourName = countryListForTrivia.get(10).getName();
+                   String countryFourCapital = countryListForTrivia.get(10).getCapital();
+                   String countryFiveName = countryListForTrivia.get(25).getName();
+                   String countryFiveRegion = countryListForTrivia.get(25).getRegion();
 
 
                     triviaSharedPrefs = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
@@ -351,6 +361,12 @@ public class Trivia extends AppCompatActivity {
                     triviaSharedPrefsEditor.putString(FIRST_COUNTRY_CAPITAL, countryCapital);
                     triviaSharedPrefsEditor.putString(SECOND_COUNTRY_NAME, countryNameOne);
                     triviaSharedPrefsEditor.putString(SECOND_COUNTRY_CAPITAL, countryCapitalOne);
+                    triviaSharedPrefsEditor.putString(THIRD_COUNTRY_NAME, countryThreeName);
+                    triviaSharedPrefsEditor.putString(THIRD_COUNTRY_REGION, countryThreeRegion);
+                    triviaSharedPrefsEditor.putString(FOURTH_COUNTRY_NAME, countryFourName);
+                    triviaSharedPrefsEditor.putString(FOURTH_COUNTRY_CAPITAL, countryFourCapital);
+                    triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_NAME, countryFiveName);
+                    triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_REGION, countryFiveRegion);
                     triviaSharedPrefsEditor.apply();
 
 
@@ -360,6 +376,7 @@ public class Trivia extends AppCompatActivity {
                         Log.e("COUNTRYNAMEFORTRIV1", countryNameOne);
                         Log.e("COUNTRYCAPFORTRIV1", countryCapitalOne);
                         Log.e("SIZEOFTRIVIALISTNEW", String.valueOf(countryListForTrivia.size()));
+                        Log.e("COUNTRYNAMEFORTRIV2", countryThreeName);
 
                     }
 
