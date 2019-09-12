@@ -2,25 +2,38 @@ package org.ohmstheresistance.knowyourworld.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
-import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.model.TriviaQuestions;
 import org.ohmstheresistance.knowyourworld.activities.TriviaContract.*;
 
+
 import java.util.ArrayList;
+
 
 public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CountryTrivia.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 14;
     private SQLiteDatabase countryTriviaDatabase;
+    private Context context;
+
+    private static final String FIRST_COUNTRY_NAME = "firstCountryName";
+    private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
+    private static final String SECOND_COUNTRY_NAME = "secondCountryName";
+    private static final String SECOND_COUNTRY_CAPITAL = "secondCountryCapital";
+
 
     public CountryTriviaDBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
+
+
     }
 
     @Override
@@ -40,7 +53,9 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_QUESTIONS_TABLE);
         fillQuestionsTable();
 
+
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -50,10 +65,18 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-//        final Country country = new Country();
-//
-//        String countryName = country.getName();
-//        String countryCapital = country.getCapital();
+
+        SharedPreferences sp = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+
+
+
+        String firstCountryName = sp.getString(FIRST_COUNTRY_NAME, "1st country name null");
+        String firstCountryCapital = sp.getString(FIRST_COUNTRY_CAPITAL, "1st country name null");
+        String secondCountryName = sp.getString(SECOND_COUNTRY_NAME, "2nd country name null");
+        String secondCountryCapital = sp.getString(SECOND_COUNTRY_CAPITAL, "2nd country name null");
+
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
         addQuestion(questionOne);
@@ -70,8 +93,14 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", "Europe", "Antarctica", 1);
         addQuestion(questionFive);
 
-//        TriviaQuestions questionSix = new TriviaQuestions(countryCapital + " is the capital of: ", "Virginia", "New York ", countryName, 3);
-//        addQuestion(questionSix);
+
+        TriviaQuestions questionSix = new TriviaQuestions(firstCountryCapital + " is the capital of ", "Peru", "Libya", firstCountryName, 3);
+        addQuestion(questionSix);
+
+        TriviaQuestions questionSeven = new TriviaQuestions(secondCountryCapital + " is the capital of ", secondCountryName, "Jamaica", "Venezuela" , 1);
+        addQuestion(questionSeven);
+
+        editor.clear();
     }
 
     private void addQuestion(TriviaQuestions question) {
@@ -104,4 +133,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return questionList;
     }
+
+
 }
+
