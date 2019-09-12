@@ -1,13 +1,16 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +21,20 @@ import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.database.CountryTriviaDBHelper;
+import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.model.TriviaQuestions;
+import org.ohmstheresistance.knowyourworld.network.CountryService;
+import org.ohmstheresistance.knowyourworld.network.RetrofitSingleton;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Trivia extends AppCompatActivity {
 
@@ -33,6 +45,11 @@ public class Trivia extends AppCompatActivity {
     private static final String MILLIS_LEFT_KEY = "millisLeft";
     private static final String ANSWERED_KEY = "answered";
     private static final String QUESTION_LIST_KEY = "questionListKey";
+
+    private static final String FIRST_COUNTRY_NAME = "firstCountryName";
+    private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
+    private static final String SECOND_COUNTRY_NAME = "secondCountryName";
+    private static final String SECOND_COUNTRY_CAPITAL = "secondCountryCapital";
 
 
 
@@ -63,6 +80,13 @@ public class Trivia extends AppCompatActivity {
 
     private ArrayList<TriviaQuestions> questionList;
 
+    private List<Country> countryListForTrivia;
+
+     String countryName;
+     String countryCapital;
+     String countryNameOne;
+     String countryCapitalOne;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -82,6 +106,8 @@ public class Trivia extends AppCompatActivity {
 
         textColorDefaultRadioButtons = firstRadioButton.getTextColors();
         textColorDefaultCountDown = countdownTextView.getTextColors();
+
+        getCountryInformation();
 
 
         if(savedInstanceState == null) {
@@ -142,6 +168,8 @@ public class Trivia extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     private void showNextQuestion() {
@@ -283,6 +311,72 @@ public class Trivia extends AppCompatActivity {
         if(countDownTimer != null){
             countDownTimer.cancel();
         }
+    }
+
+    public void getCountryInformation() {
+
+        Retrofit countryRetrofit = RetrofitSingleton.getRetrofitInstance();
+        CountryService countryService = countryRetrofit.create(CountryService.class);
+        countryService.getCountries().enqueue(new Callback<List<Country>>() {
+            @Override
+            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+
+
+                Log.d("TR ", "Retrofit call works " + response.body().get(0).getName());
+
+
+                if (response.body() != null) {
+
+                    countryListForTrivia = response.body();
+                    Collections.shuffle(countryListForTrivia);
+
+
+                    countryName = countryListForTrivia.get(0).getName();
+                    countryCapital = countryListForTrivia.get(0).getCapital();
+                    countryNameOne = countryListForTrivia.get(1).getName();
+                    countryCapitalOne = countryListForTrivia.get(1).getCapital();
+
+
+                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString(FIRST_COUNTRY_NAME, countryName);
+                    editor.putString(FIRST_COUNTRY_CAPITAL, countryCapital);
+                    editor.putString(SECOND_COUNTRY_NAME, countryNameOne);
+                    editor.putString(SECOND_COUNTRY_CAPITAL, countryCapitalOne);
+                    editor.apply();
+
+
+                    if(countryName != null && countryCapital != null) {
+                        Log.e("COUNTRYNAMEFORTRIV", countryName);
+                        Log.e("COUNTRYCAPFORTRIV", countryCapital);
+                        Log.e("COUNTRYNAMEFORTRIV1", countryNameOne);
+                        Log.e("COUNTRYCAPFORTRIV1", countryCapitalOne);
+                        Log.e("SIZEOFTRIVIALISTNEW", String.valueOf(countryListForTrivia.size()));
+
+                    }
+
+
+                }
+
+                if (!response.isSuccessful()) {
+                    Log.d("Country", "Unable To Display Empty List: " + response.body());
+
+                    return;
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Country>> call, Throwable t) {
+
+                Log.d("Country", "Retrofit call failed, Omar" + t.getMessage());
+
+
+            }
+
+        });
+
+
     }
 
     @Override
