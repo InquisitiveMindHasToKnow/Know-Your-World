@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "CountryTrivia.db";
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 15;
     private SQLiteDatabase countryTriviaDatabase;
     private Context context;
 
@@ -27,6 +27,12 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
     private static final String SECOND_COUNTRY_NAME = "secondCountryName";
     private static final String SECOND_COUNTRY_CAPITAL = "secondCountryCapital";
+    private static final String THIRD_COUNTRY_NAME = "thirdCountryName";
+    private static final String THIRD_COUNTRY_REGION = "thirdCountryRegion";
+    private static final String FOURTH_COUNTRY_NAME = "fourthCountryName";
+    private static final String FOURTH_COUNTRY_CAPITAL = "fourthCountryCapital";
+    private static final String FIFTH_COUNTRY_NAME = "fifthCountryName";
+    private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
 
 
     public CountryTriviaDBHelper(@Nullable Context context) {
@@ -68,14 +74,17 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
         SharedPreferences sp = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-
-
 
         String firstCountryName = sp.getString(FIRST_COUNTRY_NAME, "1st country name null");
         String firstCountryCapital = sp.getString(FIRST_COUNTRY_CAPITAL, "1st country name null");
         String secondCountryName = sp.getString(SECOND_COUNTRY_NAME, "2nd country name null");
         String secondCountryCapital = sp.getString(SECOND_COUNTRY_CAPITAL, "2nd country name null");
+        String thirdCountryName = sp.getString(THIRD_COUNTRY_NAME, "3rd country name null");
+        String thirdCountryRegion = sp.getString(THIRD_COUNTRY_REGION, "3rd country region nation null");
+        String fourthCountryName = sp.getString(FOURTH_COUNTRY_NAME, "4th country name null");
+        String fourthCountryCapital = sp.getString(FOURTH_COUNTRY_CAPITAL, "4th country capital null");
+        String fifthCountryName = sp.getString(FIFTH_COUNTRY_NAME, "5th country name null");
+        String fifthCountryRegion = sp.getString(FIFTH_COUNTRY_REGION, "5th country region null");
 
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
@@ -87,20 +96,24 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionThree = new TriviaQuestions("What is the currency of Finland? ", "US Dollar", "Euro", "Yen", 2);
         addQuestion(questionThree);
 
-        TriviaQuestions questionFour = new TriviaQuestions("New Delhi is to India as Astana is to", "Ecuador", "Bolivia", "Kazakhstan", 3);
+        TriviaQuestions questionFour = new TriviaQuestions("New Delhi is to India as " + fourthCountryCapital +" is to", "Ecuador", "Bolivia", fourthCountryName, 3);
         addQuestion(questionFour);
 
-        TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", "Europe", "Antarctica", 1);
+        TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", firstCountryCapital, fourthCountryName, 1);
         addQuestion(questionFive);
 
 
-        TriviaQuestions questionSix = new TriviaQuestions(firstCountryCapital + " is the capital of ", "Peru", "Libya", firstCountryName, 3);
+        TriviaQuestions questionSix = new TriviaQuestions(firstCountryCapital + " is the capital of ", fourthCountryName, secondCountryCapital, firstCountryName, 3);
         addQuestion(questionSix);
 
-        TriviaQuestions questionSeven = new TriviaQuestions(secondCountryCapital + " is the capital of ", secondCountryName, "Jamaica", "Venezuela" , 1);
+        TriviaQuestions questionSeven = new TriviaQuestions(secondCountryCapital + " is the capital of ", secondCountryName, fifthCountryName, thirdCountryName , 1);
         addQuestion(questionSeven);
 
-        editor.clear();
+        TriviaQuestions questionEight = new TriviaQuestions(thirdCountryName + " is located in ", fifthCountryName, thirdCountryRegion, fourthCountryCapital , 2);
+        addQuestion(questionEight);
+
+        TriviaQuestions questionNine = new TriviaQuestions( thirdCountryName + " is located in " + thirdCountryRegion + " and " + fifthCountryName + " is located in ", fifthCountryRegion, secondCountryName, firstCountryCapital , 1);
+        addQuestion(questionNine);
     }
 
     private void addQuestion(TriviaQuestions question) {
@@ -135,5 +148,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     }
 
 
+    public void clearDatabase() {
+        context.deleteDatabase(DATABASE_NAME);
+    }
 }
 

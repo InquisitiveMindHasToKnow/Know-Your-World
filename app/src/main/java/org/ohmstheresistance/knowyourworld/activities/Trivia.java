@@ -50,7 +50,16 @@ public class Trivia extends AppCompatActivity {
     private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
     private static final String SECOND_COUNTRY_NAME = "secondCountryName";
     private static final String SECOND_COUNTRY_CAPITAL = "secondCountryCapital";
+    private static final String THIRD_COUNTRY_NAME = "thirdCountryName";
+    private static final String THIRD_COUNTRY_REGION = "thirdCountryRegion";
+    private static final String FOURTH_COUNTRY_NAME = "fourthCountryName";
+    private static final String FOURTH_COUNTRY_CAPITAL = "fourthCountryCapital";
+    private static final String FIFTH_COUNTRY_NAME = "fifthCountryName";
+    private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
 
+
+
+    private CountryTriviaDBHelper countryTriviaDBHelper;
 
 
     private RelativeLayout triviaRelativeLayout;
@@ -81,11 +90,9 @@ public class Trivia extends AppCompatActivity {
     private ArrayList<TriviaQuestions> questionList;
 
     private List<Country> countryListForTrivia;
+    SharedPreferences.Editor triviaSharedPrefsEditor;
+    SharedPreferences triviaSharedPrefs;
 
-     String countryName;
-     String countryCapital;
-     String countryNameOne;
-     String countryCapitalOne;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +115,8 @@ public class Trivia extends AppCompatActivity {
         textColorDefaultCountDown = countdownTextView.getTextColors();
 
         getCountryInformation();
+
+        countryTriviaDBHelper = new CountryTriviaDBHelper(Trivia.this);
 
 
         if(savedInstanceState == null) {
@@ -194,6 +203,8 @@ public class Trivia extends AppCompatActivity {
             timeLeftInMillis = COUNTDOWN_TIMER_IN_MILLIS;
             startCountDown();
         } else {
+
+            countryTriviaDBHelper.clearDatabase();
             finishQuiz();
         }
     }
@@ -285,7 +296,7 @@ public class Trivia extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
-
+            countryTriviaDBHelper.clearDatabase();
             finishQuiz();
         } else {
 
@@ -311,6 +322,7 @@ public class Trivia extends AppCompatActivity {
         if(countDownTimer != null){
             countDownTimer.cancel();
         }
+
     }
 
     public void getCountryInformation() {
@@ -331,19 +343,31 @@ public class Trivia extends AppCompatActivity {
                     Collections.shuffle(countryListForTrivia);
 
 
-                    countryName = countryListForTrivia.get(0).getName();
-                    countryCapital = countryListForTrivia.get(0).getCapital();
-                    countryNameOne = countryListForTrivia.get(1).getName();
-                    countryCapitalOne = countryListForTrivia.get(1).getCapital();
+                   String countryName = countryListForTrivia.get(0).getName();
+                   String countryCapital = countryListForTrivia.get(0).getCapital();
+                   String countryNameOne = countryListForTrivia.get(1).getName();
+                   String countryCapitalOne = countryListForTrivia.get(1).getCapital();
+                   String countryThreeName = countryListForTrivia.get(2).getName();
+                   String countryThreeRegion = countryListForTrivia.get(2).getRegion();
+                   String countryFourName = countryListForTrivia.get(10).getName();
+                   String countryFourCapital = countryListForTrivia.get(10).getCapital();
+                   String countryFiveName = countryListForTrivia.get(25).getName();
+                   String countryFiveRegion = countryListForTrivia.get(25).getRegion();
 
 
-                    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
-                    SharedPreferences.Editor editor = pref.edit();
-                    editor.putString(FIRST_COUNTRY_NAME, countryName);
-                    editor.putString(FIRST_COUNTRY_CAPITAL, countryCapital);
-                    editor.putString(SECOND_COUNTRY_NAME, countryNameOne);
-                    editor.putString(SECOND_COUNTRY_CAPITAL, countryCapitalOne);
-                    editor.apply();
+                    triviaSharedPrefs = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
+                    triviaSharedPrefsEditor = triviaSharedPrefs.edit();
+                    triviaSharedPrefsEditor.putString(FIRST_COUNTRY_NAME, countryName);
+                    triviaSharedPrefsEditor.putString(FIRST_COUNTRY_CAPITAL, countryCapital);
+                    triviaSharedPrefsEditor.putString(SECOND_COUNTRY_NAME, countryNameOne);
+                    triviaSharedPrefsEditor.putString(SECOND_COUNTRY_CAPITAL, countryCapitalOne);
+                    triviaSharedPrefsEditor.putString(THIRD_COUNTRY_NAME, countryThreeName);
+                    triviaSharedPrefsEditor.putString(THIRD_COUNTRY_REGION, countryThreeRegion);
+                    triviaSharedPrefsEditor.putString(FOURTH_COUNTRY_NAME, countryFourName);
+                    triviaSharedPrefsEditor.putString(FOURTH_COUNTRY_CAPITAL, countryFourCapital);
+                    triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_NAME, countryFiveName);
+                    triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_REGION, countryFiveRegion);
+                    triviaSharedPrefsEditor.apply();
 
 
                     if(countryName != null && countryCapital != null) {
@@ -352,6 +376,7 @@ public class Trivia extends AppCompatActivity {
                         Log.e("COUNTRYNAMEFORTRIV1", countryNameOne);
                         Log.e("COUNTRYCAPFORTRIV1", countryCapitalOne);
                         Log.e("SIZEOFTRIVIALISTNEW", String.valueOf(countryListForTrivia.size()));
+                        Log.e("COUNTRYNAMEFORTRIV2", countryThreeName);
 
                     }
 
@@ -378,6 +403,7 @@ public class Trivia extends AppCompatActivity {
 
 
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
