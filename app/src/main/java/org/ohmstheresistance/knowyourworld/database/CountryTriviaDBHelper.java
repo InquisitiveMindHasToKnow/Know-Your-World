@@ -68,9 +68,6 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
         SharedPreferences sp = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sp.edit();
-
-
 
         String firstCountryName = sp.getString(FIRST_COUNTRY_NAME, "1st country name null");
         String firstCountryCapital = sp.getString(FIRST_COUNTRY_CAPITAL, "1st country name null");
@@ -100,7 +97,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionSeven = new TriviaQuestions(secondCountryCapital + " is the capital of ", secondCountryName, "Jamaica", "Venezuela" , 1);
         addQuestion(questionSeven);
 
-        editor.clear();
+
     }
 
     private void addQuestion(TriviaQuestions question) {
@@ -135,5 +132,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     }
 
 
+    public void clearDatabase() {
+        context.deleteDatabase(DATABASE_NAME);
+    }
 }
 
