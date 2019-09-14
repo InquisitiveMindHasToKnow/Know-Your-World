@@ -56,6 +56,8 @@ public class Trivia extends AppCompatActivity {
     private static final String FOURTH_COUNTRY_CAPITAL = "fourthCountryCapital";
     private static final String FIFTH_COUNTRY_NAME = "fifthCountryName";
     private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
+    private static final String SIXTH_COUNTRY_NAME = "sixthCountryName";
+    private static final String SIXTH_COUNTRY_SIZE = "sixthCountrySize";
 
 
 
@@ -353,6 +355,11 @@ public class Trivia extends AppCompatActivity {
                    String countryFourCapital = countryListForTrivia.get(10).getCapital();
                    String countryFiveName = countryListForTrivia.get(25).getName();
                    String countryFiveRegion = countryListForTrivia.get(25).getRegion();
+                   String countrySixName = countryListForTrivia.get(50).getName();
+                   String countrySixSize = String.valueOf(countryListForTrivia.get(50).getArea());
+
+
+
 
 
                     triviaSharedPrefs = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
@@ -367,6 +374,8 @@ public class Trivia extends AppCompatActivity {
                     triviaSharedPrefsEditor.putString(FOURTH_COUNTRY_CAPITAL, countryFourCapital);
                     triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_NAME, countryFiveName);
                     triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_REGION, countryFiveRegion);
+                    triviaSharedPrefsEditor.putString(SIXTH_COUNTRY_NAME, countrySixName);
+                    triviaSharedPrefsEditor.putString(SIXTH_COUNTRY_SIZE, countrySixSize);
                     triviaSharedPrefsEditor.apply();
 
 

@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.activities.SelectedCountryDetails;
@@ -120,15 +123,13 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
+        //        Picasso.get()
+//                .load(R.drawable.cupid2)
+//                .into(loginPageImage);
 
-        countryFlagImageView.getSettings().setLoadWithOverviewMode(true);
-        countryFlagImageView.getSettings().setUseWideViewPort(true);
-        countryFlagImageView.setVerticalScrollBarEnabled(false);
-        countryFlagImageView.setHorizontalScrollBarEnabled(false);
-        countryFlagImageView.setScrollContainer(false);
-        countryFlagImageView.setInitialScale(1);
+        String html = "<html><body><img src=\"" + countryFlag + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
         countryFlagImageView.setBackgroundColor(Color.TRANSPARENT);
-        countryFlagImageView.loadUrl(countryFlag);
+        countryFlagImageView.loadData(html, "text/html", null);
 
 
         itemView.setOnClickListener(new View.OnClickListener() {

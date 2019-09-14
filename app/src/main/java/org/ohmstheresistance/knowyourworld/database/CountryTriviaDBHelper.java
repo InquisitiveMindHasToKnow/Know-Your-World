@@ -33,6 +33,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final String FOURTH_COUNTRY_CAPITAL = "fourthCountryCapital";
     private static final String FIFTH_COUNTRY_NAME = "fifthCountryName";
     private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
+    private static final String SIXTH_COUNTRY_NAME = "sixthCountryName";
+    private static final String SIXTH_COUNTRY_SIZE = "sixthCountrySize";
 
 
     public CountryTriviaDBHelper(@Nullable Context context) {
@@ -85,6 +87,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         String fourthCountryCapital = sp.getString(FOURTH_COUNTRY_CAPITAL, "4th country capital null");
         String fifthCountryName = sp.getString(FIFTH_COUNTRY_NAME, "5th country name null");
         String fifthCountryRegion = sp.getString(FIFTH_COUNTRY_REGION, "5th country region null");
+        String sixthCountryName = sp.getString(SIXTH_COUNTRY_NAME, "6th country name null");
+        String sixthCountrySize = sp.getString(SIXTH_COUNTRY_SIZE, "6th country currency null");
 
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
@@ -93,10 +97,10 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionTwo = new TriviaQuestions("What is the capital of Comoros", "Brazzaville", "Moroni", "Congo", 2);
         addQuestion(questionTwo);
 
-        TriviaQuestions questionThree = new TriviaQuestions("What is the currency of Finland? ", "US Dollar", "Euro", "Yen", 2);
+        TriviaQuestions questionThree = new TriviaQuestions(sixthCountryName + " has an area of ________ km² ", "398342.8km²", sixthCountrySize +"km²", "922404.2km²", 2);
         addQuestion(questionThree);
 
-        TriviaQuestions questionFour = new TriviaQuestions("New Delhi is to India as " + fourthCountryCapital +" is to", "Ecuador", "Bolivia", fourthCountryName, 3);
+        TriviaQuestions questionFour = new TriviaQuestions(secondCountryCapital + " is to " + secondCountryName + " as " + fourthCountryCapital +" is to", firstCountryName, fifthCountryName, fourthCountryName, 3);
         addQuestion(questionFour);
 
         TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", firstCountryCapital, fourthCountryName, 1);
