@@ -29,14 +29,12 @@ public class FavoriteCountriesViewHolder extends RecyclerView.ViewHolder {
         final String favoriteCountryFlag = favoriteCountries.getFlag();
         final String favoriteCountryName = favoriteCountries.getName();
 
-        favoriteCountryFlagWebView.getSettings().setLoadWithOverviewMode(true);
-        favoriteCountryFlagWebView.getSettings().setUseWideViewPort(true);
+        String html = "<html><body><img src=\"" + favoriteCountryFlag + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+        favoriteCountryFlagWebView.setBackgroundColor(Color.TRANSPARENT);
         favoriteCountryFlagWebView.setVerticalScrollBarEnabled(false);
         favoriteCountryFlagWebView.setHorizontalScrollBarEnabled(false);
-        favoriteCountryFlagWebView.setScrollContainer(false);
-        favoriteCountryFlagWebView.setInitialScale(1);
-        favoriteCountryFlagWebView.setBackgroundColor(Color.TRANSPARENT);
-        favoriteCountryFlagWebView.loadUrl(favoriteCountryFlag);
+        favoriteCountryFlagWebView.loadData(html, "text/html", null);
+
 
         favoriteCountryNameTextView.setText(favoriteCountryName);
 

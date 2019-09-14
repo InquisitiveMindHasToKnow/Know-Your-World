@@ -2,6 +2,7 @@ package org.ohmstheresistance.knowyourworld.activities;
 
 
 import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,7 +40,7 @@ public class FavoriteCountries extends AppCompatActivity {
         setContentView(R.layout.activity_favorite_countries);
 
         emptyFavoriteCountryNameTextView = findViewById(R.id.favorites_empty_textview);
-        favoritesRecyclerView = findViewById(R.id.favorites_recyclerviiew);
+        favoritesRecyclerView = findViewById(R.id.favorites_recyclerview);
         emptyFavoriteListImageView = findViewById(R.id.empty_favorite_list_imageview);
 
 
@@ -47,6 +48,9 @@ public class FavoriteCountries extends AppCompatActivity {
 
         View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
 
+        ViewGroup.LayoutParams layoutParams = root.getLayoutParams();
+        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
 
         List<Country> favorites = countryDatabaseHelper.getFavorites();
 
@@ -61,6 +65,7 @@ public class FavoriteCountries extends AppCompatActivity {
         } else {
             favoriteCountryAdapter.setData(favorites);
             root.setBackgroundColor(Color.parseColor("#112631"));
+            root.setLayoutParams(layoutParams);
         }
 
 
