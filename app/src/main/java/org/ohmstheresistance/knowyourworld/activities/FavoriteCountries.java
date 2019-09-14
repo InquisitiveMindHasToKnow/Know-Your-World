@@ -4,6 +4,7 @@ package org.ohmstheresistance.knowyourworld.activities;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +29,7 @@ import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.database.CountryDatabaseHelper;
 import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.rv.FavoriteCountriesAdapter;
+import org.ohmstheresistance.knowyourworld.rv.FavoriteCountriesViewHolder;
 
 import java.util.List;
 
@@ -42,6 +46,7 @@ public class FavoriteCountries extends AppCompatActivity {
     CountryDatabaseHelper countryDatabaseHelper = new CountryDatabaseHelper(this);
     private List<Country> favorites;
     private ConstraintLayout favoriteCountriesConstraintLayout;
+    private FavoriteCountriesViewHolder favoriteCountriesViewHolder;
 
 
     @Override
@@ -53,7 +58,6 @@ public class FavoriteCountries extends AppCompatActivity {
         favoritesRecyclerView = findViewById(R.id.favorites_recyclerview);
         emptyFavoriteListImageView = findViewById(R.id.empty_favorite_list_imageview);
         favoriteCountriesConstraintLayout = findViewById(R.id.favorite_countries_constraint_layout);
-
 
         Glide.with(this).load(R.drawable.sadtears).into(emptyFavoriteListImageView);
 
@@ -68,6 +72,7 @@ public class FavoriteCountries extends AppCompatActivity {
         favoriteCountryAdapter = new FavoriteCountriesAdapter(favorites);
         favoritesRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         favoritesRecyclerView.setAdapter(favoriteCountryAdapter);
+        new ItemTouchHelper(swipeLeftOrRightToDeleteFavorites).attachToRecyclerView(favoritesRecyclerView);
 
 
         if (favorites.isEmpty()) {
@@ -108,7 +113,7 @@ public class FavoriteCountries extends AppCompatActivity {
                         snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
 
                     selectAnswerSnackbar.show();
-                }else {
+                } else {
 
 
                     new AlertDialog.Builder(FavoriteCountries.this)
@@ -131,7 +136,27 @@ public class FavoriteCountries extends AppCompatActivity {
                     break;
                 }
 
-                }
-                return true;
         }
+        return true;
     }
+
+    ItemTouchHelper.SimpleCallback swipeLeftOrRightToDeleteFavorites = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+            String countryToDeleteFromDB = favorites.get(viewHolder.getAdapterPosition()).getName();
+            Log.e("countryToDeleteFromDB", countryToDeleteFromDB);
+
+            countryDatabaseHelper.deleteFavorite(countryToDeleteFromDB);
+
+            favorites.remove(viewHolder.getAdapterPosition());
+            favoriteCountryAdapter.notifyDataSetChanged();
+
+        }
+    };
+}

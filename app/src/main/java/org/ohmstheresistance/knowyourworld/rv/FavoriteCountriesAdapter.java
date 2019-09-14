@@ -15,6 +15,7 @@ public class FavoriteCountriesAdapter extends RecyclerView.Adapter<FavoriteCount
 
     private List<Country> favoriteCountryList;
 
+
     public FavoriteCountriesAdapter(List<Country> favoriteCountryList) {
 
         this.favoriteCountryList = favoriteCountryList;
@@ -34,6 +35,7 @@ public class FavoriteCountriesAdapter extends RecyclerView.Adapter<FavoriteCount
 
         final Country country = favoriteCountryList.get(i);
         favoriteCountriesViewHolder.onBind(country);
+
     }
 
     @Override

@@ -123,8 +123,7 @@ import java.util.List;
             }
         }
 
-        public void clearFavoriteCountryDatabase()
-        {
+        public void clearFavoriteCountryDatabase() {
 
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("DELETE FROM "+ TABLE_FAVORITES);
