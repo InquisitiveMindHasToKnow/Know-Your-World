@@ -117,6 +117,10 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
     }
 
 
+    public void setData(List<Country> newCountryList) {
+        this.countryList = newCountryList;
+        notifyDataSetChanged();
+    }
 
 }
 

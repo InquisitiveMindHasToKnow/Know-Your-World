@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,10 +22,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class Study extends AppCompatActivity {
+public class Study extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private List<Country> countryList;
     private RecyclerView countryRecyclerView;
+    private SearchView studySearchView;
+    private CountryAdapter countryAdapter;
 
 
     @Override
@@ -33,6 +36,8 @@ public class Study extends AppCompatActivity {
         setContentView(R.layout.activity_study);
 
         countryRecyclerView = findViewById(R.id.country_recycler_view);
+        studySearchView = findViewById(R.id.country_search_view);
+
         countryList = new ArrayList<>();
 
         Retrofit countryRetrofit = RetrofitSingleton.getRetrofitInstance();
@@ -51,10 +56,13 @@ public class Study extends AppCompatActivity {
                     Log.d("Country ", "Retrofit call works " + response.body().get(6).getFlag());
 
 
-                    CountryAdapter countryAdapter = new CountryAdapter(countryList);
+                    countryAdapter = new CountryAdapter(countryList);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
                     countryRecyclerView.setLayoutManager(gridLayoutManager);
                     countryRecyclerView.setAdapter(countryAdapter);
+                    studySearchView.setOnQueryTextListener(Study.this);
+                    studySearchView.setIconified(false);
+                    studySearchView.clearFocus();
                 }
 
                 if (!response.isSuccessful()) {
@@ -76,9 +84,28 @@ public class Study extends AppCompatActivity {
 
         });
 
-
-
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        List<Country> newCountryList = new ArrayList<>();
+        for (Country countries : countryList) {
+
+            if (countries.getName().toLowerCase().contains(s.toLowerCase())) {
+                newCountryList.add(countries);
+            }
+        }
+        countryAdapter.setData(newCountryList);
+        return false;
+    }
+
+
 
 }
 
