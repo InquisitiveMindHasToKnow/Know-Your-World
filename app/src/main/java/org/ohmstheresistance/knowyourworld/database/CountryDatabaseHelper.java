@@ -18,6 +18,7 @@ import java.util.List;
         private static final String DATABASE_NAME = "favoritesDatabase";
         private static final int DATABASE_VERSION = 1;
         private static final String TABLE_FAVORITES = "favorites";
+        private Context context;
 
         private static CountryDatabaseHelper countryDatabaseInstance;
 
@@ -30,6 +31,7 @@ import java.util.List;
 
         public CountryDatabaseHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            this.context = context;
         }
 
 
@@ -121,5 +123,13 @@ import java.util.List;
             }
         }
 
+        public void clearFavoriteCountryDatabase()
+        {
+
+            SQLiteDatabase db = getWritableDatabase();
+            db.execSQL("DELETE FROM "+ TABLE_FAVORITES);
+            db.close();
+
+        }
 
     }
