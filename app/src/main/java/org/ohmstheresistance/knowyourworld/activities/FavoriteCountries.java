@@ -87,8 +87,8 @@ public class FavoriteCountries extends AppCompatActivity {
 
                 if (favorites.isEmpty()) {
 
-                    Snackbar selectAnswerSnackbar = Snackbar.make(favoriteCountriesConstraintLayout, "Nothing to delete.", Snackbar.LENGTH_LONG);
-                    View snackbarView = selectAnswerSnackbar.getView();
+                    Snackbar noFavoritesToDeleteSnackbar = Snackbar.make(favoriteCountriesConstraintLayout, "Nothing to delete.", Snackbar.LENGTH_LONG);
+                    View snackbarView = noFavoritesToDeleteSnackbar.getView();
                     TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -96,7 +96,7 @@ public class FavoriteCountries extends AppCompatActivity {
                     else
                         snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
 
-                    selectAnswerSnackbar.show();
+                    noFavoritesToDeleteSnackbar.show();
                 } else {
 
 
@@ -142,6 +142,17 @@ public class FavoriteCountries extends AppCompatActivity {
             favoriteCountryAdapter.notifyDataSetChanged();
 
             checkWhatBackgroundToUse();
+
+            Snackbar favoriteRemovedSnackbar = Snackbar.make(favoriteCountriesConstraintLayout, countryToDeleteFromDB + " removed.", Snackbar.LENGTH_LONG);
+            View snackbarView = favoriteRemovedSnackbar.getView();
+            TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            else
+                snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+            favoriteRemovedSnackbar.show();
 
         }
     };
