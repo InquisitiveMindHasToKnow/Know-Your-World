@@ -29,7 +29,6 @@ import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.database.CountryDatabaseHelper;
 import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.rv.FavoriteCountriesAdapter;
-import org.ohmstheresistance.knowyourworld.rv.FavoriteCountriesViewHolder;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class FavoriteCountries extends AppCompatActivity {
     CountryDatabaseHelper countryDatabaseHelper = new CountryDatabaseHelper(this);
     private List<Country> favorites;
     private ConstraintLayout favoriteCountriesConstraintLayout;
-    private FavoriteCountriesViewHolder favoriteCountriesViewHolder;
+    private TextView favoriteCountryHeaderTextView;
 
 
     @Override
@@ -58,14 +57,9 @@ public class FavoriteCountries extends AppCompatActivity {
         favoritesRecyclerView = findViewById(R.id.favorites_recyclerview);
         emptyFavoriteListImageView = findViewById(R.id.empty_favorite_list_imageview);
         favoriteCountriesConstraintLayout = findViewById(R.id.favorite_countries_constraint_layout);
+        favoriteCountryHeaderTextView = findViewById(R.id.favorite_country_rv_header);
 
         Glide.with(this).load(R.drawable.sadtears).into(emptyFavoriteListImageView);
-
-        View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
-
-        ViewGroup.LayoutParams layoutParams = root.getLayoutParams();
-        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
 
         favorites = countryDatabaseHelper.getFavorites();
 
@@ -74,17 +68,7 @@ public class FavoriteCountries extends AppCompatActivity {
         favoritesRecyclerView.setAdapter(favoriteCountryAdapter);
         new ItemTouchHelper(swipeLeftOrRightToDeleteFavorites).attachToRecyclerView(favoritesRecyclerView);
 
-
-        if (favorites.isEmpty()) {
-            favoritesRecyclerView.setVisibility(GONE);
-            emptyFavoriteCountryNameTextView.setVisibility(VISIBLE);
-            emptyFavoriteListImageView.setVisibility(VISIBLE);
-        } else {
-            favoriteCountryAdapter.setData(favorites);
-            root.setBackgroundColor(Color.parseColor("#112631"));
-            root.setLayoutParams(layoutParams);
-        }
-
+        checkWhatBackgroundToUse();
 
     }
 
@@ -157,6 +141,32 @@ public class FavoriteCountries extends AppCompatActivity {
             favorites.remove(viewHolder.getAdapterPosition());
             favoriteCountryAdapter.notifyDataSetChanged();
 
+            checkWhatBackgroundToUse();
+
         }
     };
+
+    private void checkWhatBackgroundToUse(){
+
+        View root = ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+
+        ViewGroup.LayoutParams layoutParams = root.getLayoutParams();
+        layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+
+
+
+        if (favorites.isEmpty()) {
+            favoritesRecyclerView.setVisibility(GONE);
+            emptyFavoriteCountryNameTextView.setVisibility(VISIBLE);
+            emptyFavoriteListImageView.setVisibility(VISIBLE);
+            favoriteCountryHeaderTextView.setVisibility(View.INVISIBLE);
+            root.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        } else {
+            favoriteCountryAdapter.setData(favorites);
+            root.setBackgroundColor(Color.parseColor("#112631"));
+            root.setLayoutParams(layoutParams);
+        }
+
+    }
 }
