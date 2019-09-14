@@ -97,7 +97,7 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
         List<Country> newCountryList = new ArrayList<>();
         for (Country countries : countryList) {
 
-            if (countries.getName().toLowerCase().contains(s.toLowerCase())) {
+            if (countries.getName().toLowerCase().startsWith(s.toLowerCase())) {
                 newCountryList.add(countries);
             }
         }
