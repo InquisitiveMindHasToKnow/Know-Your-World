@@ -66,7 +66,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private TextView randomCountryLanguageTextView;
     private TextView randomCountryCurrencyTagTextView;
     private TextView randomCountryCurrencyTextView;
-    private WebView randomCountryChoseFlagWebView;
+    private WebView randomCountryChosenFlagWebView;
     private NestedScrollView nestedScrollView;
     private Button nextButton;
     private Button moreInfoButton;
@@ -103,7 +103,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         countryDatabaseHelper = CountryDatabaseHelper.getInstance(this);
 
 
-        randomCountryChoseFlagWebView = findViewById(R.id.random_country_flag_imageview);
+        randomCountryChosenFlagWebView = findViewById(R.id.random_country_flag_imageview);
         randomCountryChosenNameTextView = findViewById(R.id.random_country_chosen_textview);
         randomCountryCapitalTagTextView = findViewById(R.id.random_country_capital_tag_textview);
         randomCountryCapitalTextView = findViewById(R.id.random_country_capital_textview);
@@ -179,16 +179,22 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
 
             Arrays.toString(new String[]{randomCountryBorders});
 
+//
+//            String html = "<html><body><img src=\"" + randomCountryFlag + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+//            randomCountryChosenFlagWebView.setBackgroundColor(Color.TRANSPARENT);
+//            randomCountryChosenFlagWebView.setVerticalScrollBarEnabled(false);
+//            randomCountryChosenFlagWebView.setHorizontalScrollBarEnabled(false);
+//            randomCountryChosenFlagWebView.loadData(html, "text/html", null);
 
 
-            randomCountryChoseFlagWebView.getSettings().setLoadWithOverviewMode(true);
-            randomCountryChoseFlagWebView.getSettings().setUseWideViewPort(true);
-            randomCountryChoseFlagWebView.setVerticalScrollBarEnabled(false);
-            randomCountryChoseFlagWebView.setHorizontalScrollBarEnabled(false);
-            randomCountryChoseFlagWebView.setScrollContainer(false);
-            randomCountryChoseFlagWebView.setInitialScale(1);
-            randomCountryChoseFlagWebView.setBackgroundColor(Color.TRANSPARENT);
-            randomCountryChoseFlagWebView.loadUrl(randomCountryFlag);
+            randomCountryChosenFlagWebView.getSettings().setLoadWithOverviewMode(true);
+            randomCountryChosenFlagWebView.getSettings().setUseWideViewPort(true);
+            randomCountryChosenFlagWebView.setVerticalScrollBarEnabled(false);
+            randomCountryChosenFlagWebView.setHorizontalScrollBarEnabled(false);
+            randomCountryChosenFlagWebView.setScrollContainer(false);
+            randomCountryChosenFlagWebView.setInitialScale(1);
+            randomCountryChosenFlagWebView.setBackgroundColor(Color.TRANSPARENT);
+            randomCountryChosenFlagWebView.loadUrl(randomCountryFlag);
 
 
             randomCountryChosenNameTextView.setText(randomCountry);

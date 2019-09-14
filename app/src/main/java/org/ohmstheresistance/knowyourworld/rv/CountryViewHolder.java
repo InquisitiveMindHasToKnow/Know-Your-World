@@ -123,9 +123,6 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        //        Picasso.get()
-//                .load(R.drawable.cupid2)
-//                .into(loginPageImage);
 
         String html = "<html><body><img src=\"" + countryFlag + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
         countryFlagImageView.setBackgroundColor(Color.TRANSPARENT);
