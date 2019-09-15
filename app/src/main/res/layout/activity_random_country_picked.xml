@@ -65,7 +65,7 @@
                     android:id="@+id/random_country_chosen_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
+                    style="@style/TextAppearance.AppCompat.Headline"
                     android:textAllCaps="true"
                     android:textColor="#112631"
                     android:textStyle="bold|italic"

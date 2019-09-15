@@ -58,6 +58,8 @@ public class Trivia extends AppCompatActivity {
     private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
     private static final String SIXTH_COUNTRY_NAME = "sixthCountryName";
     private static final String SIXTH_COUNTRY_SIZE = "sixthCountrySize";
+    private static final String SEVENTH_COUNTRY_NAME = "seventhCountryName";
+    private static final String SEVENTH_COUNTRY_FLAG = "seventhCountryFlag";
 
 
 
@@ -120,7 +122,6 @@ public class Trivia extends AppCompatActivity {
 
         countryTriviaDBHelper = new CountryTriviaDBHelper(Trivia.this);
 
-
         if(savedInstanceState == null) {
 
             CountryTriviaDBHelper countryTriviaDBHelper = new CountryTriviaDBHelper(this);
@@ -130,6 +131,7 @@ public class Trivia extends AppCompatActivity {
             Collections.shuffle(questionList);
 
             showNextQuestion();
+
         }else{
 
             questionList = savedInstanceState.getParcelableArrayList(QUESTION_LIST_KEY);
@@ -188,6 +190,7 @@ public class Trivia extends AppCompatActivity {
         secondRadioButton.setTextColor(textColorDefaultRadioButtons);
         thirdRadioButton.setTextColor(textColorDefaultRadioButtons);
         radioButtonGroup.clearCheck();
+
 
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
@@ -357,6 +360,8 @@ public class Trivia extends AppCompatActivity {
                    String countryFiveRegion = countryListForTrivia.get(25).getRegion();
                    String countrySixName = countryListForTrivia.get(50).getName();
                    String countrySixSize = String.valueOf(countryListForTrivia.get(50).getArea());
+                   String countrySevenName = countryListForTrivia.get(43).getName();
+                   String countrySevenFlag = countryListForTrivia.get(43).getFlag();
 
 
 
@@ -376,6 +381,8 @@ public class Trivia extends AppCompatActivity {
                     triviaSharedPrefsEditor.putString(FIFTH_COUNTRY_REGION, countryFiveRegion);
                     triviaSharedPrefsEditor.putString(SIXTH_COUNTRY_NAME, countrySixName);
                     triviaSharedPrefsEditor.putString(SIXTH_COUNTRY_SIZE, countrySixSize);
+                    triviaSharedPrefsEditor.putString(SEVENTH_COUNTRY_NAME, countrySevenName);
+                    triviaSharedPrefsEditor.putString(SEVENTH_COUNTRY_FLAG, countrySevenFlag);
                     triviaSharedPrefsEditor.apply();
 
 
@@ -412,7 +419,6 @@ public class Trivia extends AppCompatActivity {
 
 
     }
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
