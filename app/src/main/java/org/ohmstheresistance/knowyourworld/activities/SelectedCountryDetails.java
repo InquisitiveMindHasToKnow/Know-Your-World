@@ -3,11 +3,16 @@ package org.ohmstheresistance.knowyourworld.activities;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -22,6 +27,7 @@ import java.util.Arrays;
 public class SelectedCountryDetails extends AppCompatActivity implements FragmentNavigation {
 
     private Intent getCountryDetailsIntent;
+    private ConstraintLayout constraintLayout;
 
 
     private static final String SELECTED_COUNTRY_NAME_KEY = "selectedCountryNameKey";
@@ -104,6 +110,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         nestedScrollView = findViewById(R.id.country_details_nested_scrollview);
         fab = findViewById(R.id.favourites_fab_button);
         selectedCountryLearnEvenMoreTextView = findViewById(R.id.country_details_research_more_textview);
+        constraintLayout = findViewById(R.id.selected_country_container);
 
 
         Bundle selectedCountryDetailsBundle = getIntent().getExtras();
@@ -179,10 +186,36 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                 if (isFavorite) {
                     countryDatabaseHelper.deleteFavorite(selectedCountryName);
                     fab.setImageResource(R.drawable.ic_save);
+
+                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, "Favorite unsaved.", Snackbar.LENGTH_LONG);
+                    View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
+                    TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                        snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    else
+                        snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    favoriteUnsavedSnackbar.show();
+
                 } else {
 
                     countryDatabaseHelper.addFavorite(Country.from(selectedCountryName, selectedCountryFlag));
                     fab.setImageResource(R.drawable.ic_done);
+
+                    Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
+                    View favoriteSavedSnackbarView = favoriteSavedSnackbar.getView();
+                    TextView snackBarTextView = favoriteSavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                        snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    else
+                        snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    favoriteSavedSnackbar.show();
+
                 }
             }
         });
