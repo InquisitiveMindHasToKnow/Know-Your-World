@@ -4,11 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -70,6 +75,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
     private NestedScrollView nestedScrollView;
     private Button nextButton;
     private Button moreInfoButton;
+    private ConstraintLayout constraintLayout;
 
 
     private String randomCountry;
@@ -131,6 +137,7 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         nextButton = findViewById(R.id.nextButton);
         randomCountryFab = findViewById(R.id.random_country_favourites_fab_button);
         moreInfoButton = findViewById(R.id.more_info_button);
+        constraintLayout = findViewById(R.id.main_container);
 
 
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -237,10 +244,33 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
                 if (isFavorite) {
                     countryDatabaseHelper.deleteFavorite(randomCountry);
                     randomCountryFab.setImageResource(R.drawable.ic_save);
+
+                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, "Favorite unsaved.", Snackbar.LENGTH_LONG);
+                    View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
+                    TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                        snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    else
+                        snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    favoriteUnsavedSnackbar.show();
                 } else {
 
                     countryDatabaseHelper.addFavorite(Country.from(randomCountry, randomCountryFlag));
                     randomCountryFab.setImageResource(R.drawable.ic_done);
+
+                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
+                    View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
+                    TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+                        snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    else
+                        snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                    favoriteUnsavedSnackbar.show();
                 }
             }
         });
