@@ -35,6 +35,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final String FIFTH_COUNTRY_REGION = "fifthCountryRegion";
     private static final String SIXTH_COUNTRY_NAME = "sixthCountryName";
     private static final String SIXTH_COUNTRY_SIZE = "sixthCountrySize";
+    private static final String SEVENTH_COUNTRY_NAME = "seventhCountryName";
+    private static final String SEVENTH_COUNTRY_FLAG = "seventhCountryFlag";
 
 
     public CountryTriviaDBHelper(@Nullable Context context) {
@@ -89,6 +91,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         String fifthCountryRegion = sp.getString(FIFTH_COUNTRY_REGION, "5th country region null");
         String sixthCountryName = sp.getString(SIXTH_COUNTRY_NAME, "6th country name null");
         String sixthCountrySize = sp.getString(SIXTH_COUNTRY_SIZE, "6th country currency null");
+        String seventhCountryName = sp.getString(SEVENTH_COUNTRY_NAME, "7th country name null");
+        String seventhCountryFlag = sp.getString(SEVENTH_COUNTRY_FLAG, "7th country flag null");
 
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
@@ -106,7 +110,6 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", firstCountryCapital, fourthCountryName, 1);
         addQuestion(questionFive);
 
-
         TriviaQuestions questionSix = new TriviaQuestions(firstCountryCapital + " is the capital of ", fourthCountryName, secondCountryCapital, firstCountryName, 3);
         addQuestion(questionSix);
 
@@ -118,6 +121,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
         TriviaQuestions questionNine = new TriviaQuestions( thirdCountryName + " is located in " + thirdCountryRegion + " and " + fifthCountryName + " is located in ", fifthCountryRegion, secondCountryName, firstCountryCapital , 1);
         addQuestion(questionNine);
+
     }
 
     private void addQuestion(TriviaQuestions question) {
@@ -153,6 +157,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
 
     public void clearDatabase() {
+
         context.deleteDatabase(DATABASE_NAME);
     }
 }

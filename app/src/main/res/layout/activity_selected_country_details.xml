@@ -71,7 +71,7 @@
                     android:gravity="center_horizontal"
                     android:textAllCaps="true"
                     android:textColor="#112631"
-                    android:textSize="24sp"
+                    style="@style/TextAppearance.AppCompat.Headline"
                     android:textStyle="bold|italic"
                     app:layout_constraintLeft_toRightOf="@id/country_details_flag_imageview"
                     app:layout_constraintRight_toRightOf="parent"
