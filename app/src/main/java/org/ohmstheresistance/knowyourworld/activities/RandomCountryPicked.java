@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 
@@ -186,13 +188,6 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
 
             Arrays.toString(new String[]{randomCountryBorders});
 
-//
-//            String html = "<html><body><img src=\"" + randomCountryFlag + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
-//            randomCountryChosenFlagWebView.setBackgroundColor(Color.TRANSPARENT);
-//            randomCountryChosenFlagWebView.setVerticalScrollBarEnabled(false);
-//            randomCountryChosenFlagWebView.setHorizontalScrollBarEnabled(false);
-//            randomCountryChosenFlagWebView.loadData(html, "text/html", null);
-
 
             randomCountryChosenFlagWebView.getSettings().setLoadWithOverviewMode(true);
             randomCountryChosenFlagWebView.getSettings().setUseWideViewPort(true);
@@ -250,6 +245,13 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
                     TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
 
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteUnsavedSnackbarView.getLayoutParams();
+                    layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+                    layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                    favoriteUnsavedSnackbarView.setLayoutParams(layoutParams);
+
+
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                         snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     else
@@ -261,16 +263,23 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
                     countryDatabaseHelper.addFavorite(Country.from(randomCountry, randomCountryFlag));
                     randomCountryFab.setImageResource(R.drawable.ic_done);
 
-                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
-                    View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
-                    TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
+                    View favoriteSavedSnackbarView = favoriteSavedSnackbar.getView();
+                    TextView snackBarTextView = favoriteSavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteSavedSnackbarView.getLayoutParams();
+                    layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+                    layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                    favoriteSavedSnackbarView.setLayoutParams(layoutParams);
+
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                         snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     else
                         snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
 
-                    favoriteUnsavedSnackbar.show();
+                    favoriteSavedSnackbar.show();
                 }
             }
         });
