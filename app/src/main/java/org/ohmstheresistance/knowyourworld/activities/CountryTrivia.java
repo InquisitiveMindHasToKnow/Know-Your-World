@@ -1,8 +1,10 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -53,6 +55,32 @@ public class CountryTrivia extends AppCompatActivity {
             }
         });
 
+
+        showOrHideResetHighScoreButton();
+
+        resetHighScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                new AlertDialog.Builder(CountryTrivia.this, R.style.MyDialogTheme)
+                        .setTitle("Wait! Wait! Wait!")
+                        .setMessage("Are you sure you want to clear your high score?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                resetHighScore();
+                                loadHighScore();
+                                showOrHideResetHighScoreButton();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(R.drawable.stop)
+                        .show();
+
+            }
+        });
     }
 
     @Override
@@ -63,12 +91,13 @@ public class CountryTrivia extends AppCompatActivity {
 
             if(resultCode == RESULT_OK){
                 score = data.getIntExtra(Trivia.EXTRA_SCORE, 0);
+
                 yourScoreTextView.setText("Your Score: " + score);
 
                 if(score > highScore){
 
                     updateHighScore(score);
-
+                    resetHighScoreButton.setVisibility(View.VISIBLE);
                 }
             }
         }
@@ -78,7 +107,6 @@ public class CountryTrivia extends AppCompatActivity {
 
         highScore = newHighScore;
         triviaHighScoreTextview.setText("High Score: " + highScore);
-
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
@@ -93,6 +121,28 @@ public class CountryTrivia extends AppCompatActivity {
 
         triviaHighScoreTextview.setText("High Score: " + highScore);
 
+    }
+
+    public void resetHighScore(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        highScore = sharedPreferences.getInt(HIGH_SCORE_KEY, 0);
+
+        sharedPreferences.edit().remove(HIGH_SCORE_KEY).apply();
+
+    }
+
+    public void showOrHideResetHighScoreButton(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+
+        if(highScore == 0){
+            resetHighScoreButton.setVisibility(View.INVISIBLE);
+        }else{
+
+            if(highScore > 0)
+                resetHighScoreButton.setVisibility(View.VISIBLE);
+        }
 
     }
 }
