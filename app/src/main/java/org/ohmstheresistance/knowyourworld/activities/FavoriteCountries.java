@@ -31,6 +31,8 @@ import org.ohmstheresistance.knowyourworld.database.CountryDatabaseHelper;
 import org.ohmstheresistance.knowyourworld.model.Country;
 import org.ohmstheresistance.knowyourworld.rv.FavoriteCountriesAdapter;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -70,6 +72,7 @@ public class FavoriteCountries extends AppCompatActivity {
         new ItemTouchHelper(swipeLeftOrRightToDeleteFavorites).attachToRecyclerView(favoritesRecyclerView);
 
         checkWhatBackgroundToUse();
+        sortAlphabetically();
 
     }
 
@@ -188,6 +191,17 @@ public class FavoriteCountries extends AppCompatActivity {
             root.setBackgroundColor(Color.parseColor("#112631"));
             root.setLayoutParams(layoutParams);
         }
+
+    }
+
+    private void sortAlphabetically() {
+        Collections.sort(favorites, new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        favoriteCountryAdapter.notifyDataSetChanged();
 
     }
 }
