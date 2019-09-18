@@ -22,6 +22,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 15;
     private SQLiteDatabase countryTriviaDatabase;
     private Context context;
+    public static SharedPreferences sp;
 
     private static final String FIRST_COUNTRY_NAME = "firstCountryName";
     private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
@@ -76,7 +77,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
     private void fillQuestionsTable() {
 
-        SharedPreferences sp = PreferenceManager
+        sp = PreferenceManager
                 .getDefaultSharedPreferences(context);
 
         String firstCountryName = sp.getString(FIRST_COUNTRY_NAME, "1st country name null");

@@ -199,37 +199,39 @@ public class Trivia extends AppCompatActivity {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            if(currentQuestion.getQuestion().equals(countryTriviaDBHelper.getAllQuestions().get(9).getQuestion())){
+            if(currentQuestion.getQuestion().contains("https://restcountries.eu")){
 
                 flagForTriviaWebview.setVisibility(View.VISIBLE);
                 questionTextView.setText("The above flag represents what country?");
 
-                String html = "<html><body><img src=\"" + triviaSharedPrefs.getString(SEVENTH_COUNTRY_FLAG, "No Flag") + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+                String html = "<html><body><img src=\"" + currentQuestion.getQuestion() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
                 flagForTriviaWebview.setBackgroundColor(Color.TRANSPARENT);
                 flagForTriviaWebview.loadData(html, "text/html", null);
-
 
                 firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
                 secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
                 thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
 
-            }else{
+                Log.e("CURRENT FLAG FOR QUIZ", countryTriviaDBHelper.getAllQuestions().get(9).getQuestion());
+
+            }else {
 
                 flagForTriviaWebview.setVisibility(View.INVISIBLE);
             }
 
-            questionTextView.setText(currentQuestion.getQuestion());
-            firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
-            secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
-            thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
+            if(!currentQuestion.getQuestion().contains("https://restcountries.eu"))
+                questionTextView.setText(currentQuestion.getQuestion());
+                firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
+                secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
+                thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
 
-            questionCounter++;
-            questionCountTextView.setText("Question: " + questionCounter + "/" + questionCountTotal);
-            answered = false;
-            confirmButton.setText("Confirm");
+                questionCounter++;
+                questionCountTextView.setText("Question: " + questionCounter + "/" + questionCountTotal);
+                answered = false;
+                confirmButton.setText("Confirm");
 
-            timeLeftInMillis = COUNTDOWN_TIMER_IN_MILLIS;
-            startCountDown();
+                timeLeftInMillis = COUNTDOWN_TIMER_IN_MILLIS;
+                startCountDown();
 
 
         } else {
