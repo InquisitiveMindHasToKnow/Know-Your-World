@@ -20,7 +20,22 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textSize="40sp" />
+            android:textSize="56sp" />
+
+        <TextView
+            android:id="@+id/your_score_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Score: 0"
+            android:textSize="24dp"
+            android:layout_marginTop="100dp"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@id/trivia_highscore_textview"
+            app:layout_constraintTop_toBottomOf="@id/trivia_name_header_textview"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
 
         <TextView
             android:id="@+id/trivia_highscore_textview"
@@ -28,23 +43,34 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@id/trivia_name_header_textview"
+            app:layout_constraintTop_toBottomOf="@id/your_score_textview"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="160dp"
             android:layout_marginBottom="32dp"
             android:text="Highscore: 0"
-            android:textSize="24sp" />
+            android:textSize="40sp" />
 
         <Button
             android:id="@+id/start_trivia_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_marginTop="56dp"
             android:background="@color/buttonColor"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/trivia_highscore_textview"
             android:text="   Test My Knowledge   " />
+
+        <Button
+            android:id="@+id/reset_high_score_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset High Score"
+            app:layout_constraintTop_toBottomOf="@id/start_trivia_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            />
 
 </android.support.constraint.ConstraintLayout>

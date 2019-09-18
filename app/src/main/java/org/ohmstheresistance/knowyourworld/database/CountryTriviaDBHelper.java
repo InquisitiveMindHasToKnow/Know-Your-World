@@ -88,28 +88,28 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         sp = PreferenceManager
                 .getDefaultSharedPreferences(context);
 
-        String firstCountryName = sp.getString(FIRST_COUNTRY_NAME, "1st country name null");
-        String firstCountryCapital = sp.getString(FIRST_COUNTRY_CAPITAL, "1st country name null");
-        String secondCountryName = sp.getString(SECOND_COUNTRY_NAME, "2nd country name null");
-        String secondCountryCapital = sp.getString(SECOND_COUNTRY_CAPITAL, "2nd country name null");
-        String thirdCountryName = sp.getString(THIRD_COUNTRY_NAME, "3rd country name null");
-        String thirdCountryRegion = sp.getString(THIRD_COUNTRY_REGION, "3rd country region nation null");
-        String fourthCountryName = sp.getString(FOURTH_COUNTRY_NAME, "4th country name null");
-        String fourthCountryCapital = sp.getString(FOURTH_COUNTRY_CAPITAL, "4th country capital null");
-        String fifthCountryName = sp.getString(FIFTH_COUNTRY_NAME, "5th country name null");
-        String fifthCountryRegion = sp.getString(FIFTH_COUNTRY_REGION, "5th country region null");
-        String sixthCountryName = sp.getString(SIXTH_COUNTRY_NAME, "6th country name null");
-        String sixthCountrySize = sp.getString(SIXTH_COUNTRY_SIZE, "6th country currency null");
-        String seventhCountryName = sp.getString(SEVENTH_COUNTRY_NAME, "7th country name null");
-        String seventhCountryFlag = sp.getString(SEVENTH_COUNTRY_FLAG, "7th country flag null");
-        String eighthCountryName = sp.getString(EIGHTH_COUNTRY_NAME, "8th country name null");
-        String eighthCountryFlag = sp.getString(EIGHTH_COUNTRY_FLAG, "8th country flag null");
-        String ninthCountryName = sp.getString(NINTH_COUNTRY_NAME, "9th country name null");
-        String ninthCountryFlag = sp.getString(NINTH_COUNTRY_FLAG, "9th country flag null");
-        String tenthCountryName = sp.getString(TENTH_COUNTRY_NAME, "10th country name null");
-        String tenthCountryFlag = sp.getString(TENTH_COUNTRY_FLAG, "10th country flag null");
-        String eleventhCountryName = sp.getString(ELEVENTH_COUNTRY_NAME, "11th country name null");
-        String eleventhCountryCapital = sp.getString(ELEVENTH_COUNTRY_CAPITAL, "11th country capital null");
+        String firstCountryName = sp.getString(FIRST_COUNTRY_NAME, "");
+        String firstCountryCapital = sp.getString(FIRST_COUNTRY_CAPITAL, "");
+        String secondCountryName = sp.getString(SECOND_COUNTRY_NAME, "");
+        String secondCountryCapital = sp.getString(SECOND_COUNTRY_CAPITAL, "");
+        String thirdCountryName = sp.getString(THIRD_COUNTRY_NAME, "");
+        String thirdCountryRegion = sp.getString(THIRD_COUNTRY_REGION, "");
+        String fourthCountryName = sp.getString(FOURTH_COUNTRY_NAME, "");
+        String fourthCountryCapital = sp.getString(FOURTH_COUNTRY_CAPITAL, "");
+        String fifthCountryName = sp.getString(FIFTH_COUNTRY_NAME, "");
+        String fifthCountryRegion = sp.getString(FIFTH_COUNTRY_REGION, "");
+        String sixthCountryName = sp.getString(SIXTH_COUNTRY_NAME, "");
+        String sixthCountrySize = sp.getString(SIXTH_COUNTRY_SIZE, "");
+        String seventhCountryName = sp.getString(SEVENTH_COUNTRY_NAME, "");
+        String seventhCountryFlag = sp.getString(SEVENTH_COUNTRY_FLAG, "");
+        String eighthCountryName = sp.getString(EIGHTH_COUNTRY_NAME, "");
+        String eighthCountryFlag = sp.getString(EIGHTH_COUNTRY_FLAG, "");
+        String ninthCountryName = sp.getString(NINTH_COUNTRY_NAME, "");
+        String ninthCountryFlag = sp.getString(NINTH_COUNTRY_FLAG, "");
+        String tenthCountryName = sp.getString(TENTH_COUNTRY_NAME, "");
+        String tenthCountryFlag = sp.getString(TENTH_COUNTRY_FLAG, "");
+        String eleventhCountryName = sp.getString(ELEVENTH_COUNTRY_NAME, "");
+        String eleventhCountryCapital = sp.getString(ELEVENTH_COUNTRY_CAPITAL, "");
 
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
