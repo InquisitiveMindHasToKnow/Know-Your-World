@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -91,6 +92,7 @@ public class FavoriteCountries extends AppCompatActivity {
                     View snackbarView = noFavoritesToDeleteSnackbar.getView();
                     TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                         snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                     else
@@ -146,6 +148,14 @@ public class FavoriteCountries extends AppCompatActivity {
             Snackbar favoriteRemovedSnackbar = Snackbar.make(favoriteCountriesConstraintLayout, countryToDeleteFromDB + " removed.", Snackbar.LENGTH_LONG);
             View snackbarView = favoriteRemovedSnackbar.getView();
             TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+            snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_snackbar);
+            snackBarTextView.setTextColor(getResources().getColor(R.color.mainBackgroundColor));
+            snackbarView.setBackgroundColor(Color.TRANSPARENT);
+
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
+            layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+            snackbarView.setLayoutParams(layoutParams);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                 snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
