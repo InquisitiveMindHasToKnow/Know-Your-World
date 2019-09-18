@@ -61,6 +61,14 @@ public class Trivia extends AppCompatActivity {
     private static final String SIXTH_COUNTRY_SIZE = "sixthCountrySize";
     private static final String SEVENTH_COUNTRY_NAME = "seventhCountryName";
     private static final String SEVENTH_COUNTRY_FLAG = "seventhCountryFlag";
+    private static final String EIGHTH_COUNTRY_NAME = "eighthCountryName";
+    private static final String EIGHTH_COUNTRY_FLAG = "eighthCountryFlag";
+    private static final String NINTH_COUNTRY_NAME = "ninthCountryName";
+    private static final String NINTH_COUNTRY_FLAG = "ninthCountryFlag";
+    private static final String TENTH_COUNTRY_NAME = "tenthCountryName";
+    private static final String TENTH_COUNTRY_FLAG = "tenthCountryFlag";
+    private static final String ELEVENTH_COUNTRY_NAME = "eleventhCountryName";
+    private static final String ELEVENTH_COUNTRY_CAPITAL = "eleventhCountryCapital";
 
 
 
@@ -212,8 +220,6 @@ public class Trivia extends AppCompatActivity {
                 secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
                 thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
 
-                Log.e("CURRENT FLAG FOR QUIZ", countryTriviaDBHelper.getAllQuestions().get(9).getQuestion());
-
             }else {
 
                 flagForTriviaWebview.setVisibility(View.INVISIBLE);
@@ -299,15 +305,15 @@ public class Trivia extends AppCompatActivity {
         switch (currentQuestion.getAnswerNumber()) {
             case 1:
                 firstRadioButton.setTextColor(Color.GREEN);
-                questionTextView.setText("Answer 1 is correct");
+                questionTextView.setText(currentQuestion.getFirstAnswerOption() + " is the correct answer.");
                 break;
             case 2:
                 secondRadioButton.setTextColor(Color.GREEN);
-                questionTextView.setText("Answer 2 is correct");
+                questionTextView.setText(currentQuestion.getSecondAnswerOption() + " is the correct answer.");
                 break;
             case 3:
                 thirdRadioButton.setTextColor(Color.GREEN);
-                questionTextView.setText("Answer 3 is correct");
+                questionTextView.setText(currentQuestion.getThirdAnswerOption() + " is the correct answer.");
                 break;
         }
 
@@ -389,6 +395,14 @@ public class Trivia extends AppCompatActivity {
                    String countrySixSize = String.valueOf(countryListForTrivia.get(50).getArea());
                    String countrySevenName = countryListForTrivia.get(43).getName();
                    String countrySevenFlag = countryListForTrivia.get(43).getFlag();
+                   String countryEightName = countryListForTrivia.get(99).getName();
+                   String countryEightFlag = countryListForTrivia.get(99).getFlag();
+                   String countryNineName = countryListForTrivia.get(200).getName();
+                   String countryNineFlag = countryListForTrivia.get(200).getFlag();
+                   String countryTenName = countryListForTrivia.get(160).getName();
+                   String countryTenFlag = countryListForTrivia.get(160).getFlag();
+                   String countryElevenName = countryListForTrivia.get(82).getName();
+                   String countryElevenCapital = countryListForTrivia.get(82).getCapital();
 
 
 
@@ -410,19 +424,15 @@ public class Trivia extends AppCompatActivity {
                     triviaSharedPrefsEditor.putString(SIXTH_COUNTRY_SIZE, countrySixSize);
                     triviaSharedPrefsEditor.putString(SEVENTH_COUNTRY_NAME, countrySevenName);
                     triviaSharedPrefsEditor.putString(SEVENTH_COUNTRY_FLAG, countrySevenFlag);
+                    triviaSharedPrefsEditor.putString(EIGHTH_COUNTRY_NAME, countryEightName);
+                    triviaSharedPrefsEditor.putString(EIGHTH_COUNTRY_FLAG, countryEightFlag);
+                    triviaSharedPrefsEditor.putString(NINTH_COUNTRY_NAME, countryNineName);
+                    triviaSharedPrefsEditor.putString(NINTH_COUNTRY_FLAG, countryNineFlag);
+                    triviaSharedPrefsEditor.putString(TENTH_COUNTRY_NAME, countryTenName);
+                    triviaSharedPrefsEditor.putString(TENTH_COUNTRY_FLAG, countryTenFlag);
+                    triviaSharedPrefsEditor.putString(ELEVENTH_COUNTRY_NAME, countryElevenName);
+                    triviaSharedPrefsEditor.putString(ELEVENTH_COUNTRY_CAPITAL, countryElevenCapital);
                     triviaSharedPrefsEditor.apply();
-
-
-                    if(countryName != null && countryCapital != null) {
-                        Log.e("COUNTRYNAMEFORTRIV", countryName);
-                        Log.e("COUNTRYCAPFORTRIV", countryCapital);
-                        Log.e("COUNTRYNAMEFORTRIV1", countryNameOne);
-                        Log.e("COUNTRYCAPFORTRIV1", countryCapitalOne);
-                        Log.e("SIZEOFTRIVIALISTNEW", String.valueOf(countryListForTrivia.size()));
-                        Log.e("COUNTRYNAMEFORTRIV2", countryThreeName);
-
-                    }
-
 
                 }
 
