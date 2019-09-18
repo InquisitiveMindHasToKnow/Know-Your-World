@@ -240,9 +240,13 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
                     countryDatabaseHelper.deleteFavorite(randomCountry);
                     randomCountryFab.setImageResource(R.drawable.ic_save);
 
-                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, "Favorite unsaved.", Snackbar.LENGTH_LONG);
+                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, randomCountry + " removed from favorites.", Snackbar.LENGTH_LONG);
                     View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
                     TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_ran_and_sel_snackbars);
+                    snackBarTextView.setTextColor(getResources().getColor(R.color.colorAccent));
+                    favoriteUnsavedSnackbarView.setBackgroundColor(Color.TRANSPARENT);
 
 
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteUnsavedSnackbarView.getLayoutParams();
@@ -264,9 +268,13 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
                     randomCountryFab.setImageResource(R.drawable.ic_done);
 
 
-                    Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
+                    Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, randomCountry + " added to favorites.", Snackbar.LENGTH_LONG);
                     View favoriteSavedSnackbarView = favoriteSavedSnackbar.getView();
                     TextView snackBarTextView = favoriteSavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_ran_and_sel_snackbars);
+                    snackBarTextView.setTextColor(getResources().getColor(R.color.colorAccent));
+                    favoriteSavedSnackbarView.setBackgroundColor(Color.TRANSPARENT);
 
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteSavedSnackbarView.getLayoutParams();
                     layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;

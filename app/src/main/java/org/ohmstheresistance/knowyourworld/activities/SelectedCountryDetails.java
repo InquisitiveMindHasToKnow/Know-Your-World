@@ -191,6 +191,10 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                     View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
                     TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
+                    snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_ran_and_sel_snackbars);
+                    snackBarTextView.setTextColor(getResources().getColor(R.color.colorAccent));
+                    favoriteUnsavedSnackbarView.setBackgroundColor(Color.TRANSPARENT);
+
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteUnsavedSnackbarView.getLayoutParams();
                     layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
                     layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
@@ -212,6 +216,11 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                     Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
                     View favoriteSavedSnackbarView = favoriteSavedSnackbar.getView();
                     TextView snackBarTextView = favoriteSavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_ran_and_sel_snackbars);
+                    snackBarTextView.setTextColor(getResources().getColor(R.color.colorAccent));
+                    favoriteSavedSnackbarView.setBackgroundColor(Color.TRANSPARENT);
+
 
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteSavedSnackbarView.getLayoutParams();
                     layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
