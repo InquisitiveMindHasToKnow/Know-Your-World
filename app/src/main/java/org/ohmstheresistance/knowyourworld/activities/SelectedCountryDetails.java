@@ -12,8 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
@@ -191,6 +191,11 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                     View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
                     TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteUnsavedSnackbarView.getLayoutParams();
+                    layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+                    layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                    favoriteUnsavedSnackbarView.setLayoutParams(layoutParams);
+
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                         snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -207,6 +212,11 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                     Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
                     View favoriteSavedSnackbarView = favoriteSavedSnackbar.getView();
                     TextView snackBarTextView = favoriteSavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
+
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteSavedSnackbarView.getLayoutParams();
+                    layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+                    layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                    favoriteSavedSnackbarView.setLayoutParams(layoutParams);
 
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
