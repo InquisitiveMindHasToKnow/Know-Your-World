@@ -1,8 +1,10 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,10 +21,16 @@ public class CountryTrivia extends AppCompatActivity {
     public static final String HIGH_SCORE_KEY = "highScoreKey";
 
     private int highScore;
+    private int score;
 
     private TextView triviaHeaderTextview;
     private TextView triviaHighScoreTextview;
+    private TextView yourScoreTextView;
+    private Button resetHighScoreButton;
     private Button startTestKnowledgeButton;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +38,9 @@ public class CountryTrivia extends AppCompatActivity {
 
         triviaHeaderTextview = findViewById(R.id.trivia_name_header_textview);
         triviaHighScoreTextview = findViewById(R.id.trivia_highscore_textview);
+        yourScoreTextView = findViewById(R.id.your_score_textview);
         startTestKnowledgeButton = findViewById(R.id.start_trivia_button);
+        resetHighScoreButton = findViewById(R.id.reset_high_score_button);
 
         loadHighScore();
 
@@ -42,10 +52,35 @@ public class CountryTrivia extends AppCompatActivity {
                 startActivityForResult(toTriviaIntent, TRIVIA_REQUEST_CODE);
                 overridePendingTransition(0, 0);
 
-
             }
         });
 
+
+        showOrHideResetHighScoreButton();
+
+        resetHighScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                new AlertDialog.Builder(CountryTrivia.this, R.style.MyDialogTheme)
+                        .setTitle("Wait! Wait! Wait!")
+                        .setMessage("Are you sure you want to clear your high score?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                resetHighScore();
+                                loadHighScore();
+                                showOrHideResetHighScoreButton();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null)
+                        .setIcon(R.drawable.stop)
+                        .show();
+
+            }
+        });
     }
 
     @Override
@@ -55,31 +90,59 @@ public class CountryTrivia extends AppCompatActivity {
         if(requestCode == TRIVIA_REQUEST_CODE){
 
             if(resultCode == RESULT_OK){
-                int score = data.getIntExtra(Trivia.EXTRA_SCORE, 0);
+                score = data.getIntExtra(Trivia.EXTRA_SCORE, 0);
+
+                yourScoreTextView.setText("Your Score: " + score);
+
                 if(score > highScore){
 
                     updateHighScore(score);
-
+                    resetHighScoreButton.setVisibility(View.VISIBLE);
                 }
             }
         }
     }
 
     private void updateHighScore(int newHighScore ){
+
         highScore = newHighScore;
         triviaHighScoreTextview.setText("High Score: " + highScore);
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
         sharedPreferencesEditor.putInt(HIGH_SCORE_KEY, highScore);
+        sharedPreferencesEditor.putInt(Trivia.EXTRA_SCORE, score);
         sharedPreferencesEditor.apply();
     }
 
     private void loadHighScore(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         highScore = sharedPreferences.getInt(HIGH_SCORE_KEY, 0);
+
         triviaHighScoreTextview.setText("High Score: " + highScore);
 
+    }
+
+    public void resetHighScore(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        highScore = sharedPreferences.getInt(HIGH_SCORE_KEY, 0);
+
+        sharedPreferences.edit().remove(HIGH_SCORE_KEY).apply();
+
+    }
+
+    public void showOrHideResetHighScoreButton(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+
+        if(highScore == 0){
+            resetHighScoreButton.setVisibility(View.INVISIBLE);
+        }else{
+
+            if(highScore > 0)
+                resetHighScoreButton.setVisibility(View.VISIBLE);
+        }
 
     }
 }

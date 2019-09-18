@@ -363,7 +363,7 @@ public class Trivia extends AppCompatActivity {
 
     }
 
-    public void getCountryInformation() {
+    private void getCountryInformation() {
 
         Retrofit countryRetrofit = RetrofitSingleton.getRetrofitInstance();
         CountryService countryService = countryRetrofit.create(CountryService.class);
