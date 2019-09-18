@@ -187,7 +187,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                     countryDatabaseHelper.deleteFavorite(selectedCountryName);
                     fab.setImageResource(R.drawable.ic_save);
 
-                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, "Favorite unsaved.", Snackbar.LENGTH_LONG);
+                    Snackbar favoriteUnsavedSnackbar = Snackbar.make(constraintLayout, selectedCountryName + " removed from favorites.", Snackbar.LENGTH_LONG);
                     View favoriteUnsavedSnackbarView = favoriteUnsavedSnackbar.getView();
                     TextView snackBarTextView = favoriteUnsavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
@@ -213,7 +213,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                     countryDatabaseHelper.addFavorite(Country.from(selectedCountryName, selectedCountryFlag));
                     fab.setImageResource(R.drawable.ic_done);
 
-                    Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, "Favorite saved.", Snackbar.LENGTH_LONG);
+                    Snackbar favoriteSavedSnackbar = Snackbar.make(constraintLayout, selectedCountryName + " added to favorites.", Snackbar.LENGTH_LONG);
                     View favoriteSavedSnackbarView = favoriteSavedSnackbar.getView();
                     TextView snackBarTextView = favoriteSavedSnackbarView.findViewById(android.support.design.R.id.snackbar_text);
 

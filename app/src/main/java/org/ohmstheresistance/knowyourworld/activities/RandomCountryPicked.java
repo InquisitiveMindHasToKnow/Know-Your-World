@@ -248,7 +248,6 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
                     snackBarTextView.setTextColor(getResources().getColor(R.color.colorAccent));
                     favoriteUnsavedSnackbarView.setBackgroundColor(Color.TRANSPARENT);
 
-
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) favoriteUnsavedSnackbarView.getLayoutParams();
                     layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
                     layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
