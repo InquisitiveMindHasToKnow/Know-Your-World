@@ -38,6 +38,14 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final String SIXTH_COUNTRY_SIZE = "sixthCountrySize";
     private static final String SEVENTH_COUNTRY_NAME = "seventhCountryName";
     private static final String SEVENTH_COUNTRY_FLAG = "seventhCountryFlag";
+    private static final String EIGHTH_COUNTRY_NAME = "eighthCountryName";
+    private static final String EIGHTH_COUNTRY_FLAG = "eighthCountryFlag";
+    private static final String NINTH_COUNTRY_NAME = "ninthCountryName";
+    private static final String NINTH_COUNTRY_FLAG = "ninthCountryFlag";
+    private static final String TENTH_COUNTRY_NAME = "tenthCountryName";
+    private static final String TENTH_COUNTRY_FLAG = "tenthCountryFlag";
+    private static final String ELEVENTH_COUNTRY_NAME = "eleventhCountryName";
+    private static final String ELEVENTH_COUNTRY_CAPITAL = "eleventhCountryCapital";
 
 
     public CountryTriviaDBHelper(@Nullable Context context) {
@@ -94,12 +102,20 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         String sixthCountrySize = sp.getString(SIXTH_COUNTRY_SIZE, "6th country currency null");
         String seventhCountryName = sp.getString(SEVENTH_COUNTRY_NAME, "7th country name null");
         String seventhCountryFlag = sp.getString(SEVENTH_COUNTRY_FLAG, "7th country flag null");
+        String eighthCountryName = sp.getString(EIGHTH_COUNTRY_NAME, "8th country name null");
+        String eighthCountryFlag = sp.getString(EIGHTH_COUNTRY_FLAG, "8th country flag null");
+        String ninthCountryName = sp.getString(NINTH_COUNTRY_NAME, "9th country name null");
+        String ninthCountryFlag = sp.getString(NINTH_COUNTRY_FLAG, "9th country flag null");
+        String tenthCountryName = sp.getString(TENTH_COUNTRY_NAME, "10th country name null");
+        String tenthCountryFlag = sp.getString(TENTH_COUNTRY_FLAG, "10th country flag null");
+        String eleventhCountryName = sp.getString(ELEVENTH_COUNTRY_NAME, "11th country name null");
+        String eleventhCountryCapital = sp.getString(ELEVENTH_COUNTRY_CAPITAL, "11th country capital null");
 
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
         addQuestion(questionOne);
 
-        TriviaQuestions questionTwo = new TriviaQuestions("What is the capital of Comoros", "Brazzaville", "Moroni", "Congo", 2);
+        TriviaQuestions questionTwo = new TriviaQuestions("What is the capital of " + eleventhCountryName + "?", "Albany", eleventhCountryCapital, "Clarendon", 2);
         addQuestion(questionTwo);
 
         TriviaQuestions questionThree = new TriviaQuestions(sixthCountryName + " has an area of ________ km² ", "398342.8km²", sixthCountrySize +"km²", "922404.2km²", 2);
@@ -125,6 +141,15 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
         TriviaQuestions questionTen = new TriviaQuestions( seventhCountryFlag,  seventhCountryName , firstCountryName, secondCountryName, 1);
         addQuestion(questionTen);
+
+        TriviaQuestions questionEleven = new TriviaQuestions( eighthCountryFlag,  thirdCountryName , eighthCountryName, fifthCountryName, 2);
+        addQuestion(questionEleven);
+
+        TriviaQuestions questionTwelve = new TriviaQuestions( ninthCountryFlag,  secondCountryName , ninthCountryName, fifthCountryName, 2);
+        addQuestion(questionTwelve);
+
+        TriviaQuestions questionThirteen = new TriviaQuestions( tenthCountryFlag,  sixthCountryName , firstCountryName, tenthCountryName, 3);
+        addQuestion(questionThirteen);
     }
 
     private void addQuestion(TriviaQuestions question) {
