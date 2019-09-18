@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -76,6 +77,7 @@ public class Trivia extends AppCompatActivity {
     private RadioButton secondRadioButton;
     private RadioButton thirdRadioButton;
     private Button confirmButton;
+    private WebView flagForTriviaWebview;
 
     private int questionCounter;
     private int questionCountTotal;
@@ -114,6 +116,8 @@ public class Trivia extends AppCompatActivity {
         thirdRadioButton = findViewById(R.id.radio_button3);
         confirmButton = findViewById(R.id.trivia_confirm_button);
         triviaRelativeLayout = findViewById(R.id.trivia_relative_layout);
+        flagForTriviaWebview = findViewById(R.id.flag_picture_for_trivia_webview);
+
 
         textColorDefaultRadioButtons = firstRadioButton.getTextColors();
         textColorDefaultCountDown = countdownTextView.getTextColors();
@@ -195,6 +199,25 @@ public class Trivia extends AppCompatActivity {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
+            if(currentQuestion.getQuestion().equals(countryTriviaDBHelper.getAllQuestions().get(9).getQuestion())){
+
+                flagForTriviaWebview.setVisibility(View.VISIBLE);
+                questionTextView.setText("The above flag represents what country?");
+
+                String html = "<html><body><img src=\"" + triviaSharedPrefs.getString(SEVENTH_COUNTRY_FLAG, "No Flag") + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+                flagForTriviaWebview.setBackgroundColor(Color.TRANSPARENT);
+                flagForTriviaWebview.loadData(html, "text/html", null);
+
+
+                firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
+                secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
+                thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
+
+            }else{
+
+                flagForTriviaWebview.setVisibility(View.INVISIBLE);
+            }
+
             questionTextView.setText(currentQuestion.getQuestion());
             firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
             secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
@@ -207,6 +230,8 @@ public class Trivia extends AppCompatActivity {
 
             timeLeftInMillis = COUNTDOWN_TIMER_IN_MILLIS;
             startCountDown();
+
+
         } else {
 
             countryTriviaDBHelper.clearDatabase();

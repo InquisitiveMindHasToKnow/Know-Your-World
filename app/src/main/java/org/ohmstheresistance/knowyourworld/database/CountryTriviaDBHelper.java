@@ -122,6 +122,8 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionNine = new TriviaQuestions( thirdCountryName + " is located in " + thirdCountryRegion + " and " + fifthCountryName + " is located in ", fifthCountryRegion, secondCountryName, firstCountryCapital , 1);
         addQuestion(questionNine);
 
+        TriviaQuestions questionTen = new TriviaQuestions( seventhCountryFlag,  seventhCountryName , firstCountryName, secondCountryName, 1);
+        addQuestion(questionTen);
     }
 
     private void addQuestion(TriviaQuestions question) {
