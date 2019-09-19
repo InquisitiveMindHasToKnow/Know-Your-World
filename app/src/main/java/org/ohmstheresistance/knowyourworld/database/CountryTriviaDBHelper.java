@@ -22,7 +22,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 15;
     private SQLiteDatabase countryTriviaDatabase;
     private Context context;
-    public static SharedPreferences sp;
+    private  SharedPreferences sp;
 
     private static final String FIRST_COUNTRY_NAME = "firstCountryName";
     private static final String FIRST_COUNTRY_CAPITAL = "firstCountryCapital";
@@ -110,6 +110,10 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         String tenthCountryFlag = sp.getString(TENTH_COUNTRY_FLAG, "");
         String eleventhCountryName = sp.getString(ELEVENTH_COUNTRY_NAME, "");
         String eleventhCountryCapital = sp.getString(ELEVENTH_COUNTRY_CAPITAL, "");
+
+        if(sixthCountrySize == null){
+            sixthCountrySize = "0";
+        }
 
 
         TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
