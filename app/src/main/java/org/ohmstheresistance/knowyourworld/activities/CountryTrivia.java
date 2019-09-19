@@ -3,13 +3,17 @@ package org.ohmstheresistance.knowyourworld.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import org.ohmstheresistance.knowyourworld.R;
 
@@ -29,6 +33,8 @@ public class CountryTrivia extends AppCompatActivity {
     private Button resetHighScoreButton;
     private Button startTestKnowledgeButton;
 
+    ImageView confettiImage;
+    private static int SHOW_COFETTI_TIMER = 6000;
 
 
     @Override
@@ -41,6 +47,7 @@ public class CountryTrivia extends AppCompatActivity {
         yourScoreTextView = findViewById(R.id.your_score_textview);
         startTestKnowledgeButton = findViewById(R.id.start_trivia_button);
         resetHighScoreButton = findViewById(R.id.reset_high_score_button);
+        confettiImage = findViewById(R.id.confetti_imageview);
 
         loadHighScore();
 
@@ -87,14 +94,14 @@ public class CountryTrivia extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == TRIVIA_REQUEST_CODE){
+        if (requestCode == TRIVIA_REQUEST_CODE) {
 
-            if(resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 score = data.getIntExtra(Trivia.EXTRA_SCORE, 0);
 
                 yourScoreTextView.setText("Your Score: " + score);
 
-                if(score > highScore){
+                if (score > highScore) {
 
                     updateHighScore(score);
                     resetHighScoreButton.setVisibility(View.VISIBLE);
@@ -103,10 +110,31 @@ public class CountryTrivia extends AppCompatActivity {
         }
     }
 
-    private void updateHighScore(int newHighScore ){
+    private void updateHighScore(int newHighScore) {
 
         highScore = newHighScore;
-        triviaHighScoreTextview.setText("High Score: " + highScore);
+        triviaHighScoreTextview.setText("New High Score: " + highScore + "!");
+
+
+        Glide.with(CountryTrivia.this)
+                .load(R.drawable.confetti)
+                .into(confettiImage);
+
+
+        confettiImage.setVisibility(View.VISIBLE);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                confettiImage.setVisibility(View.INVISIBLE);
+                triviaHighScoreTextview.setText("High Score: " + highScore);
+
+
+            }
+        }, SHOW_COFETTI_TIMER);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
@@ -133,8 +161,6 @@ public class CountryTrivia extends AppCompatActivity {
     }
 
     public void showOrHideResetHighScoreButton(){
-
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
 
         if(highScore == 0){
             resetHighScoreButton.setVisibility(View.INVISIBLE);

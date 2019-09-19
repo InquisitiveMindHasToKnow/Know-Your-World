@@ -8,6 +8,14 @@
     android:padding="16dp"
     tools:context=".activities.CountryTrivia">
 
+        <ImageView
+            android:id="@+id/confetti_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:background="@android:color/transparent"
+
+            />
 
         <TextView
             android:id="@+id/trivia_name_header_textview"
@@ -66,7 +74,9 @@
             android:id="@+id/reset_high_score_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reset High Score"
+            android:text="   Reset High Score   "
+            android:layout_marginTop="8dp"
+            android:background="@color/buttonColor"
             app:layout_constraintTop_toBottomOf="@id/start_trivia_button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
