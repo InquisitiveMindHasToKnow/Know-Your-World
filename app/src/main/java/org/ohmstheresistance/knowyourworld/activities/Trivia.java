@@ -39,6 +39,8 @@ import retrofit2.Retrofit;
 
 public class Trivia extends AppCompatActivity {
 
+    public static final String KEY_PREFS_FIRST_LAUNCH = "first_launch";
+
     public static final String EXTRA_SCORE = "extraScore";
     private static final long COUNTDOWN_TIMER_IN_MILLIS = 20000;
     private static final String SCORE_KEY = "score";
@@ -194,6 +196,20 @@ public class Trivia extends AppCompatActivity {
             }
         });
 
+        SharedPreferences firstLaunchCheck = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
+
+        if(firstLaunchCheck.getBoolean(KEY_PREFS_FIRST_LAUNCH, true))
+        {
+
+            getCountryInformation();
+
+            firstLaunchCheck.edit().putBoolean(KEY_PREFS_FIRST_LAUNCH,false).apply();
+            Intent toTriviaTutorialIntent = new Intent(Trivia.this, TriviaTutorial.class);
+            startActivity(toTriviaTutorialIntent);
+            Trivia.this.finish();
+            overridePendingTransition(0, 0);
+
+        }
 
     }
 
@@ -213,7 +229,9 @@ public class Trivia extends AppCompatActivity {
                 questionTextView.setText("The above flag represents what country?");
 
                 String html = "<html><body><img src=\"" + currentQuestion.getQuestion() + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
-                flagForTriviaWebview.setBackgroundColor(Color.TRANSPARENT);
+                flagForTriviaWebview.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                flagForTriviaWebview.setVerticalScrollBarEnabled(false);
+                flagForTriviaWebview.setHorizontalScrollBarEnabled(false);
                 flagForTriviaWebview.loadData(html, "text/html", null);
 
                 firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
@@ -383,10 +401,10 @@ public class Trivia extends AppCompatActivity {
 
                    String countryName = countryListForTrivia.get(0).getName();
                    String countryCapital = countryListForTrivia.get(0).getCapital();
-                   String countryNameOne = countryListForTrivia.get(1).getName();
-                   String countryCapitalOne = countryListForTrivia.get(1).getCapital();
-                   String countryThreeName = countryListForTrivia.get(2).getName();
-                   String countryThreeRegion = countryListForTrivia.get(2).getRegion();
+                   String countryNameOne = countryListForTrivia.get(5).getName();
+                   String countryCapitalOne = countryListForTrivia.get(5).getCapital();
+                   String countryThreeName = countryListForTrivia.get(211).getName();
+                   String countryThreeRegion = countryListForTrivia.get(211).getRegion();
                    String countryFourName = countryListForTrivia.get(10).getName();
                    String countryFourCapital = countryListForTrivia.get(10).getCapital();
                    String countryFiveName = countryListForTrivia.get(25).getName();

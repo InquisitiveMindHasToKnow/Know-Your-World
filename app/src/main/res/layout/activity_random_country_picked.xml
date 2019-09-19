@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     style="@style/TextAppearance.AppCompat.Headline"
                     android:textAllCaps="true"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold|italic"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:text="Capital: "
                 android:textSize="16sp"/>
 
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"/>
 
     </LinearLayout>
@@ -124,7 +124,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:text="Area: "
                 android:textSize="16sp"/>
 
@@ -135,7 +135,7 @@
                 android:id="@+id/random_country_area_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"/>
 
@@ -155,7 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:text="Population: "
                 android:textSize="16sp"/>
 
@@ -167,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"/>
 
         </LinearLayout>
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="Region: "
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"/>
 
 
@@ -198,7 +198,7 @@
                 android:id="@+id/random_country_region_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"/>
 
@@ -220,7 +220,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:text="Sub-Region: "
                 android:textSize="16sp"/>
 
@@ -231,7 +231,7 @@
                 android:id="@+id/random_country_subregion_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:gravity="center_horizontal"
                 android:textSize="16sp"/>
 
@@ -252,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="Location: "
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"/>
 
 
@@ -263,7 +263,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"/>
 
         </LinearLayout>
@@ -282,7 +282,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:text="Cioc: "
                 android:textSize="16sp"/>
 
@@ -294,7 +294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:textColor="#112631"
+                android:textColor="@android:color/black"
                 android:textSize="16sp"/>
 
         </LinearLayout>
@@ -313,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:text="Alpha Codes: "
                     android:textSize="16sp"/>
 
@@ -325,7 +325,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -375,7 +375,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:text="Language: "
                     android:textSize="16sp"/>
 
@@ -387,7 +387,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -406,7 +406,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:text="Currency: "
                     android:textSize="16sp"/>
 
@@ -418,7 +418,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/mainBackgroundColor"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"/>
 
             </LinearLayout>
@@ -439,7 +439,7 @@
                     android:layout_height="wrap_content"
                     android:textAllCaps="false"
                     android:layout_marginEnd="16dp"
-
+                    android:textColor="@android:color/black"
                     android:background="@color/buttonColor"
                     android:text="More Info"
                     android:layout_gravity="center_horizontal"
@@ -449,6 +449,7 @@
                     android:id="@+id/nextButton"
                     android:layout_width="wrap_content"
                     android:text="Next"
+                    android:textColor="@android:color/black"
                     android:background="@color/buttonColor"
                     android:textAllCaps="false"
                     android:layout_gravity="center"
@@ -470,7 +471,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:text="Currency: "
                     android:textSize="16sp"/>
 
@@ -481,7 +482,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="#112631"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp"/>
 
             </LinearLayout>

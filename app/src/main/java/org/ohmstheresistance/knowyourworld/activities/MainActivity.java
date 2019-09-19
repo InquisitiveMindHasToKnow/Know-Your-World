@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         randomizeButton.setOnClickListener(this);
         dontKnowYet.setOnClickListener(this);
 
-        Glide.with(this).load(R.drawable.rotating_earth).into(globeImageView);
+        Glide.with(this).load(R.drawable.spinningearth).into(globeImageView);
         globeImageView.setBackgroundColor(Color.TRANSPARENT);
 
 

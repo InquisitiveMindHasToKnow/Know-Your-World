@@ -188,7 +188,7 @@ public class FavoriteCountries extends AppCompatActivity {
             root.setBackgroundColor(Color.parseColor("#FFFFFF"));
         } else {
             favoriteCountryAdapter.setData(favorites);
-            root.setBackgroundColor(Color.parseColor("#112631"));
+            root.setBackgroundColor(getResources().getColor(R.color.mainBackgroundColor));
             root.setLayoutParams(layoutParams);
         }
 
