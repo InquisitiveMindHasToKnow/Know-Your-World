@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -181,6 +182,14 @@ public class Trivia extends AppCompatActivity {
                         Snackbar selectAnswerSnackbar = Snackbar.make(v, "Please select an answer.", Snackbar.LENGTH_LONG);
                         View snackbarView = selectAnswerSnackbar.getView();
                         TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                        snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_snackbar);
+                        snackBarTextView.setTextColor(getResources().getColor(R.color.mainBackgroundColor));
+                        snackbarView.setBackgroundColor(Color.TRANSPARENT);
+
+                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
+                        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+                        layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                        snackbarView.setLayoutParams(layoutParams);
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                             snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -359,6 +368,14 @@ public class Trivia extends AppCompatActivity {
             Snackbar onBackPressedSnackBar = Snackbar.make(triviaRelativeLayout, "Press BACK again to exit.", Snackbar.LENGTH_LONG);
             View onBackPressedSnackBarView = onBackPressedSnackBar.getView();
             TextView snackBarTextView = onBackPressedSnackBarView.findViewById(android.support.design.R.id.snackbar_text);
+            snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_snackbar);
+            snackBarTextView.setTextColor(getResources().getColor(R.color.mainBackgroundColor));
+            onBackPressedSnackBarView.setBackgroundColor(Color.TRANSPARENT);
+
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) onBackPressedSnackBarView.getLayoutParams();
+            layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+            layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+            onBackPressedSnackBarView.setLayoutParams(layoutParams);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                 snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

@@ -428,7 +428,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                app:layout_constraintTop_toBottomOf="@id/one"
+                app:layout_constraintTop_toBottomOf="@id/random_country_currency_linear"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:orientation="horizontal">
 
@@ -458,34 +458,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/random_country_currency_linear"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:text="Currency: "
-                    android:textSize="16sp"/>
-
-
-                <TextView
-
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"/>
-
-            </LinearLayout>
 
 
 

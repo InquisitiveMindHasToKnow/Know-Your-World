@@ -105,22 +105,31 @@ public class FavoriteCountries extends AppCompatActivity {
                 } else {
 
 
-                    new AlertDialog.Builder(FavoriteCountries.this)
-                            .setTitle("Delete Favorites")
-                            .setMessage("Are you sure you want to delete all your favorite countries?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(FavoriteCountries.this);
+                    dialog.setCancelable(false);
+                    dialog.setTitle("Delete Favorites?");
+                    dialog.setMessage("Are you sure you want to delete all your favorite countries?");
+                    dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog1, int id) {
+
+                            countryDatabaseHelper.clearFavoriteCountryDatabase();
+                            favoriteCountryAdapter.setData(favorites);
+                            FavoriteCountries.this.finish();
 
 
-                                    countryDatabaseHelper.clearFavoriteCountryDatabase();
-                                    favoriteCountryAdapter.setData(favorites);
-                                    FavoriteCountries.this.finish();
+                        }
+                    })
+
+                            .setNegativeButton("NO ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog12, int which) {
+
                                 }
-                            })
-                            .setNegativeButton(android.R.string.no, null)
-                            .setIcon(R.drawable.stop)
-                            .show();
+                            });
 
+                    final AlertDialog alert = dialog.create();
+                    alert.show();
 
                     break;
                 }

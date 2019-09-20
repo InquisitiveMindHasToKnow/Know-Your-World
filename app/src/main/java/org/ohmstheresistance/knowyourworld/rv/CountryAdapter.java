@@ -67,8 +67,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
                         if (status == TextToSpeech.SUCCESS) {
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk(countryName + "...The capital of " + countryName + " is " + countryCapital
-                                    + "... " + countryName + " is located in " + countryRegion + "...There are approximately " + countryPopulation + countryCitizens + "living in " + countryName);
+                            playNextChunk(countryName + "The capital of " + countryName + " is " + countryCapital
+                                      + countryName + " is located in " + countryRegion + "There are approximately " + countryPopulation + countryCitizens + "living in " + countryName);
 
                         }
 
