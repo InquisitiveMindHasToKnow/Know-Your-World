@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import org.ohmstheresistance.knowyourworld.R;
+import org.ohmstheresistance.knowyourworld.database.CountryTriviaDBHelper;
 
 public class TriviaTutorial extends AppCompatActivity {
 
     private TextView triviaInstructionsTextView;
     private Button triviaLetsBeginButton;
 
+    CountryTriviaDBHelper  countryTriviaDBHelper = new CountryTriviaDBHelper(TriviaTutorial.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +28,9 @@ public class TriviaTutorial extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent toBeginningOfTrivaIntent = new Intent(TriviaTutorial.this, CountryTrivia.class);
-                startActivity(toBeginningOfTrivaIntent);
+
+                countryTriviaDBHelper.clearDatabase();
+
                 TriviaTutorial.this.finish();
                 overridePendingTransition(0, 0);
 
