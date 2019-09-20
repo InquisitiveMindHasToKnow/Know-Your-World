@@ -36,4 +36,15 @@ public class TriviaTutorial extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+
+        countryTriviaDBHelper.clearDatabase();
+
+        TriviaTutorial.this.finish();
+        overridePendingTransition(0, 0);
+
+
+    }
 }

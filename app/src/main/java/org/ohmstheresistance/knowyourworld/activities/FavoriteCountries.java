@@ -95,6 +95,14 @@ public class FavoriteCountries extends AppCompatActivity {
                     View snackbarView = noFavoritesToDeleteSnackbar.getView();
                     TextView snackBarTextView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
 
+                    snackBarTextView.setBackgroundResource(R.drawable.rounded_shape_for_ran_and_sel_snackbars);
+                    snackBarTextView.setTextColor(getResources().getColor(R.color.colorAccent));
+                    snackbarView.setBackgroundColor(Color.TRANSPARENT);
+
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
+                    layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+                    layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                    snackbarView.setLayoutParams(layoutParams);
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
                         snackBarTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
