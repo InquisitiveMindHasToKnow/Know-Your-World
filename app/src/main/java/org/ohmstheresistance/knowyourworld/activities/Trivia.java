@@ -72,6 +72,37 @@ public class Trivia extends AppCompatActivity {
     private static final String TENTH_COUNTRY_FLAG = "tenthCountryFlag";
     private static final String ELEVENTH_COUNTRY_NAME = "eleventhCountryName";
     private static final String ELEVENTH_COUNTRY_CAPITAL = "eleventhCountryCapital";
+    private static final String TWELFTH_COUNTRY_NAME = "twelfthCountryName";
+    private static final String TWELFTH_COUNTRY_CAPITAL = "twelfthCountryCapital";
+    private static final String THIRTEENTH_COUNTRY_NAME = "thirteenthCountryName";
+    private static final String THIRTEENTH_COUNTRY_CAPITAL = "thirteenthCountryCapital";
+    private static final String FOURTEENTH_COUNTRY_NAME = "fourteenthCountryName";
+    private static final String FOURTEENTH_COUNTRY_FLAG = "fourteenthCountryFlag";
+    private static final String FIFTEENTH_COUNTRY_NAME = "fifteenthCountryName";
+    private static final String FIFTEENTH_COUNTRY_FLAG = "fifteenthCountryFlag";
+    private static final String SIXTEENTH_COUNTRY_NAME = "sixteenthCountryName";
+    private static final String SIXTEENTH_COUNTRY_FLAG = "sixteenthCountryFlag";
+    private static final String SEVENTEENTH_COUNTRY_NAME = "seventeenthCountryName";
+    private static final String SEVENTEENTH_COUNTRY_CAPITAL = "seventeenthCountryCapital";
+    private static final String EIGHTEENTH_COUNTRY_NAME = "eighteenthCountryName";
+    private static final String EIGHTEENTH_COUNTRY_CAPITAL = "eighteenthCountryCapital";
+    private static final String NINETEENTH_COUNTRY_NAME = "nineteenthCountryName";
+    private static final String NINETEENTH_COUNTRY_CAPITAL = "nineteenthCountryCapital";
+    private static final String TWENTIETH_COUNTRY_NAME = "twentiethCountryName";
+    private static final String TWENTIETH_COUNTRY_REGION = "twentiethCountryRegion";
+    private static final String TWENTYFIRST_COUNTRY_NAME = "twentyFirstCountryName";
+    private static final String TWENTYFIRST_COUNTRY_FLAG = "twentyFirstCountryFlag";
+    private static final String TWENTYSECOND_COUNTRY_NAME = "twentySecondCountryName";
+    private static final String TWENTYSECOND_COUNTRY_FLAG = "twentySecondCountryFlag";
+    private static final String TWENTYTHIRD_COUNTRY_NAME = "twentyThirdCountryName";
+    private static final String TWENTYTHIRD_COUNTRY_FLAG = "twentyThirdCountryFlag";
+    private static final String TWENTYFOURTH_COUNTRY_NAME = "twentyFourthCountryName";
+    private static final String TWENTYFOURTH_COUNTRY_CAPITAL = "twentyFourthCountryCapital";
+    private static final String TWENTYFIFTH_COUNTRY_NAME = "twentyFifthCountryName";
+    private static final String TWENTYFIFTH_COUNTRY_REGION = "twentyFifthCountryRegion";
+
+
+
 
 
 
@@ -317,7 +348,7 @@ public class Trivia extends AppCompatActivity {
         int answerNumber = radioButtonGroup.indexOfChild(radioButtonSelected) + 1;
 
         if (answerNumber == currentQuestion.getAnswerNumber()) {
-            score+=5;
+            score+=4;
             scoreTextView.setText("Score: " + score);
         }
 
@@ -438,6 +469,34 @@ public class Trivia extends AppCompatActivity {
                    String countryTenFlag = countryListForTrivia.get(160).getFlag();
                    String countryElevenName = countryListForTrivia.get(82).getName();
                    String countryElevenCapital = countryListForTrivia.get(82).getCapital();
+                    String countryTwelveName = countryListForTrivia.get(77).getName();
+                    String countryTwelveCapital = countryListForTrivia.get(77).getCapital();
+                    String countryThirteenName = countryListForTrivia.get(93).getName();
+                    String countryThirteenCapital = countryListForTrivia.get(93).getCapital();
+                    String countryFourteenName = countryListForTrivia.get(102).getName();
+                    String countryFourteenFlag = countryListForTrivia.get(102).getFlag();
+                    String countryFifteenName = countryListForTrivia.get(49).getName();
+                    String countryFifteenFlag = countryListForTrivia.get(49).getFlag();
+                    String countrySixteenName = countryListForTrivia.get(57).getName();
+                    String countrySixteenFlag = countryListForTrivia.get(57).getFlag();
+                    String countrySeventeenName = countryListForTrivia.get(12).getName();
+                    String countrySeventeenCapital = countryListForTrivia.get(12).getCapital();
+                    String countryEighteenName = countryListForTrivia.get(29).getName();
+                    String countryEighteenCapital = countryListForTrivia.get(29).getCapital();
+                    String countryNineteenName = countryListForTrivia.get(31).getName();
+                    String countryNineteenCapital = countryListForTrivia.get(31).getCapital();
+                    String countryTwentyName = countryListForTrivia.get(89).getName();
+                    String countryTwentyRegion = countryListForTrivia.get(89).getRegion();
+                    String countryTwentyOneName = countryListForTrivia.get(232).getName();
+                    String countryTwentyOneFlag = countryListForTrivia.get(232).getFlag();
+                    String countryTwentyTwoName = countryListForTrivia.get(115).getName();
+                    String countryTwentyTwoFlag = countryListForTrivia.get(115).getFlag();
+                    String countryTwentyThreeName = countryListForTrivia.get(184).getName();
+                    String countryTwentyThreeFlag = countryListForTrivia.get(184).getFlag();
+                    String countryTwentyFourName = countryListForTrivia.get(154).getName();
+                    String countryTwentyFourCapital = countryListForTrivia.get(154).getCapital();
+                    String countryTwentyFiveName = countryListForTrivia.get(18).getName();
+                    String countryTwentyFiveRegion = countryListForTrivia.get(18).getRegion();
 
 
 
@@ -467,6 +526,34 @@ public class Trivia extends AppCompatActivity {
                     triviaSharedPrefsEditor.putString(TENTH_COUNTRY_FLAG, countryTenFlag);
                     triviaSharedPrefsEditor.putString(ELEVENTH_COUNTRY_NAME, countryElevenName);
                     triviaSharedPrefsEditor.putString(ELEVENTH_COUNTRY_CAPITAL, countryElevenCapital);
+                    triviaSharedPrefsEditor.putString(TWELFTH_COUNTRY_NAME, countryTwelveName);
+                    triviaSharedPrefsEditor.putString(TWELFTH_COUNTRY_CAPITAL, countryTwelveCapital);
+                    triviaSharedPrefsEditor.putString(THIRTEENTH_COUNTRY_NAME, countryThirteenName);
+                    triviaSharedPrefsEditor.putString(THIRTEENTH_COUNTRY_CAPITAL, countryThirteenCapital);
+                    triviaSharedPrefsEditor.putString(FOURTEENTH_COUNTRY_NAME, countryFourteenName);
+                    triviaSharedPrefsEditor.putString(FOURTEENTH_COUNTRY_FLAG, countryFourteenFlag);
+                    triviaSharedPrefsEditor.putString(FIFTEENTH_COUNTRY_NAME, countryFifteenName);
+                    triviaSharedPrefsEditor.putString(FIFTEENTH_COUNTRY_FLAG, countryFifteenFlag);
+                    triviaSharedPrefsEditor.putString(SIXTEENTH_COUNTRY_NAME, countrySixteenName);
+                    triviaSharedPrefsEditor.putString(SIXTEENTH_COUNTRY_FLAG, countrySixteenFlag);
+                    triviaSharedPrefsEditor.putString(SEVENTEENTH_COUNTRY_NAME, countrySeventeenName);
+                    triviaSharedPrefsEditor.putString(SEVENTEENTH_COUNTRY_CAPITAL, countrySeventeenCapital);
+                    triviaSharedPrefsEditor.putString(EIGHTEENTH_COUNTRY_NAME, countryEighteenName);
+                    triviaSharedPrefsEditor.putString(EIGHTEENTH_COUNTRY_CAPITAL, countryEighteenCapital);
+                    triviaSharedPrefsEditor.putString(NINETEENTH_COUNTRY_NAME, countryNineteenName);
+                    triviaSharedPrefsEditor.putString(NINETEENTH_COUNTRY_CAPITAL, countryNineteenCapital);
+                    triviaSharedPrefsEditor.putString(TWENTIETH_COUNTRY_NAME, countryTwentyName);
+                    triviaSharedPrefsEditor.putString(TWENTIETH_COUNTRY_REGION, countryTwentyRegion);
+                    triviaSharedPrefsEditor.putString(TWENTYFIRST_COUNTRY_NAME, countryTwentyOneName);
+                    triviaSharedPrefsEditor.putString(TWENTYFIRST_COUNTRY_FLAG, countryTwentyOneFlag);
+                    triviaSharedPrefsEditor.putString(TWENTYSECOND_COUNTRY_NAME, countryTwentyTwoName);
+                    triviaSharedPrefsEditor.putString(TWENTYSECOND_COUNTRY_FLAG, countryTwentyTwoFlag);
+                    triviaSharedPrefsEditor.putString(TWENTYTHIRD_COUNTRY_NAME, countryTwentyThreeName);
+                    triviaSharedPrefsEditor.putString(TWENTYTHIRD_COUNTRY_FLAG, countryTwentyThreeFlag);
+                    triviaSharedPrefsEditor.putString(TWENTYFOURTH_COUNTRY_NAME, countryTwentyFourName);
+                    triviaSharedPrefsEditor.putString(TWENTYFOURTH_COUNTRY_CAPITAL, countryTwentyFourCapital);
+                    triviaSharedPrefsEditor.putString(TWENTYFIFTH_COUNTRY_NAME, countryTwentyFiveName);
+                    triviaSharedPrefsEditor.putString(TWENTYFIFTH_COUNTRY_REGION, countryTwentyFiveRegion);
                     triviaSharedPrefsEditor.apply();
 
                 }

@@ -72,7 +72,6 @@ public class CountryTrivia extends AppCompatActivity {
 
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(CountryTrivia.this);
-                dialog.setCancelable(false);
                 dialog.setTitle("Wait, Wait, Wait!");
                 dialog.setMessage("Are you sure you want to clear your high score?");
                 dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {

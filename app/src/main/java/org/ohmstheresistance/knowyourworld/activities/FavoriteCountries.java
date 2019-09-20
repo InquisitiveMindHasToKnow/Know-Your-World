@@ -106,7 +106,6 @@ public class FavoriteCountries extends AppCompatActivity {
 
 
                     AlertDialog.Builder dialog = new AlertDialog.Builder(FavoriteCountries.this);
-                    dialog.setCancelable(false);
                     dialog.setTitle("Delete Favorites?");
                     dialog.setMessage("Are you sure you want to delete all your favorite countries?");
                     dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {

@@ -46,6 +46,34 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
     private static final String TENTH_COUNTRY_FLAG = "tenthCountryFlag";
     private static final String ELEVENTH_COUNTRY_NAME = "eleventhCountryName";
     private static final String ELEVENTH_COUNTRY_CAPITAL = "eleventhCountryCapital";
+    private static final String TWELFTH_COUNTRY_NAME = "twelfthCountryName";
+    private static final String TWELFTH_COUNTRY_CAPITAL = "twelfthCountryCapital";
+    private static final String THIRTEENTH_COUNTRY_NAME = "thirteenthCountryName";
+    private static final String THIRTEENTH_COUNTRY_CAPITAL = "thirteenthCountryCapital";
+    private static final String FOURTEENTH_COUNTRY_NAME = "fourteenthCountryName";
+    private static final String FOURTEENTH_COUNTRY_FLAG = "fourteenthCountryFlag";
+    private static final String FIFTEENTH_COUNTRY_NAME = "fifteenthCountryName";
+    private static final String FIFTEENTH_COUNTRY_FLAG = "fifteenthCountryFlag";
+    private static final String SIXTEENTH_COUNTRY_NAME = "sixteenthCountryName";
+    private static final String SIXTEENTH_COUNTRY_FLAG = "sixteenthCountryFlag";
+    private static final String SEVENTEENTH_COUNTRY_NAME = "seventeenthCountryName";
+    private static final String SEVENTEENTH_COUNTRY_CAPITAL = "seventeenthCountryCapital";
+    private static final String EIGHTEENTH_COUNTRY_NAME = "eighteenthCountryName";
+    private static final String EIGHTEENTH_COUNTRY_CAPITAL = "eighteenthCountryCapital";
+    private static final String NINETEENTH_COUNTRY_NAME = "nineteenthCountryName";
+    private static final String NINETEENTH_COUNTRY_CAPITAL = "nineteenthCountryCapital";
+    private static final String TWENTIETH_COUNTRY_NAME = "twentiethCountryName";
+    private static final String TWENTIETH_COUNTRY_REGION = "twentiethCountryRegion";
+    private static final String TWENTYFIRST_COUNTRY_NAME = "twentyFirstCountryName";
+    private static final String TWENTYFIRST_COUNTRY_FLAG = "twentyFirstCountryFlag";
+    private static final String TWENTYSECOND_COUNTRY_NAME = "twentySecondCountryName";
+    private static final String TWENTYSECOND_COUNTRY_FLAG = "twentySecondCountryFlag";
+    private static final String TWENTYTHIRD_COUNTRY_NAME = "twentyThirdCountryName";
+    private static final String TWENTYTHIRD_COUNTRY_FLAG = "twentyThirdCountryFlag";
+    private static final String TWENTYFOURTH_COUNTRY_NAME = "twentyFourthCountryName";
+    private static final String TWENTYFOURTH_COUNTRY_CAPITAL = "twentyFourthCountryCapital";
+    private static final String TWENTYFIFTH_COUNTRY_NAME = "twentyFifthCountryName";
+    private static final String TWENTYFIFTH_COUNTRY_REGION = "twentyFifthCountryRegion";
 
 
     public CountryTriviaDBHelper(@Nullable Context context) {
@@ -110,43 +138,71 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         String tenthCountryFlag = sp.getString(TENTH_COUNTRY_FLAG, "");
         String eleventhCountryName = sp.getString(ELEVENTH_COUNTRY_NAME, "");
         String eleventhCountryCapital = sp.getString(ELEVENTH_COUNTRY_CAPITAL, "");
+        String twelfthCountryName = sp.getString(TWELFTH_COUNTRY_NAME, "");
+        String twelfthCountryCapital = sp.getString(TWELFTH_COUNTRY_CAPITAL, "");
+        String thirteenthCountryName = sp.getString(THIRTEENTH_COUNTRY_NAME, "");
+        String thirteenthCountryCapital = sp.getString(THIRTEENTH_COUNTRY_CAPITAL, "");
+        String fourteenthCountryName = sp.getString(FOURTEENTH_COUNTRY_NAME, "");
+        String fourteenthCountryFlag = sp.getString(FOURTEENTH_COUNTRY_FLAG, "");
+        String fifteenthCountryName = sp.getString(FIFTEENTH_COUNTRY_NAME, "");
+        String fifteenthCountryFlag = sp.getString(FIFTEENTH_COUNTRY_FLAG, "");
+        String sixteenthCountryName = sp.getString(SIXTEENTH_COUNTRY_NAME, "");
+        String sixteenthCountryFlag = sp.getString(SIXTEENTH_COUNTRY_FLAG, "");
+        String seventeenthCountryName = sp.getString(SEVENTEENTH_COUNTRY_NAME, "");
+        String seventeenthCountryCapital = sp.getString(SEVENTEENTH_COUNTRY_CAPITAL, "");
+        String eighteenthCountryName = sp.getString(EIGHTEENTH_COUNTRY_NAME, "");
+        String eighteenthCountryCapital = sp.getString(EIGHTEENTH_COUNTRY_CAPITAL, "");
+        String nineteenthCountryName = sp.getString(NINETEENTH_COUNTRY_NAME, "");
+        String nineteenthCountryCapital = sp.getString(NINETEENTH_COUNTRY_CAPITAL, "");
+        String twentiethCountryName = sp.getString(TWENTIETH_COUNTRY_NAME, "");
+        String twentiethCountryRegion = sp.getString(TWENTIETH_COUNTRY_REGION, "");
+        String twentyFirstCountryName = sp.getString(TWENTYFIRST_COUNTRY_NAME, "");
+        String twentyFirstCountryFlag = sp.getString(TWENTYFIRST_COUNTRY_FLAG, "");
+        String twentySecondCountryName = sp.getString(TWENTYSECOND_COUNTRY_NAME, "");
+        String twentySecondCountryFlag = sp.getString(TWENTYSECOND_COUNTRY_FLAG, "");
+        String twentyThirdCountryName = sp.getString(TWENTYTHIRD_COUNTRY_NAME, "");
+        String twentyThirdCountryFlag = sp.getString(TWENTYTHIRD_COUNTRY_FLAG, "");
+        String twentyFourthCountryName = sp.getString(TWENTYFOURTH_COUNTRY_NAME, "");
+        String twentyFourthCountryCapital = sp.getString(TWENTYFOURTH_COUNTRY_CAPITAL, "");
+        String twentyFifthCountryName = sp.getString(TWENTYFIFTH_COUNTRY_NAME, "");
+        String twentyFifthCountryRegion = sp.getString(TWENTYFIFTH_COUNTRY_REGION, "");
 
         if(sixthCountrySize == null){
             sixthCountrySize = "0";
         }
 
 
-        TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of Jamaica", "Kingston", "Spanish Town", "Canada", 1);
+        TriviaQuestions questionOne = new TriviaQuestions("_____ is the capital of " + seventeenthCountryName, seventeenthCountryCapital, twentyFourthCountryCapital, thirteenthCountryCapital, 1);
         addQuestion(questionOne);
 
-        TriviaQuestions questionTwo = new TriviaQuestions("What is the capital of " + eleventhCountryName + "?", "Albany", eleventhCountryCapital, "Clarendon", 2);
+        TriviaQuestions questionTwo = new TriviaQuestions("What is the capital of " + eleventhCountryName + "?", twelfthCountryCapital, eleventhCountryCapital, eighteenthCountryCapital, 2);
         addQuestion(questionTwo);
 
         TriviaQuestions questionThree = new TriviaQuestions(sixthCountryName + " has an area of ________ km² ", "398342.8km²", sixthCountrySize +"km²", "922404.2km²", 2);
         addQuestion(questionThree);
 
-        TriviaQuestions questionFour = new TriviaQuestions(secondCountryCapital + " is to " + secondCountryName + " as " + fourthCountryCapital +" is to", firstCountryName, fifthCountryName, fourthCountryName, 3);
+        TriviaQuestions questionFour = new TriviaQuestions(secondCountryCapital + " is to " + secondCountryName + " as " + fourthCountryCapital +" is to", eleventhCountryName, twelfthCountryName, fourthCountryName, 3);
         addQuestion(questionFour);
 
-        TriviaQuestions questionFive = new TriviaQuestions("Niger is on the continent of ", "Africa", firstCountryCapital, fourthCountryName, 1);
+        TriviaQuestions questionFive = new TriviaQuestions(twentyFifthCountryName + " is located in ", twentyFifthCountryRegion, firstCountryCapital, seventeenthCountryCapital, 1);
         addQuestion(questionFive);
 
-        TriviaQuestions questionSix = new TriviaQuestions(firstCountryCapital + " is the capital of ", fourthCountryName, secondCountryCapital, firstCountryName, 3);
+        TriviaQuestions questionSix = new TriviaQuestions(firstCountryCapital + " is the capital of ", fifteenthCountryName, twentySecondCountryName, firstCountryName, 3);
         addQuestion(questionSix);
 
-        TriviaQuestions questionSeven = new TriviaQuestions(secondCountryCapital + " is the capital of ", secondCountryName, fifthCountryName, thirdCountryName , 1);
+        TriviaQuestions questionSeven = new TriviaQuestions(secondCountryCapital + " is the capital of ", secondCountryName, eighteenthCountryCapital, twentyFifthCountryName , 1);
         addQuestion(questionSeven);
 
-        TriviaQuestions questionEight = new TriviaQuestions(thirdCountryName + " is located in ", fifthCountryName, thirdCountryRegion, fourthCountryCapital , 2);
+        TriviaQuestions questionEight = new TriviaQuestions(thirdCountryName + " is located in ", thirteenthCountryName, thirdCountryRegion, twentyFirstCountryName , 2);
         addQuestion(questionEight);
 
-        TriviaQuestions questionNine = new TriviaQuestions( thirdCountryName + " is located in " + thirdCountryRegion + " and " + fifthCountryName + " is located in ", fifthCountryRegion, secondCountryName, firstCountryCapital , 1);
+        TriviaQuestions questionNine = new TriviaQuestions( thirdCountryName + " is located in " + thirdCountryRegion + " and " + fifthCountryName + " is located in ", fifthCountryRegion, twentyFourthCountryName, fifteenthCountryName , 1);
         addQuestion(questionNine);
 
-        TriviaQuestions questionTen = new TriviaQuestions( seventhCountryFlag,  seventhCountryName , firstCountryName, secondCountryName, 1);
+        TriviaQuestions questionTen = new TriviaQuestions( seventhCountryFlag,  seventhCountryName , twentiethCountryName, seventeenthCountryName, 1);
         addQuestion(questionTen);
 
-        TriviaQuestions questionEleven = new TriviaQuestions( eighthCountryFlag,  thirdCountryName , eighthCountryName, fifthCountryName, 2);
+        TriviaQuestions questionEleven = new TriviaQuestions( eighthCountryFlag,  twentyFourthCountryName , eighthCountryName, fourteenthCountryName, 2);
         addQuestion(questionEleven);
 
         TriviaQuestions questionTwelve = new TriviaQuestions( ninthCountryFlag,  secondCountryName , ninthCountryName, fifthCountryName, 2);
@@ -154,6 +210,44 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
 
         TriviaQuestions questionThirteen = new TriviaQuestions( tenthCountryFlag,  sixthCountryName , firstCountryName, tenthCountryName, 3);
         addQuestion(questionThirteen);
+
+        TriviaQuestions questionFourteen = new TriviaQuestions( twelfthCountryCapital + " is the capital of ",  twelfthCountryName , twentySecondCountryName, sixteenthCountryName, 1);
+        addQuestion(questionFourteen);
+
+        TriviaQuestions questionFifteen = new TriviaQuestions( thirteenthCountryName +"'s capital city is ",  twentyFifthCountryName , thirteenthCountryCapital, sixteenthCountryName, 2);
+        addQuestion(questionFifteen);
+
+        TriviaQuestions questionSixteen = new TriviaQuestions( fourteenthCountryFlag,  twelfthCountryName , fourteenthCountryName, twentyFourthCountryCapital, 2);
+        addQuestion(questionSixteen);
+
+        TriviaQuestions questionSeventeen = new TriviaQuestions( fifteenthCountryFlag,  fifteenthCountryName , seventeenthCountryName, sixthCountryName, 1);
+        addQuestion(questionSeventeen);
+
+        TriviaQuestions questionEighteen = new TriviaQuestions( sixteenthCountryFlag,  firstCountryName , ninthCountryName, sixteenthCountryName, 3);
+        addQuestion(questionEighteen);
+
+        TriviaQuestions questionNineteen = new TriviaQuestions( eighteenthCountryCapital + " is the capital of ",  fourthCountryName , tenthCountryName, eighteenthCountryName, 3);
+        addQuestion(questionNineteen);
+
+        TriviaQuestions questionTwenty = new TriviaQuestions( nineteenthCountryCapital + " is the capital of",  thirdCountryName , nineteenthCountryName, twentyFifthCountryName, 2);
+        addQuestion(questionTwenty);
+
+        TriviaQuestions questionTwentyOne = new TriviaQuestions( twentiethCountryName + " is located in ",  twentiethCountryRegion , eighthCountryName, nineteenthCountryName, 1);
+        addQuestion(questionTwentyOne);
+
+        TriviaQuestions questionTwentyTwo = new TriviaQuestions( twentyFirstCountryFlag,  twentyFirstCountryName , twentiethCountryName, secondCountryName, 1);
+        addQuestion(questionTwentyTwo);
+
+        TriviaQuestions questionTwentyThree = new TriviaQuestions( twentySecondCountryFlag,  thirdCountryName , twentySecondCountryName, seventhCountryName, 2);
+        addQuestion(questionTwentyThree);
+
+        TriviaQuestions questionTwentyFour = new TriviaQuestions( twentyThirdCountryFlag,  sixteenthCountryName , thirdCountryRegion, twentyThirdCountryName, 3);
+        addQuestion(questionTwentyFour);
+
+        TriviaQuestions questionTwentyFive = new TriviaQuestions( "The capital of " + twentyFourthCountryName + " is",  twentyFourthCountryCapital , seventeenthCountryName, firstCountryName, 1);
+        addQuestion(questionTwentyFive);
+
+
     }
 
     private void addQuestion(TriviaQuestions question) {
