@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -70,21 +71,31 @@ public class CountryTrivia extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                new AlertDialog.Builder(CountryTrivia.this, R.style.MyDialogTheme)
-                        .setTitle("Wait! Wait! Wait!")
-                        .setMessage("Are you sure you want to clear your high score?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(CountryTrivia.this);
+                dialog.setCancelable(false);
+                dialog.setTitle("Wait, Wait, Wait!");
+                dialog.setMessage("Are you sure you want to clear your high score?");
+                dialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog1, int id) {
+
+                        resetHighScore();
+                        loadHighScore();
+                        showOrHideResetHighScoreButton();
 
 
-                                resetHighScore();
-                                loadHighScore();
-                                showOrHideResetHighScoreButton();
+                    }
+                })
+
+                        .setNegativeButton("NO ", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog12, int which) {
+
                             }
-                        })
-                        .setNegativeButton(android.R.string.no, null)
-                        .setIcon(R.drawable.stop)
-                        .show();
+                        });
+
+                final AlertDialog alert = dialog.create();
+                alert.show();
 
             }
         });
