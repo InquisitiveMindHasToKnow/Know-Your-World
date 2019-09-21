@@ -167,7 +167,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         String twentyFifthCountryName = sp.getString(TWENTYFIFTH_COUNTRY_NAME, "");
         String twentyFifthCountryRegion = sp.getString(TWENTYFIFTH_COUNTRY_REGION, "");
 
-        if(sixthCountrySize == null){
+        if(sixthCountrySize.isEmpty()){
             sixthCountrySize = "0";
         }
 
