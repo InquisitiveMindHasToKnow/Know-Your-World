@@ -29,7 +29,6 @@ public class TriviaTutorial extends AppCompatActivity {
 
 
                 countryTriviaDBHelper.clearDatabase();
-
                 TriviaTutorial.this.finish();
                 overridePendingTransition(0, 0);
 

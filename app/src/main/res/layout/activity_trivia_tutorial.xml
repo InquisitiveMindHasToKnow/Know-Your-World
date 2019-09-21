@@ -6,11 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".activities.TriviaTutorial">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@color/mainBackgroundColor"
+        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/mainBackgroundColor"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -18,17 +21,26 @@
         android:id="@+id/trivia_instructions_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+        android:layout_marginTop="40dp"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/white"
+        android:text="@string/trivia_tutorial_info"
         android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/trivia_tutorial_lets_begin_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/buttonColor"
+        android:textColor="@android:color/black"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="30dp"
         android:layout_marginTop="32dp"
-        android:text="Got it. Let's Begin!"/>
-
+        android:text="   Let's Find Out!   "/>
 
     </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

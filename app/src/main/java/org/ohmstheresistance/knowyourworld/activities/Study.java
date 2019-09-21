@@ -61,8 +61,10 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
                     countryRecyclerView.setLayoutManager(gridLayoutManager);
                     countryRecyclerView.setAdapter(countryAdapter);
                     studySearchView.setOnQueryTextListener(Study.this);
+                    studySearchView.setFocusable(false);
                     studySearchView.setIconified(false);
                     studySearchView.clearFocus();
+
                 }
 
                 if (!response.isSuccessful()) {
