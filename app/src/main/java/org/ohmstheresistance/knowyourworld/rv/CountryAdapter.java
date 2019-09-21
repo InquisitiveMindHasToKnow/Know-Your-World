@@ -42,16 +42,34 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
         final Country country = countryList.get(i);
         countryViewHolder.onBind(country);
 
+        if(country.getCapital().isEmpty()){
+            countryViewHolder.countryCapitalTextView.setText("No Capital City");
+        }
+
+        if(country.getName().contains("Yugoslav")){
+            countryViewHolder.countryNameTextView.setText("Macedonia");
+        }
+
+        if(country.getName().contains("Venezuela")){
+            countryViewHolder.countryNameTextView.setText("Venezuela");
+        }
+
+        if(country.getName().contains("Democratic People's Republic of")){
+            countryViewHolder.countryNameTextView.setText("North Korea");
+        }
+
+        if(country.getName().contains("Plurinational")){
+            countryViewHolder.countryNameTextView.setText("Bolivia");
+        }
+
+
+
+
+
 
         countryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String countryName = country.getName();
-                final String countryCapital = country.getCapital();
-                final Integer countryPopulation = country.getPopulation();
-                final String countryRegion = country.getSubregion();
-                final String countryCitizens = country.getDemonym();
-
 
                 if (SystemClock.elapsedRealtime() - lastClickTime < 5000) {
                     return;
@@ -63,6 +81,16 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
 
                     @Override
                     public void onInit(int status) {
+
+                        String countryName = country.getName();
+                        String countryCapital = country.getCapital();
+                        Integer countryPopulation = country.getPopulation();
+                        String countryRegion = country.getSubregion();
+                        String countryCitizens = country.getDemonym();
+
+                        if(countryName.contains("Yugoslav")){
+                            countryName.equals("Macedonia");
+                        }
 
                         if (status == TextToSpeech.SUCCESS) {
 

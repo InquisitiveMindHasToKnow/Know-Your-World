@@ -24,8 +24,8 @@ import java.util.List;
 public class CountryViewHolder extends RecyclerView.ViewHolder {
 
     private WebView countryFlagImageView;
-    private TextView countryNameTextView;
-    private TextView countryCapitalTextView;
+    public TextView countryNameTextView;
+    public TextView countryCapitalTextView;
     private Button learnMoreButton;
 
     private FragmentNavigation fragmentNavigation;
@@ -63,10 +63,6 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
         String countryFlag = country.getFlag();
         String countryName = country.getName();
         String countryCapital = country.getCapital();
-
-        if (countryCapital.equals("London")) {
-            countryNameTextView.setText("The United Kingdom");
-        }
 
         countryNameTextView.setText(countryName);
         countryCapitalTextView.setText(countryCapital);
