@@ -22,7 +22,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
 
     private long lastClickTime = 0;
     private List<Country> countryList;
-    private TextToSpeech textToSpeech;
+    public TextToSpeech textToSpeech;
 
     public CountryAdapter(List<Country> countryList) {
 
@@ -67,16 +67,18 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
                         if (status == TextToSpeech.SUCCESS) {
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk(countryName + "The capital of " + countryName + " is " + countryCapital
-                                      + countryName + " is located in " + countryRegion + "There are approximately " + countryPopulation + countryCitizens + "living in " + countryName);
+                            playNextChunk(countryName + ". The capital of " + countryName + " is " + countryCapital + "."
+                                      + countryName + " is located in " + countryRegion + ". There are approximately " + countryPopulation + countryCitizens + "living in " + countryName + ".");
 
                         }
 
-                        if(countryName.equals("Antarctica")) {
+                        if(countryName.equals("Antarctica") || countryName.equals("Bouvet Island") || countryName.equals("United States Minor Outlying Islands")
+                                || countryName.equals("Heard Island and McDonald Islands") || countryName.equals("Macao") || countryName.contains("Macedonia")
+                                || countryName.contains("Saint Helena")) {
 
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk(countryName + "...There is no capital city in  " + countryName + "... " + countryName + " is located in " + countryName + "...There are approximately " + countryPopulation + " people living in " + countryName);
+                            playNextChunk(countryName + ". There is no capital city in  " + countryName + ". " + countryName + " is located in " + countryName + ". There are approximately " + countryPopulation + " people living in " + countryName + ".");
 
 
                         }

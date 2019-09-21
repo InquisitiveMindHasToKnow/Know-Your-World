@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.activities.SelectedCountryDetails;
@@ -62,9 +60,13 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(final Country country) {
 
-        final String countryFlag = country.getFlag();
-        final String countryName = country.getName();
+        String countryFlag = country.getFlag();
+        String countryName = country.getName();
         String countryCapital = country.getCapital();
+
+        if (countryCapital.equals("London")) {
+            countryNameTextView.setText("The United Kingdom");
+        }
 
         countryNameTextView.setText(countryName);
         countryCapitalTextView.setText(countryCapital);
@@ -178,7 +180,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
 
 
                 fragmentNavigation = (FragmentNavigation) v.getContext();
-                fragmentNavigation.goToLocationOnMap(selectedCountryLongitude, selectedCountryLatitude, countryName, countryFlag);
+                fragmentNavigation.goToLocationOnMap(selectedCountryLongitude, selectedCountryLatitude, selectedCountryName, selectedCountryFlag);
 
 
             }
