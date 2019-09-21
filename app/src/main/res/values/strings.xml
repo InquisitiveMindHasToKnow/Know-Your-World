@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Know Your World</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trivia_tutorial_info">* Before you begin, there are a few things you need to know. \n\n
+* There are 25 questions, each worth 4 points if answered correctly. \n\n
+* You have 20 seconds to answer each question.\n\n
+* The correct answer will be revealed after you’ve locked an answer in or the timer runs out.\n\n
+* So, how much do you know about your world?</string>
 </resources>
