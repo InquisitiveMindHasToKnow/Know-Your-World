@@ -107,6 +107,15 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
         return false;
     }
 
+    public void onPause(){
+        if(countryAdapter.textToSpeech !=null){
+            countryAdapter.textToSpeech.stop();
+            countryAdapter.textToSpeech.shutdown();
+        }
+
+        super.onPause();
+    }
+
 
 
 }
