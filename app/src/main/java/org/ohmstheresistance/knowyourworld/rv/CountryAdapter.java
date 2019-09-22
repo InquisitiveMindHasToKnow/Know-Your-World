@@ -43,22 +43,29 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
         countryViewHolder.onBind(country);
 
         if(country.getCapital().isEmpty()){
+            country.setCapital("No Capital City");
             countryViewHolder.countryCapitalTextView.setText("No Capital City");
+
         }
 
         if(country.getName().contains("Yugoslav")){
+            country.setName("Macedonia");
             countryViewHolder.countryNameTextView.setText("Macedonia");
+
         }
 
         if(country.getName().contains("Venezuela")){
+            country.setName("Venezuela");
             countryViewHolder.countryNameTextView.setText("Venezuela");
         }
 
         if(country.getName().contains("Democratic People's Republic of")){
+            country.setName("North Korea");
             countryViewHolder.countryNameTextView.setText("North Korea");
         }
 
         if(country.getName().contains("Plurinational")){
+            country.setName("Bolivia");
             countryViewHolder.countryNameTextView.setText("Bolivia");
         }
 
@@ -95,18 +102,17 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
                         if (status == TextToSpeech.SUCCESS) {
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk(countryName + ". The capital of " + countryName + " is " + countryCapital + "."
-                                      + countryName + " is located in " + countryRegion + ". There are approximately " + countryPopulation + countryCitizens + "living in " + countryName + ".");
+                            playNextChunk(countryName + ". The capital of " + countryName + " is " + countryCapital + ". "
+                                      + countryName + " is located in " + countryRegion + "." + " There are approximately " + countryPopulation + countryCitizens + " living in " + countryName + ".");
 
                         }
 
                         if(countryName.equals("Antarctica") || countryName.equals("Bouvet Island") || countryName.equals("United States Minor Outlying Islands")
-                                || countryName.equals("Heard Island and McDonald Islands") || countryName.equals("Macao") || countryName.contains("Macedonia")
-                                || countryName.contains("Saint Helena")) {
+                                || countryName.equals("Heard Island and McDonald Islands") || countryName.equals("Macao") || countryName.contains("Saint Helena")) {
 
 
                             textToSpeech.setLanguage(Locale.US);
-                            playNextChunk(countryName + ". There is no capital city in  " + countryName + ". " + countryName + " is located in " + countryName + ". There are approximately " + countryPopulation + " people living in " + countryName + ".");
+                            playNextChunk(countryName + "." + " There is no capital city in  " + countryName + ". " + countryName + " is located in " + countryName + "." + " There are approximately " + countryPopulation + " people living in " + countryName + ".");
 
 
                         }
