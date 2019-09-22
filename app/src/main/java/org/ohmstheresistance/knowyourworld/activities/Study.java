@@ -56,7 +56,6 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
                     countryList = response.body();
                     Log.d("Country ", "Retrofit call works " + response.body().get(6).getFlag());
 
-                    sortAlphabetically();
 
                     countryAdapter = new CountryAdapter(countryList);
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
@@ -118,15 +117,6 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
         super.onPause();
     }
 
-    private void sortAlphabetically() {
-        Collections.sort(countryList, new Comparator<Country>() {
-            @Override
-            public int compare(Country o1, Country o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
-
-    }
 
 }
 

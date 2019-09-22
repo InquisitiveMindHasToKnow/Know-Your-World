@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.model.Country;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -69,10 +71,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
             countryViewHolder.countryNameTextView.setText("Bolivia");
         }
 
-
-
-
-
+        sortAlphabetically();
 
         countryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +155,16 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
     public void setData(List<Country> newCountryList) {
         this.countryList = newCountryList;
         notifyDataSetChanged();
+    }
+
+    private void sortAlphabetically() {
+        Collections.sort(countryList, new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+
     }
 
 }
