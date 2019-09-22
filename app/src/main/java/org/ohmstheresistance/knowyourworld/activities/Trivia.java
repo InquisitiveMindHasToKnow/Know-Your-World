@@ -21,6 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.ohmstheresistance.knowyourworld.R;
 import org.ohmstheresistance.knowyourworld.database.CountryTriviaDBHelper;
 import org.ohmstheresistance.knowyourworld.model.Country;
@@ -102,10 +104,6 @@ public class Trivia extends AppCompatActivity {
     private static final String TWENTYFIFTH_COUNTRY_REGION = "twentyFifthCountryRegion";
 
 
-
-
-
-
     private CountryTriviaDBHelper countryTriviaDBHelper;
 
 
@@ -128,7 +126,7 @@ public class Trivia extends AppCompatActivity {
     private ColorStateList textColorDefaultCountDown;
 
     private CountDownTimer countDownTimer;
-    private  long timeLeftInMillis;
+    private long timeLeftInMillis;
 
     private int score;
     private boolean answered;
@@ -141,6 +139,57 @@ public class Trivia extends AppCompatActivity {
     SharedPreferences.Editor triviaSharedPrefsEditor;
     SharedPreferences triviaSharedPrefs;
 
+
+    String countryName;
+    String countryCapital;
+    String countryNameOne;
+    String countryCapitalOne;
+    String countryThreeName;
+    String countryThreeRegion;
+    String countryFourName;
+    String countryFourCapital;
+    String countryFiveName;
+    String countryFiveRegion;
+    String countrySixName;
+    String countrySixSize;
+    String countrySevenName;
+    String countrySevenFlag;
+    String countryEightName;
+    String countryEightFlag;
+    String countryNineName;
+    String countryNineFlag;
+    String countryTenName;
+    String countryTenFlag;
+    String countryElevenName;
+    String countryElevenCapital;
+    String countryTwelveName;
+    String countryTwelveCapital;
+    String countryThirteenName;
+    String countryThirteenCapital;
+    String countryFourteenName;
+    String countryFourteenFlag;
+    String countryFifteenName;
+    String countryFifteenFlag;
+    String countrySixteenName;
+    String countrySixteenFlag;
+    String countrySeventeenName;
+    String countrySeventeenCapital;
+    String countryEighteenName;
+    String countryEighteenCapital;
+    String countryNineteenName;
+    String countryNineteenCapital;
+    String countryTwentyName;
+    String countryTwentyRegion;
+    String countryTwentyOneName;
+    String countryTwentyOneFlag;
+    String countryTwentyTwoName;
+    String countryTwentyTwoFlag;
+    String countryTwentyThreeName;
+    String countryTwentyThreeFlag;
+    String countryTwentyFourName;
+    String countryTwentyFourCapital;
+    String countryTwentyFiveName;
+    String countryTwentyFiveRegion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +217,7 @@ public class Trivia extends AppCompatActivity {
 
         countryTriviaDBHelper = new CountryTriviaDBHelper(Trivia.this);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
 
             CountryTriviaDBHelper countryTriviaDBHelper = new CountryTriviaDBHelper(this);
             questionList = countryTriviaDBHelper.getAllQuestions();
@@ -178,11 +227,11 @@ public class Trivia extends AppCompatActivity {
 
             showNextQuestion();
 
-        }else{
+        } else {
 
             questionList = savedInstanceState.getParcelableArrayList(QUESTION_LIST_KEY);
 
-            if(questionList == null){
+            if (questionList == null) {
                 finish();
             }
 
@@ -193,9 +242,9 @@ public class Trivia extends AppCompatActivity {
             timeLeftInMillis = savedInstanceState.getLong(MILLIS_LEFT_KEY);
             answered = savedInstanceState.getBoolean(ANSWERED_KEY);
 
-            if(!answered){
+            if (!answered) {
                 startCountDown();
-            }else{
+            } else {
                 updateCountDownText();
                 showSolution();
             }
@@ -219,7 +268,7 @@ public class Trivia extends AppCompatActivity {
 
                         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) snackbarView.getLayoutParams();
                         layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-                        layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+                        layoutParams.gravity = Gravity.CENTER | Gravity.BOTTOM;
                         snackbarView.setLayoutParams(layoutParams);
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -238,12 +287,11 @@ public class Trivia extends AppCompatActivity {
 
         SharedPreferences firstLaunchCheck = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
 
-        if(firstLaunchCheck.getBoolean(KEY_PREFS_FIRST_LAUNCH, true))
-        {
+        if (firstLaunchCheck.getBoolean(KEY_PREFS_FIRST_LAUNCH, true)) {
 
             getCountryInformation();
 
-            firstLaunchCheck.edit().putBoolean(KEY_PREFS_FIRST_LAUNCH,false).apply();
+            firstLaunchCheck.edit().putBoolean(KEY_PREFS_FIRST_LAUNCH, false).apply();
             Intent toTriviaTutorialIntent = new Intent(Trivia.this, TriviaTutorial.class);
             startActivity(toTriviaTutorialIntent);
             Trivia.this.finish();
@@ -263,7 +311,7 @@ public class Trivia extends AppCompatActivity {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            if(currentQuestion.getQuestion().contains("https://restcountries.eu")){
+            if (currentQuestion.getQuestion().contains("https://restcountries.eu")) {
 
                 flagForTriviaWebview.setVisibility(View.VISIBLE);
                 questionTextView.setText("The above flag represents what country?");
@@ -278,24 +326,24 @@ public class Trivia extends AppCompatActivity {
                 secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
                 thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
 
-            }else {
+            } else {
 
                 flagForTriviaWebview.setVisibility(View.INVISIBLE);
             }
 
-            if(!currentQuestion.getQuestion().contains("https://restcountries.eu"))
+            if (!currentQuestion.getQuestion().contains("https://restcountries.eu"))
                 questionTextView.setText(currentQuestion.getQuestion());
-                firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
-                secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
-                thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
+            firstRadioButton.setText(currentQuestion.getFirstAnswerOption());
+            secondRadioButton.setText(currentQuestion.getSecondAnswerOption());
+            thirdRadioButton.setText(currentQuestion.getThirdAnswerOption());
 
-                questionCounter++;
-                questionCountTextView.setText("Question: " + questionCounter + "/" + questionCountTotal);
-                answered = false;
-                confirmButton.setText("Confirm");
+            questionCounter++;
+            questionCountTextView.setText("Question: " + questionCounter + "/" + questionCountTotal);
+            answered = false;
+            confirmButton.setText("Confirm");
 
-                timeLeftInMillis = COUNTDOWN_TIMER_IN_MILLIS;
-                startCountDown();
+            timeLeftInMillis = COUNTDOWN_TIMER_IN_MILLIS;
+            startCountDown();
 
 
         } else {
@@ -305,7 +353,7 @@ public class Trivia extends AppCompatActivity {
         }
     }
 
-    private void startCountDown(){
+    private void startCountDown() {
 
         countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
             @Override
@@ -324,17 +372,17 @@ public class Trivia extends AppCompatActivity {
         }.start();
     }
 
-    private void updateCountDownText(){
+    private void updateCountDownText() {
 
-        int minutes =(int) (timeLeftInMillis / 1000 / 60);
+        int minutes = (int) (timeLeftInMillis / 1000 / 60);
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
 
         String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         countdownTextView.setText(formattedTime);
 
-        if(timeLeftInMillis < 5000){
+        if (timeLeftInMillis < 5000) {
             countdownTextView.setTextColor(Color.RED);
-        }else{
+        } else {
             countdownTextView.setTextColor(textColorDefaultCountDown);
         }
 
@@ -348,7 +396,7 @@ public class Trivia extends AppCompatActivity {
         int answerNumber = radioButtonGroup.indexOfChild(radioButtonSelected) + 1;
 
         if (answerNumber == currentQuestion.getAnswerNumber()) {
-            score+=4;
+            score += 4;
             scoreTextView.setText("Score: " + score);
         }
 
@@ -405,7 +453,7 @@ public class Trivia extends AppCompatActivity {
 
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) onBackPressedSnackBarView.getLayoutParams();
             layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-            layoutParams.gravity = Gravity.CENTER|Gravity.BOTTOM;
+            layoutParams.gravity = Gravity.CENTER | Gravity.BOTTOM;
             onBackPressedSnackBarView.setLayoutParams(layoutParams);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -423,7 +471,7 @@ public class Trivia extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if(countDownTimer != null){
+        if (countDownTimer != null) {
             countDownTimer.cancel();
         }
 
@@ -447,59 +495,74 @@ public class Trivia extends AppCompatActivity {
                     Collections.shuffle(countryListForTrivia);
 
 
-                   String countryName = countryListForTrivia.get(0).getName();
-                   String countryCapital = countryListForTrivia.get(0).getCapital();
-                   String countryNameOne = countryListForTrivia.get(5).getName();
-                   String countryCapitalOne = countryListForTrivia.get(5).getCapital();
-                   String countryThreeName = countryListForTrivia.get(211).getName();
-                   String countryThreeRegion = countryListForTrivia.get(211).getRegion();
-                   String countryFourName = countryListForTrivia.get(10).getName();
-                   String countryFourCapital = countryListForTrivia.get(10).getCapital();
-                   String countryFiveName = countryListForTrivia.get(25).getName();
-                   String countryFiveRegion = countryListForTrivia.get(25).getRegion();
-                   String countrySixName = countryListForTrivia.get(50).getName();
-                   String countrySixSize = String.valueOf(countryListForTrivia.get(50).getArea());
-                   String countrySevenName = countryListForTrivia.get(43).getName();
-                   String countrySevenFlag = countryListForTrivia.get(43).getFlag();
-                   String countryEightName = countryListForTrivia.get(99).getName();
-                   String countryEightFlag = countryListForTrivia.get(99).getFlag();
-                   String countryNineName = countryListForTrivia.get(200).getName();
-                   String countryNineFlag = countryListForTrivia.get(200).getFlag();
-                   String countryTenName = countryListForTrivia.get(160).getName();
-                   String countryTenFlag = countryListForTrivia.get(160).getFlag();
-                   String countryElevenName = countryListForTrivia.get(82).getName();
-                   String countryElevenCapital = countryListForTrivia.get(82).getCapital();
-                    String countryTwelveName = countryListForTrivia.get(77).getName();
-                    String countryTwelveCapital = countryListForTrivia.get(77).getCapital();
-                    String countryThirteenName = countryListForTrivia.get(93).getName();
-                    String countryThirteenCapital = countryListForTrivia.get(93).getCapital();
-                    String countryFourteenName = countryListForTrivia.get(102).getName();
-                    String countryFourteenFlag = countryListForTrivia.get(102).getFlag();
-                    String countryFifteenName = countryListForTrivia.get(49).getName();
-                    String countryFifteenFlag = countryListForTrivia.get(49).getFlag();
-                    String countrySixteenName = countryListForTrivia.get(57).getName();
-                    String countrySixteenFlag = countryListForTrivia.get(57).getFlag();
-                    String countrySeventeenName = countryListForTrivia.get(12).getName();
-                    String countrySeventeenCapital = countryListForTrivia.get(12).getCapital();
-                    String countryEighteenName = countryListForTrivia.get(29).getName();
-                    String countryEighteenCapital = countryListForTrivia.get(29).getCapital();
-                    String countryNineteenName = countryListForTrivia.get(31).getName();
-                    String countryNineteenCapital = countryListForTrivia.get(31).getCapital();
-                    String countryTwentyName = countryListForTrivia.get(89).getName();
-                    String countryTwentyRegion = countryListForTrivia.get(89).getRegion();
-                    String countryTwentyOneName = countryListForTrivia.get(232).getName();
-                    String countryTwentyOneFlag = countryListForTrivia.get(232).getFlag();
-                    String countryTwentyTwoName = countryListForTrivia.get(115).getName();
-                    String countryTwentyTwoFlag = countryListForTrivia.get(115).getFlag();
-                    String countryTwentyThreeName = countryListForTrivia.get(184).getName();
-                    String countryTwentyThreeFlag = countryListForTrivia.get(184).getFlag();
-                    String countryTwentyFourName = countryListForTrivia.get(154).getName();
-                    String countryTwentyFourCapital = countryListForTrivia.get(154).getCapital();
-                    String countryTwentyFiveName = countryListForTrivia.get(18).getName();
-                    String countryTwentyFiveRegion = countryListForTrivia.get(18).getRegion();
+                    countryName = countryListForTrivia.get(0).getName();
+                    countryCapital = countryListForTrivia.get(0).getCapital();
+                    countryNameOne = countryListForTrivia.get(5).getName();
+                    countryCapitalOne = countryListForTrivia.get(5).getCapital();
+                    countryThreeName = countryListForTrivia.get(211).getName();
+                    countryThreeRegion = countryListForTrivia.get(211).getRegion();
+                    countryFourName = countryListForTrivia.get(10).getName();
+                    countryFourCapital = countryListForTrivia.get(10).getCapital();
+                    countryFiveName = countryListForTrivia.get(25).getName();
+                    countryFiveRegion = countryListForTrivia.get(25).getRegion();
+                    countrySixName = countryListForTrivia.get(50).getName();
+                    countrySixSize = String.valueOf(countryListForTrivia.get(50).getArea());
+                    countrySevenName = countryListForTrivia.get(43).getName();
+                    countrySevenFlag = countryListForTrivia.get(43).getFlag();
+                    countryEightName = countryListForTrivia.get(99).getName();
+                    countryEightFlag = countryListForTrivia.get(99).getFlag();
+                    countryNineName = countryListForTrivia.get(200).getName();
+                    countryNineFlag = countryListForTrivia.get(200).getFlag();
+                    countryTenName = countryListForTrivia.get(160).getName();
+                    countryTenFlag = countryListForTrivia.get(160).getFlag();
+                    countryElevenName = countryListForTrivia.get(82).getName();
+                    countryElevenCapital = countryListForTrivia.get(82).getCapital();
+                    countryTwelveName = countryListForTrivia.get(77).getName();
+                    countryTwelveCapital = countryListForTrivia.get(77).getCapital();
+                    countryThirteenName = countryListForTrivia.get(93).getName();
+                    countryThirteenCapital = countryListForTrivia.get(93).getCapital();
+                    countryFourteenName = countryListForTrivia.get(102).getName();
+                    countryFourteenFlag = countryListForTrivia.get(102).getFlag();
+                    countryFifteenName = countryListForTrivia.get(49).getName();
+                    countryFifteenFlag = countryListForTrivia.get(49).getFlag();
+                    countrySixteenName = countryListForTrivia.get(57).getName();
+                    countrySixteenFlag = countryListForTrivia.get(57).getFlag();
+                    countrySeventeenName = countryListForTrivia.get(12).getName();
+                    countrySeventeenCapital = countryListForTrivia.get(12).getCapital();
+                    countryEighteenName = countryListForTrivia.get(29).getName();
+                    countryEighteenCapital = countryListForTrivia.get(29).getCapital();
+                    countryNineteenName = countryListForTrivia.get(31).getName();
+                    countryNineteenCapital = countryListForTrivia.get(31).getCapital();
+                    countryTwentyName = countryListForTrivia.get(89).getName();
+                    countryTwentyRegion = countryListForTrivia.get(89).getRegion();
+                    countryTwentyOneName = countryListForTrivia.get(232).getName();
+                    countryTwentyOneFlag = countryListForTrivia.get(232).getFlag();
+                    countryTwentyTwoName = countryListForTrivia.get(115).getName();
+                    countryTwentyTwoFlag = countryListForTrivia.get(115).getFlag();
+                    countryTwentyThreeName = countryListForTrivia.get(184).getName();
+                    countryTwentyThreeFlag = countryListForTrivia.get(184).getFlag();
+                    countryTwentyFourName = countryListForTrivia.get(154).getName();
+                    countryTwentyFourCapital = countryListForTrivia.get(154).getCapital();
+                    countryTwentyFiveName = countryListForTrivia.get(18).getName();
+                    countryTwentyFiveRegion = countryListForTrivia.get(18).getRegion();
 
 
+                    makeSureNoEmptyOptionsShowInTrivia();
 
+
+                    Log.e("CAPITAL REGION FOR 18", countryTwentyFiveRegion + "   " + countryTwentyFiveName);
+                    Log.e("CAPITAL REGION FOR 25", countryFiveRegion + "   " + countryFiveName);
+                    Log.e("CAPITAL REGION FOR 89", countryTwentyRegion + "   " + countryTwentyName);
+                    Log.e("CAPITAL REGION FOR 211", countryThreeRegion + "   " + countryThreeName);
+                    Log.e("CAPITAL CHECK", countryCapitalOne + "   " + countryNameOne);
+                    Log.e("CAPITAL CHECK", countryCapital + "   " + countryName);
+                    Log.e("CAPITAL CHECK", countryEighteenCapital + "   " + countryEighteenName);
+                    Log.e("CAPITAL CHECK", countryElevenCapital + "   " + countryElevenName);
+                    Log.e("CAPITAL CHECK", countryFourCapital + "   " + countryFourName);
+                    Log.e("CAPITAL CHECK", countryNineteenCapital + "   " + countryNineteenName);
+                    Log.e("CAPITAL CHECK", countryThirteenCapital + "   " + countryThirteenName);
+                    Log.e("CAPITAL CHECK", countryTwentyFourCapital + "   " + countryTwentyFourName);
+                    Log.e("CAPITAL CHECK", countrySeventeenCapital + "   " + countrySeventeenName);
 
 
                     triviaSharedPrefs = PreferenceManager.getDefaultSharedPreferences(Trivia.this);
@@ -576,7 +639,76 @@ public class Trivia extends AppCompatActivity {
 
         });
 
+    }
 
+    private void makeSureNoEmptyOptionsShowInTrivia(){
+
+        if (countryFiveRegion.length() <= 1) {
+
+            countryFiveRegion = countryFiveName;
+        }
+
+
+        if (countryThreeRegion.length() <= 1) {
+
+            countryThreeRegion = countryThreeName;
+        }
+
+        if (countryTwentyRegion.length() <= 1) {
+
+            countryTwentyRegion = countryTwentyName;
+        }
+
+
+        if (countryTwentyFiveRegion.length() <= 1) {
+
+            countryTwentyFiveRegion = countryTwentyFiveName;
+
+        }
+
+        if (countrySixSize == null) {
+            countrySixSize = "0";
+        }
+
+        if(countryCapital.isEmpty()){
+            countryCapital = "No Capital";
+        }
+
+        if(countryCapitalOne.isEmpty()){
+            countryCapitalOne = "No Capital";
+        }
+
+        if(countryEighteenCapital.isEmpty()){
+            countryEighteenCapital = "No Capital";
+        }
+
+        if(countryElevenCapital.isEmpty()){
+            countryElevenCapital = "No Capital";
+        }
+
+        if(countryFourCapital.isEmpty()){
+            countryFourCapital = "No Capital";
+        }
+
+        if(countryNineteenCapital.isEmpty()){
+            countryNineteenCapital = "No Capital";
+        }
+
+        if(countrySeventeenCapital.isEmpty()){
+            countrySeventeenCapital = "No Capital";
+        }
+
+        if(countryThirteenCapital.isEmpty()){
+            countryThirteenCapital = "No Capital";
+        }
+
+        if(countryTwelveCapital.isEmpty()){
+            countryTwelveCapital = "No Capital";
+        }
+
+        if(countryTwentyFourCapital.isEmpty()){
+            countryTwentyFourCapital = "No Capital";
+        }
     }
 
     @Override
