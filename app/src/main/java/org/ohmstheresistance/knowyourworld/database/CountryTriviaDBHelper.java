@@ -213,7 +213,7 @@ public class CountryTriviaDBHelper extends SQLiteOpenHelper {
         TriviaQuestions questionFifteen = new TriviaQuestions( thirteenthCountryName +"'s capital city is ",  twentyFifthCountryName , thirteenthCountryCapital, sixteenthCountryName, 2);
         addQuestion(questionFifteen);
 
-        TriviaQuestions questionSixteen = new TriviaQuestions( fourteenthCountryFlag,  twelfthCountryName , fourteenthCountryName, twentyFourthCountryCapital, 2);
+        TriviaQuestions questionSixteen = new TriviaQuestions( fourteenthCountryFlag,  twelfthCountryName , fourteenthCountryName, firstCountryName, 2);
         addQuestion(questionSixteen);
 
         TriviaQuestions questionSeventeen = new TriviaQuestions( fifteenthCountryFlag,  fifteenthCountryName , seventeenthCountryName, sixthCountryName, 1);
