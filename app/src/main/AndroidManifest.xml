@@ -22,7 +22,7 @@
         <activity android:name=".activities.SelectedCountryDetails" />
         <activity android:name=".activities.GetRandomCountry" />
         <activity android:name=".activities.RandomCountryPicked" />
-        <activity android:name=".activities.Study" />
+        <activity android:name=".activities.Study" android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -98,9 +98,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
                         String countryRegion = country.getSubregion();
                         String countryCitizens = country.getDemonym();
 
-                        if(countryName.contains("Yugoslav")){
-                            countryName.equals("Macedonia");
-                        }
 
                         if (status == TextToSpeech.SUCCESS) {
 
