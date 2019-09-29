@@ -71,6 +71,10 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
             countryViewHolder.countryNameTextView.setText("Bolivia");
         }
 
+        if(country.getArea() == null){
+            country.setArea(0.0);
+        }
+
         sortAlphabetically();
 
         countryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
