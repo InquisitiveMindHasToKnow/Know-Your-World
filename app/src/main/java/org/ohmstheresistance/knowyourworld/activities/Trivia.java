@@ -709,6 +709,10 @@ public class Trivia extends AppCompatActivity {
         if(countryTwentyFourCapital.isEmpty()){
             countryTwentyFourCapital = "No Capital";
         }
+
+        if(countrySixSize.equals(String.valueOf(0.0))){
+            countrySixSize = "Unknown";
+        }
     }
 
     @Override
