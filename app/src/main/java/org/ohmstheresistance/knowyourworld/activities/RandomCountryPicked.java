@@ -223,8 +223,12 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
             }else
             randomCountryLanguageTextView.setText(randomCountryLanguages + " ( " + randomCountryLanguageNativeName + " )");
 
+            if(randomCountryArea.equals(String.valueOf(0.0))){
+                randomCountryAreaTextView.setText("Unknown" + " km²");
+            }
 
-        FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;
+
+            FragmentNavigation fragmentNavigation = (FragmentNavigation) RandomCountryPicked.this;
         fragmentNavigation.goToLocationOnMap(longitude, latitude, randomCountry, randomCountryFlag);
     }
 

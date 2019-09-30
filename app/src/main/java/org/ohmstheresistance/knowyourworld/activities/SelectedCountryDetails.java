@@ -1,9 +1,12 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
+import android.speech.tts.TextToSpeech;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +26,9 @@ import org.ohmstheresistance.knowyourworld.fragments.GoogleMapsFragment;
 import org.ohmstheresistance.knowyourworld.model.Country;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
 public class SelectedCountryDetails extends AppCompatActivity implements FragmentNavigation {
 
@@ -46,6 +52,8 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
     private static final String SELECTED_COUNTRY_CURRENCIES_KEY = "selectedCountryCurrenciesKey";
     private static final String SELECTED_COUNTRY_LANGUAGES_KEY = "selectedCountryLanguagesKey";
     private static final String SELECTED_COUNTRY_NATIVE_NAME_KEY = "selectedCountryNativeNameKey";
+    private static final String SELECTED_COUNTRY_CITIZENS_KEY = "selectedCountryCitizensKey";
+
 
     private TextView selectedCountryDetailsNameTextView;
     private TextView selectedCountryDetailsCapitalTextView;
@@ -81,9 +89,14 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
     private String selectedCountryBorders;
     private String selectedCountryCurrency;
     private String selectedCountryLanguageNativeName;
+    private String selectedCountryCitizens;
 
     private FloatingActionButton fab;
+    private FloatingActionButton listenToCountryDetailsFab;
     private CountryDatabaseHelper countryDatabaseHelper;
+
+    private long lastClickTime = 0;
+    public TextToSpeech textToSpeech;
 
 
     @Override
@@ -111,6 +124,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         fab = findViewById(R.id.favourites_fab_button);
         selectedCountryLearnEvenMoreTextView = findViewById(R.id.country_details_research_more_textview);
         constraintLayout = findViewById(R.id.selected_country_container);
+        listenToCountryDetailsFab = findViewById(R.id.country_details_speech_fab_button);
 
 
         Bundle selectedCountryDetailsBundle = getIntent().getExtras();
@@ -133,6 +147,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
             selectedCountryBorders = selectedCountryDetailsBundle.getString(SELECTED_COUNTRY_BORDERS_KEY);
             selectedCountryCurrency = selectedCountryDetailsBundle.getString(SELECTED_COUNTRY_CURRENCIES_KEY);
             selectedCountryLanguageNativeName = selectedCountryDetailsBundle.getString(SELECTED_COUNTRY_NATIVE_NAME_KEY);
+            selectedCountryCitizens = selectedCountryDetailsBundle.getString(SELECTED_COUNTRY_CITIZENS_KEY);
 
             Arrays.toString(new String[]{selectedCountryBorders});
 
@@ -170,6 +185,10 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                 selectedCountryDetailsLanguageTextView.setText(selectedCountryLanguages);
             } else
                 selectedCountryDetailsLanguageTextView.setText(selectedCountryLanguages + " ( " + selectedCountryLanguageNativeName + " )");
+        }
+
+        if(selectedCountryArea.equals(String.valueOf(0.0))){
+            selectedCountryDetailsAreaTextView.setText("Unknown" + " km²");
         }
 
         FragmentNavigation fragmentNavigation = (FragmentNavigation) SelectedCountryDetails.this;
@@ -251,7 +270,73 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         });
 
 
+        listenToCountryDetailsFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (SystemClock.elapsedRealtime() - lastClickTime < 5000) {
+                    return;
+                }
+                lastClickTime = SystemClock.elapsedRealtime();
+
+
+                textToSpeech = new TextToSpeech(SelectedCountryDetails.this, new TextToSpeech.OnInitListener() {
+
+                    @Override
+                    public void onInit(int status) {
+
+                        if (status == TextToSpeech.SUCCESS) {
+
+                            textToSpeech.setLanguage(Locale.US);
+                            playNextChunk(selectedCountryName + ". The capital of " + selectedCountryName + " is " + selectedCountryCapital + ". "
+                                    + selectedCountryName + " is located in " + selectedCountryRegion + "." + " There are approximately " + selectedCountryPopulation + selectedCountryCitizens + " living in " + selectedCountryName + ".");
+
+                        }
+
+                        if (selectedCountryName.equals("Antarctica") || selectedCountryName.equals("Bouvet Island") || selectedCountryName.equals("United States Minor Outlying Islands")
+                                || selectedCountryName.equals("Heard Island and McDonald Islands") || selectedCountryName.equals("Macao") || selectedCountryName.contains("Saint Helena")) {
+
+
+                            textToSpeech.setLanguage(Locale.US);
+                            playNextChunk(selectedCountryName + "." + " There is no capital city in  " + selectedCountryName + ". " + selectedCountryName + " is located in " + selectedCountryName + "." + " There are approximately " + selectedCountryPopulation + " people living in " + selectedCountryName + ".");
+
+
+                        }
+                    }
+                });
+
+
+            }
+        });
+
+
     }
+
+        private void playNextChunk(String text) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ttsGreater21(text);
+        } else {
+            ttsUnder20(text);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void ttsUnder20(String text) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "MessageId");
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, map);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void ttsGreater21(String text) {
+        String utteranceId = this.hashCode() + "";
+        Bundle params = new Bundle();
+        params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "");
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, params, utteranceId);
+    }
+
+
+
 
     @Override
     public void goToLocationOnMap(String lon, String lat, String name, String countryFlag) {
@@ -266,6 +351,13 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
+
+        if(textToSpeech != null) {
+
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
 
         finish();
     }
