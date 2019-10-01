@@ -295,9 +295,16 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
 
                         }
 
-                        if (selectedCountryName.equals("Antarctica") || selectedCountryName.equals("Bouvet Island") || selectedCountryName.equals("United States Minor Outlying Islands")
-                                || selectedCountryName.equals("Heard Island and McDonald Islands") || selectedCountryName.equals("Macao") || selectedCountryName.contains("Saint Helena")) {
+                        if (selectedCountryName.equals("Antarctica") || selectedCountryName.equals("United States Minor Outlying Islands")
+                                 || selectedCountryName.equals("Macao")) {
 
+
+                            textToSpeech.setLanguage(Locale.US);
+                            playNextChunk(selectedCountryName + "." + " There is no capital city in  " + selectedCountryName + ". " + selectedCountryName + " is located in " + selectedCountryRegion + "." + " There are approximately " + selectedCountryPopulation + " people living in " + selectedCountryName + ".");
+
+                        }
+
+                        if (selectedCountryName.equals("Bouvet Island") || selectedCountryName.equals("Heard Island and McDonald Islands")) {
 
                             textToSpeech.setLanguage(Locale.US);
                             playNextChunk(selectedCountryName + "." + " There is no capital city in  " + selectedCountryName + ". " + selectedCountryName + " is located in " + selectedCountryName + "." + " There are approximately " + selectedCountryPopulation + " people living in " + selectedCountryName + ".");

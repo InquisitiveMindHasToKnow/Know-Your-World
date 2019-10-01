@@ -15,8 +15,6 @@ import org.ohmstheresistance.knowyourworld.network.RetrofitSingleton;
 import org.ohmstheresistance.knowyourworld.rv.CountryAdapter;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -107,16 +105,5 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
         countryAdapter.setData(newCountryList);
         return false;
     }
-
-    public void onPause(){
-        if(countryAdapter.textToSpeech !=null){
-            countryAdapter.textToSpeech.stop();
-            countryAdapter.textToSpeech.shutdown();
-        }
-
-        super.onPause();
-    }
-
-
 }
 
