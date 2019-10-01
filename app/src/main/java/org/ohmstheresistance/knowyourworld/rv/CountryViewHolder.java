@@ -1,11 +1,13 @@
 package org.ohmstheresistance.knowyourworld.rv;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
     private WebView countryFlagImageView;
     public TextView countryNameTextView;
     public TextView countryCapitalTextView;
+
 
     private static final String SELECTED_COUNTRY_NAME_KEY = "selectedCountryNameKey";
     private static final String SELECTED_COUNTRY_LATITUDE_KEY = "selectedCountryLatitudeKey";
@@ -49,9 +52,9 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
         countryFlagImageView = itemView.findViewById(R.id.country_flag_imageview);
         countryNameTextView = itemView.findViewById(R.id.country_name_textview);
         countryCapitalTextView = itemView.findViewById(R.id.country_capital_textview);
-
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void onBind(final Country country) {
 
 
@@ -62,10 +65,22 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
         countryNameTextView.setText(countryName);
         countryCapitalTextView.setText(countryCapital);
 
-
         String html = "<html><body><img src=\"" + countryFlag + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
         countryFlagImageView.setBackgroundColor(Color.TRANSPARENT);
         countryFlagImageView.loadData(html, "text/html", null);
+
+
+        countryFlagImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+               itemView.performClick();
+
+                return true;
+            }
+        });
+
+
 
 
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -119,6 +134,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
                 mapBundle.putString(SELECTED_COUNTRY_CITIZENS_KEY, selectedCountryCitizens);
 
                 toCountryDetailsIntent.putExtras(mapBundle);
+                toCountryDetailsIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 v.getContext().startActivity(toCountryDetailsIntent);
 
 
@@ -128,4 +144,5 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
     }
 
 }
+
 
