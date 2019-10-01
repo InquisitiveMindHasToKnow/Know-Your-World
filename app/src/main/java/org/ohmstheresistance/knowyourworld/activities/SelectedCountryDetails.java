@@ -1,5 +1,6 @@
 package org.ohmstheresistance.knowyourworld.activities;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,12 +8,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
@@ -93,9 +96,9 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
 
     private FloatingActionButton fab;
     private FloatingActionButton listenToCountryDetailsFab;
+    private FloatingActionButton stopCountryDetailsFab;
     private CountryDatabaseHelper countryDatabaseHelper;
 
-    private long lastClickTime = 0;
     public TextToSpeech textToSpeech;
 
 
@@ -125,6 +128,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         selectedCountryLearnEvenMoreTextView = findViewById(R.id.country_details_research_more_textview);
         constraintLayout = findViewById(R.id.selected_country_container);
         listenToCountryDetailsFab = findViewById(R.id.country_details_speech_fab_button);
+        stopCountryDetailsFab = findViewById(R.id.country_details_stop_speech_fab_button);
 
 
         Bundle selectedCountryDetailsBundle = getIntent().getExtras();
@@ -274,18 +278,16 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
             @Override
             public void onClick(View v) {
 
-                if (SystemClock.elapsedRealtime() - lastClickTime < 5000) {
-                    return;
-                }
-                lastClickTime = SystemClock.elapsedRealtime();
-
-
                 textToSpeech = new TextToSpeech(SelectedCountryDetails.this, new TextToSpeech.OnInitListener() {
 
+                    @SuppressLint("RestrictedApi")
                     @Override
                     public void onInit(int status) {
 
                         if (status == TextToSpeech.SUCCESS) {
+
+                            listenToCountryDetailsFab.setVisibility(View.INVISIBLE);
+                            stopCountryDetailsFab.setVisibility(View.VISIBLE);
 
                             textToSpeech.setLanguage(Locale.US);
                             playNextChunk(selectedCountryName + ". The capital of " + selectedCountryName + " is " + selectedCountryCapital + ". "
@@ -300,8 +302,31 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                             textToSpeech.setLanguage(Locale.US);
                             playNextChunk(selectedCountryName + "." + " There is no capital city in  " + selectedCountryName + ". " + selectedCountryName + " is located in " + selectedCountryName + "." + " There are approximately " + selectedCountryPopulation + " people living in " + selectedCountryName + ".");
 
-
                         }
+
+                        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+                            @Override
+                            public void onStart(String utteranceId) {
+
+                            }
+
+                            @Override
+                            public void onDone(String utteranceId) {
+                                SelectedCountryDetails.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        listenToCountryDetailsFab.setVisibility(View.VISIBLE);
+                                        stopCountryDetailsFab.setVisibility(View.INVISIBLE);
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(String utteranceId) {
+                            }
+                        });
+
                     }
                 });
 
@@ -310,6 +335,19 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         });
 
 
+        stopCountryDetailsFab.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View v) {
+
+                textToSpeech.stop();
+                textToSpeech.shutdown();
+
+                listenToCountryDetailsFab.setVisibility(View.VISIBLE);
+                stopCountryDetailsFab.setVisibility(View.INVISIBLE);
+
+            }
+        });
     }
 
         private void playNextChunk(String text) {

@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
@@ -54,6 +53,7 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void onBind(final Country country) {
+
 
         String countryFlag = country.getFlag();
         String countryName = country.getName();
@@ -128,3 +128,4 @@ public class CountryViewHolder extends RecyclerView.ViewHolder {
     }
 
 }
+
