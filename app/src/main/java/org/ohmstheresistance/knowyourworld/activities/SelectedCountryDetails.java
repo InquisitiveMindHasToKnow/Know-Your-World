@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -72,7 +73,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
     private TextView selectedCountryDetailsCurrencyTextView;
     private WebView selectedCountryFlagWebView;
     private NestedScrollView nestedScrollView;
-    private TextView selectedCountryLearnEvenMoreTextView;
+    private Button selectedCountryDetailsMoreInfoButton;
 
 
     private String selectedCountryName;
@@ -125,7 +126,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         selectedCountryDetailsCurrencyTextView = findViewById(R.id.country_details_currency_textview);
         nestedScrollView = findViewById(R.id.country_details_nested_scrollview);
         fab = findViewById(R.id.favourites_fab_button);
-        selectedCountryLearnEvenMoreTextView = findViewById(R.id.country_details_research_more_textview);
+        selectedCountryDetailsMoreInfoButton = findViewById(R.id.country_details_research_more_button);
         constraintLayout = findViewById(R.id.selected_country_container);
         listenToCountryDetailsFab = findViewById(R.id.country_details_speech_fab_button);
         stopCountryDetailsFab = findViewById(R.id.country_details_stop_speech_fab_button);
@@ -263,7 +264,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         });
 
 
-        selectedCountryLearnEvenMoreTextView.setOnClickListener(new View.OnClickListener() {
+        selectedCountryDetailsMoreInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String internetURLForSelectedCountry = "https://en.wikipedia.org/wiki/" + selectedCountryName;

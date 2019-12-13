@@ -6,6 +6,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
 import org.ohmstheresistance.knowyourworld.R;
@@ -59,6 +61,28 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
                     GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
                     countryRecyclerView.setLayoutManager(gridLayoutManager);
                     countryRecyclerView.setAdapter(countryAdapter);
+
+                    countryRecyclerView.getViewTreeObserver().addOnPreDrawListener(
+                            new ViewTreeObserver.OnPreDrawListener() {
+
+                                @Override
+                                public boolean onPreDraw() {
+                                    countryRecyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
+
+                                    for (int i = 0; i < countryRecyclerView.getChildCount(); i++) {
+                                        View v = countryRecyclerView.getChildAt(i);
+                                        v.setAlpha(0.0f);
+                                        v.animate().alpha(1.0f)
+                                                .setDuration(300)
+                                                .setStartDelay(i * 50)
+                                                .start();
+                                    }
+
+                                    return true;
+                                }
+                            });
+
+
                     studySearchView.setOnQueryTextListener(Study.this);
                     studySearchView.setFocusable(false);
                     studySearchView.setIconified(false);
