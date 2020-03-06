@@ -196,7 +196,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
             selectedCountryDetailsAreaTextView.setText("Unknown" + " km²");
         }
 
-        FragmentNavigation fragmentNavigation = (FragmentNavigation) SelectedCountryDetails.this;
+        FragmentNavigation fragmentNavigation = SelectedCountryDetails.this;
         fragmentNavigation.goToLocationOnMap(selectedCountryLongitude, selectedCountryLatitude, selectedCountryName, selectedCountryFlag);
 
 
