@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Glide.with(this).load(R.drawable.spinningearth).into(globeImageView);
         globeImageView.setBackgroundColor(Color.TRANSPARENT);
 
-
         }
 
     @Override
@@ -85,7 +84,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(0, 0);
                 break;
         }
-
     }
-
 }

@@ -40,10 +40,7 @@ public class TriviaTutorial extends AppCompatActivity {
     public void onBackPressed() {
 
         countryTriviaDBHelper.clearDatabase();
-
         TriviaTutorial.this.finish();
         overridePendingTransition(0, 0);
-
-
     }
 }

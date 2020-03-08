@@ -130,14 +130,8 @@ public class GetRandomCountry extends AppCompatActivity implements Serializable 
             @Override
             public void onFailure(Call<List<Country>> call, Throwable t) {
 
-
             }
-
         });
-
-
     }
-
-
 }
 

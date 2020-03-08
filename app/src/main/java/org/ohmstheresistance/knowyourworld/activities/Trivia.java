@@ -626,19 +626,14 @@ public class Trivia extends AppCompatActivity {
 
                     return;
                 }
-
             }
 
             @Override
             public void onFailure(Call<List<Country>> call, Throwable t) {
 
                 Log.d("Country", "Retrofit call failed, Omar" + t.getMessage());
-
-
             }
-
         });
-
     }
 
     private void makeSureNoEmptyOptionsShowInTrivia(){

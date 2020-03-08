@@ -258,7 +258,6 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
                         snackBarTextView.setGravity(Gravity.CENTER_HORIZONTAL);
 
                     favoriteSavedSnackbar.show();
-
                 }
             }
         });
@@ -406,6 +405,7 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
         }
 
         finish();
+        overridePendingTransition(0,0);
     }
 }
 
