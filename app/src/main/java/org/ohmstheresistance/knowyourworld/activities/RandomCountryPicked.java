@@ -312,6 +312,6 @@ public class RandomCountryPicked extends AppCompatActivity implements FragmentNa
         super.onBackPressed();
 
         finish();
+        overridePendingTransition(0, 0);
     }
-
 }

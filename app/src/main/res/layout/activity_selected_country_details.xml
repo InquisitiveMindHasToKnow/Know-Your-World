@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selected_country_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/selected_country_container"
     tools:context=".activities.SelectedCountryDetails">
 
 
@@ -25,8 +25,6 @@
 
 
     </LinearLayout>
-
-
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/country_details_nested_scrollview"
         android:layout_width="match_parent"
@@ -38,7 +36,9 @@
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp"
+            >
 
 
             <LinearLayout
@@ -65,28 +65,25 @@
 
                 <TextView
                     android:id="@+id/country_details_name_textview"
+                    style="@style/TextAppearance.AppCompat.Subhead"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:gravity="center_horizontal"
                     android:textAllCaps="true"
                     android:textColor="#112631"
-                    style="@style/TextAppearance.AppCompat.Headline"
                     android:textStyle="bold|italic"
                     app:layout_constraintLeft_toRightOf="@id/country_details_flag_imageview"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-
-
             </LinearLayout>
-
-
             <LinearLayout
                 android:id="@+id/country_details_capital_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_flag_and_name_linear">
@@ -103,8 +100,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_capital_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,6 +113,7 @@
                 android:id="@+id/country_details_area_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_capital_linear">
@@ -134,8 +130,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_area_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,12 +143,12 @@
                 android:id="@+id/country_details_population_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_area_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_population_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -165,8 +159,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_population_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,12 +173,12 @@
                 android:id="@+id/country_details_region_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_population_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_region_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,8 +189,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_region_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -213,13 +203,13 @@
                 android:id="@+id/country_details_subregion_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_region_linear">
 
 
                 <TextView
-
                     android:id="@+id/country_details_subregion_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -230,8 +220,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_subregion_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -245,12 +233,12 @@
                 android:id="@+id/country_details_location_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_subregion_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_location_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -261,8 +249,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_location_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -276,12 +262,12 @@
                 android:id="@+id/country_details_cioc_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_location_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_cioc_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -292,8 +278,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_cioc_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -308,11 +292,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_cioc_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_alpha_codes_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -323,8 +307,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_alpha_codes_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -339,11 +321,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_alpha_codes_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_borders_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -354,8 +336,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_borders_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -370,11 +350,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_borders_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_language_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -385,8 +365,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_language_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -401,11 +379,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_language_linear">
 
                 <TextView
-
                     android:id="@+id/country_details_currency_tag_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -416,8 +394,6 @@
 
 
                 <TextView
-
-
                     android:id="@+id/country_details_currency_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -431,10 +407,10 @@
                 android:id="@+id/country_details_research_more_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/country_details_currency_linear">
@@ -444,13 +420,13 @@
                     android:id="@+id/country_details_research_more_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="   More info   "
-                    android:textAllCaps="false"
-                    android:background="@drawable/roundedbuttons"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="24dp"
+                    android:background="@drawable/roundedbuttons"
                     android:clickable="true"
                     android:focusable="true"
+                    android:text="   More info   "
+                    android:textAllCaps="false"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -462,46 +438,46 @@
 
 
     <android.support.design.widget.FloatingActionButton
-    android:id="@+id/favourites_fab_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:backgroundTint="@color/buttonColor"
-    android:layout_marginBottom="80dp"
-    android:layout_marginEnd="10dp"
-    android:clickable="true"
-    android:focusable="true"
-    android:src="@drawable/ic_save"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:fabCustomSize="72dp" />
+        android:id="@+id/favourites_fab_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/buttonColor"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_save"
+        app:fabCustomSize="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/country_details_speech_fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginBottom="10dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/buttonColor"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/tts_speaker"
+        app:fabCustomSize="40dp"
         app:layout_constraintBottom_toTopOf="@id/favourites_fab_button"
-        app:layout_constraintRight_toRightOf="parent"
-        app:fabCustomSize="40dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/country_details_stop_speech_fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/buttonColor"
-        android:layout_marginBottom="10dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/buttonColor"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="invisible"
         android:src="@drawable/stop_tts_speaker"
+        android:visibility="invisible"
+        app:fabCustomSize="40dp"
         app:layout_constraintBottom_toTopOf="@id/favourites_fab_button"
-        app:layout_constraintRight_toRightOf="parent"
-        app:fabCustomSize="40dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
