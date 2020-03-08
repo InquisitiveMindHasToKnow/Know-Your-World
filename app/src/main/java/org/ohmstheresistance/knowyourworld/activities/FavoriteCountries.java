@@ -220,4 +220,9 @@ public class FavoriteCountries extends AppCompatActivity {
         favoriteCountryAdapter.notifyDataSetChanged();
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
 }

@@ -129,5 +129,12 @@ public class Study extends AppCompatActivity implements SearchView.OnQueryTextLi
         countryAdapter.setData(newCountryList);
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
+    }
 }
+
 
