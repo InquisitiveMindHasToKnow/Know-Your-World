@@ -407,7 +407,5 @@ public class SelectedCountryDetails extends AppCompatActivity implements Fragmen
 
         finish();
     }
-
-
 }
 
