@@ -101,8 +101,9 @@
         android:layout_below="@id/radio_group"
         android:gravity="center"
         android:layout_marginTop="16dp"
-        android:background="@color/buttonColor"
+        android:background="@drawable/roundedbuttons"
         android:freezesText="true"
+        android:textAllCaps="false"
         android:layout_centerInParent="true"
         android:text="Confirm" />
 
