@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_container"
+    android:background="#F7EFCE"
     tools:context=".activities.RandomCountryPicked">
 
         <com.google.android.gms.maps.MapView
@@ -56,12 +57,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     style="@style/TextAppearance.AppCompat.Subhead"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/black"
                     android:textStyle="bold|italic"
                     android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal"
-                    android:layout_gravity="center"
+                    android:gravity="center"
                     app:layout_constraintLeft_toRightOf="@id/random_country_flag_imageview"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
